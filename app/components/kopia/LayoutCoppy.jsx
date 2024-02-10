@@ -9,10 +9,6 @@ import {
   PredictiveSearchResults,
 } from '~/components/Search';
 
-
-import { Header as Header2 } from "~/components/layout/Header";
-
-
 /**
  * @param {LayoutProps}
  */
@@ -22,7 +18,7 @@ export function Layout({ cart, children = null, footer, header, isLoggedIn }) {
       <CartAside cart={cart} />
       <SearchAside />
       <MobileMenuAside menu={header?.menu} shop={header?.shop} />
-      {header && <Header2 header={header} cart={cart} isLoggedIn={isLoggedIn} />}
+      {header && <Header header={header} cart={cart} isLoggedIn={isLoggedIn} />}
       <main>{children}</main>
       <Suspense>
         <Await resolve={footer}>

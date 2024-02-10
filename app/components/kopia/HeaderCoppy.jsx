@@ -1,36 +1,6 @@
-import { Await, NavLink } from '@remix-run/react';
-import { Suspense } from 'react';
+
 import { useRootLoaderData } from '~/root';
 
-
-// MY IMPORTS
-import { Image } from "@shopify/hydrogen-react"
-
-
-
-/**
- * @param {HeaderProps}
- */
-export function Header({ header, isLoggedIn, cart }) {
-  const { shop, menu } = header;
-  return (
-    <header className="header">
-      <NavLink prefetch="intent" to="/">
-        <Image
-          src="https://cdn.shopify.com/s/files/1/0728/3513/7804/files/jazba-logo-white.webp?v=1707578829"
-          alt="Jazba logo"
-          width={200}
-        />
-      </NavLink>
-      <HeaderMenu
-        menu={menu}
-        viewport="desktop"
-        primaryDomainUrl={header.shop.primaryDomain.url}
-      />
-      <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
-    </header>
-  );
-}
 
 /**
  * @param {{
@@ -123,70 +93,9 @@ function SearchToggle() {
   return <a href="#search-aside">Search</a>;
 }
 
-/**
- * @param {{count: number}}
- */
-function CartBadge({ count }) {
-  return <a href="#cart-aside">Cart {count}</a>;
-}
 
-/**
- * @param {Pick<HeaderProps, 'cart'>}
- */
-function CartToggle({ cart }) {
-  return (
-    <Suspense fallback={<CartBadge count={0} />}>
-      <Await resolve={cart}>
-        {(cart) => {
-          if (!cart) return <CartBadge count={0} />;
-          return <CartBadge count={cart.totalQuantity || 0} />;
-        }}
-      </Await>
-    </Suspense>
-  );
-}
 
-const FALLBACK_HEADER_MENU = {
-  id: 'gid://shopify/Menu/199655587896',
-  items: [
-    {
-      id: 'gid://shopify/MenuItem/461609500728',
-      resourceId: null,
-      tags: [],
-      title: 'Collections',
-      type: 'HTTP',
-      url: '/collections',
-      items: [],
-    },
-    {
-      id: 'gid://shopify/MenuItem/461609533496',
-      resourceId: null,
-      tags: [],
-      title: 'Blog',
-      type: 'HTTP',
-      url: '/blogs/journal',
-      items: [],
-    },
-    {
-      id: 'gid://shopify/MenuItem/461609566264',
-      resourceId: null,
-      tags: [],
-      title: 'Policies',
-      type: 'HTTP',
-      url: '/policies',
-      items: [],
-    },
-    {
-      id: 'gid://shopify/MenuItem/461609599032',
-      resourceId: 'gid://shopify/Page/92591030328',
-      tags: [],
-      title: 'About',
-      type: 'PAGE',
-      url: '/pages/about',
-      items: [],
-    },
-  ],
-};
+
 
 /**
  * @param {{
@@ -201,8 +110,4 @@ function activeLinkStyle({ isActive, isPending }) {
   };
 }
 
-/** @typedef {Pick<LayoutProps, 'header' | 'cart' | 'isLoggedIn'>} HeaderProps */
-/** @typedef {'desktop' | 'mobile'} Viewport */
 
-/** @typedef {import('storefrontapi.generated').HeaderQuery} HeaderQuery */
-/** @typedef {import('./Layout').LayoutProps} LayoutProps */

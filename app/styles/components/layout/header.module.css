@@ -1,0 +1,15 @@
+.header {
+    background: pink;
+}
+
+@media(min-width: 768px) {
+    .header {
+        background: red;
+    }
+}
+
+@media(min-width: 1024px) {
+    .header {
+        background: blue;
+    }
+}
