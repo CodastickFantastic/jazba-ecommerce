@@ -1,5 +1,5 @@
-import {useNonce} from '@shopify/hydrogen';
-import {defer} from '@shopify/remix-oxygen';
+import { useNonce } from '@shopify/hydrogen';
+import { defer } from '@shopify/remix-oxygen';
 import {
   Links,
   Meta,
@@ -15,14 +15,14 @@ import {
 import favicon from '../public/favicon.svg';
 import resetStyles from './styles/reset.css';
 import appStyles from './styles/app.css';
-import {Layout} from '~/components/Layout';
-import {cssBundleHref} from '@remix-run/css-bundle';
+import { Layout } from '~/components/layout/Layout';
+import { cssBundleHref } from '@remix-run/css-bundle';
 
 /**
  * This is important to avoid re-fetching root queries on sub-navigations
  * @type {ShouldRevalidateFunction}
  */
-export const shouldRevalidate = ({formMethod, currentUrl, nextUrl}) => {
+export const shouldRevalidate = ({ formMethod, currentUrl, nextUrl }) => {
   // revalidate when a mutation is performed e.g add to cart, login...
   if (formMethod && formMethod !== 'GET') {
     return true;
@@ -38,9 +38,9 @@ export const shouldRevalidate = ({formMethod, currentUrl, nextUrl}) => {
 
 export function links() {
   return [
-    ...(cssBundleHref ? [{rel: 'stylesheet', href: cssBundleHref}] : []),
-    {rel: 'stylesheet', href: resetStyles},
-    {rel: 'stylesheet', href: appStyles},
+    ...(cssBundleHref ? [{ rel: 'stylesheet', href: cssBundleHref }] : []),
+    { rel: 'stylesheet', href: resetStyles },
+    { rel: 'stylesheet', href: appStyles },
     {
       rel: 'preconnect',
       href: 'https://cdn.shopify.com',
@@ -49,14 +49,27 @@ export function links() {
       rel: 'preconnect',
       href: 'https://shop.app',
     },
-    {rel: 'icon', type: 'image/svg+xml', href: favicon},
+    { rel: 'icon', type: 'image/svg+xml', href: favicon },
+    {
+      rel: "preconnect",
+      href: "https://fonts.googleapis.com",
+    },
+    {
+      rel: "preconnect",
+      href: "https://fonts.gstatic.com",
+      crossorigin: true,
+    },
+    {
+      rel: "stylesheet",
+      href: "https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap",
+    }
   ];
 }
 
 /**
  * Access the result of the root loader from a React component.
  * @return {LoaderReturnData}
- */
+      */
 export const useRootLoaderData = () => {
   const [root] = useMatches();
   return root?.data;
@@ -64,9 +77,9 @@ export const useRootLoaderData = () => {
 
 /**
  * @param {LoaderFunctionArgs}
- */
-export async function loader({context}) {
-  const {storefront, customerAccount, cart} = context;
+      */
+export async function loader({ context }) {
+  const { storefront, customerAccount, cart } = context;
   const publicStoreDomain = context.env.PUBLIC_STORE_DOMAIN;
 
   const isLoggedInPromise = customerAccount.isLoggedIn();
@@ -174,74 +187,74 @@ export function ErrorBoundary() {
 }
 
 const MENU_FRAGMENT = `#graphql
-  fragment MenuItem on MenuItem {
-    id
+      fragment MenuItem on MenuItem {
+        id
     resourceId
-    tags
-    title
-    type
-    url
+      tags
+      title
+      type
+      url
   }
-  fragment ChildMenuItem on MenuItem {
-    ...MenuItem
-  }
-  fragment ParentMenuItem on MenuItem {
-    ...MenuItem
+      fragment ChildMenuItem on MenuItem {
+        ...MenuItem
+      }
+      fragment ParentMenuItem on MenuItem {
+        ...MenuItem
     items {
-      ...ChildMenuItem
-    }
+        ...ChildMenuItem
+      }
   }
-  fragment Menu on Menu {
-    id
+      fragment Menu on Menu {
+        id
     items {
-      ...ParentMenuItem
-    }
+        ...ParentMenuItem
+      }
   }
-`;
+      `;
 
 const HEADER_QUERY = `#graphql
-  fragment Shop on Shop {
-    id
+      fragment Shop on Shop {
+        id
     name
-    description
-    primaryDomain {
-      url
-    }
-    brand {
-      logo {
+      description
+      primaryDomain {
+        url
+      }
+      brand {
+        logo {
         image {
-          url
-        }
+        url
+      }
       }
     }
   }
-  query Header(
-    $country: CountryCode
-    $headerMenuHandle: String!
-    $language: LanguageCode
-  ) @inContext(language: $language, country: $country) {
-    shop {
-      ...Shop
-    }
-    menu(handle: $headerMenuHandle) {
-      ...Menu
-    }
+      query Header(
+      $country: CountryCode
+      $headerMenuHandle: String!
+      $language: LanguageCode
+      ) @inContext(language: $language, country: $country) {
+        shop {
+        ...Shop
+      }
+      menu(handle: $headerMenuHandle) {
+        ...Menu
+      }
   }
-  ${MENU_FRAGMENT}
-`;
+      ${MENU_FRAGMENT}
+      `;
 
 const FOOTER_QUERY = `#graphql
-  query Footer(
-    $country: CountryCode
-    $footerMenuHandle: String!
-    $language: LanguageCode
-  ) @inContext(language: $language, country: $country) {
-    menu(handle: $footerMenuHandle) {
-      ...Menu
-    }
+      query Footer(
+      $country: CountryCode
+      $footerMenuHandle: String!
+      $language: LanguageCode
+      ) @inContext(language: $language, country: $country) {
+        menu(handle: $footerMenuHandle) {
+        ...Menu
+      }
   }
-  ${MENU_FRAGMENT}
-`;
+      ${MENU_FRAGMENT}
+      `;
 
 /** @typedef {import('@shopify/remix-oxygen').LoaderFunctionArgs} LoaderFunctionArgs */
 /** @typedef {import('@remix-run/react').ShouldRevalidateFunction} ShouldRevalidateFunction */

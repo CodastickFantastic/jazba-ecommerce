@@ -2,7 +2,6 @@ import { Await } from '@remix-run/react';
 import { Suspense } from 'react';
 import { Aside } from '~/components/Aside';
 import { Footer } from '~/components/Footer';
-import { Header, HeaderMenu } from '~/components/Header';
 import { CartMain } from '~/components/Cart';
 import {
   PredictiveSearchForm,
@@ -10,7 +9,9 @@ import {
 } from '~/components/Search';
 
 
-import { Header as Header2 } from "~/components/layout/Header";
+import { Header } from "~/components/layout/Header";
+import { MenuAside } from './MenuAside';
+
 
 
 /**
@@ -21,8 +22,8 @@ export function Layout({ cart, children = null, footer, header, isLoggedIn }) {
     <>
       <CartAside cart={cart} />
       <SearchAside />
-      <MobileMenuAside menu={header?.menu} shop={header?.shop} />
-      {header && <Header2 header={header} cart={cart} isLoggedIn={isLoggedIn} />}
+      <MenuAside />
+      <Header header={header} cart={cart} isLoggedIn={isLoggedIn} />
       <main>{children}</main>
       <Suspense>
         <Await resolve={footer}>
@@ -77,37 +78,6 @@ function SearchAside() {
   );
 }
 
-/**
- * @param {{
- *   menu: HeaderQuery['menu'];
- *   shop: HeaderQuery['shop'];
- * }}
- */
-function MobileMenuAside({ menu, shop }) {
-  return (
-    menu &&
-    shop?.primaryDomain?.url && (
-      <Aside id="mobile-menu-aside" heading="MENU">
-        <HeaderMenu
-          menu={menu}
-          viewport="mobile"
-          primaryDomainUrl={shop.primaryDomain.url}
-        />
-      </Aside>
-    )
-  );
-}
 
-/**
- * @typedef {{
- *   cart: Promise<CartApiQueryFragment | null>;
- *   children?: React.ReactNode;
- *   footer: Promise<FooterQuery>;
- *   header: HeaderQuery;
- *   isLoggedIn: Promise<boolean>;
- * }} LayoutProps
- */
 
-/** @typedef {import('storefrontapi.generated').CartApiQueryFragment} CartApiQueryFragment */
-/** @typedef {import('storefrontapi.generated').FooterQuery} FooterQuery */
-/** @typedef {import('storefrontapi.generated').HeaderQuery} HeaderQuery */
+

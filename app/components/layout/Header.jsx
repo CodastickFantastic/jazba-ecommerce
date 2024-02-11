@@ -2,11 +2,7 @@ import { Await, NavLink } from '@remix-run/react';
 import { Suspense } from 'react';
 import { Image } from "@shopify/hydrogen-react"
 
-
 import styles from '~/styles/components/layout/header.module.css'
-
-
-
 
 export function Header({ cart }) {
     return (
@@ -35,7 +31,7 @@ export function Header({ cart }) {
 
 function MenuToggle() {
     return (
-        <a className={styles.toggleMenu} href="#mobile-menu-aside">
+        <a className={styles.toggleMenu} href="#menu-aside">
             <div className={styles.hamburegrMenuIcon} />
         </a>
     )
