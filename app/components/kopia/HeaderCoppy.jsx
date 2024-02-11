@@ -81,13 +81,6 @@ function HeaderCtas({ isLoggedIn, cart }) {
   );
 }
 
-function HeaderMenuMobileToggle() {
-  return (
-    <a className="header-menu-mobile-toggle" href="#mobile-menu-aside">
-      <h3>☰</h3>
-    </a>
-  );
-}
 
 function SearchToggle() {
   return <a href="#search-aside">Search</a>;
