@@ -21,7 +21,7 @@
         .hamburegrMenuIcon {
             width: 32px;
             height: 32px;
-            background-image: url("http://localhost:3000/icons/black/menu.png");
+            background-image: url("/icons/black/menu.png");
             background-size: contain;
             background-repeat: no-repeat;
         }
