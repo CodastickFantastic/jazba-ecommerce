@@ -1,7 +1,7 @@
-import {RemixServer} from '@remix-run/react';
+import { RemixServer } from '@remix-run/react';
 import isbot from 'isbot';
-import {renderToReadableStream} from 'react-dom/server';
-import {createContentSecurityPolicy} from '@shopify/hydrogen';
+import { renderToReadableStream } from 'react-dom/server';
+import { createContentSecurityPolicy } from '@shopify/hydrogen';
 
 /**
  * @param {Request} request
@@ -15,7 +15,17 @@ export default async function handleRequest(
   responseHeaders,
   remixContext,
 ) {
-  const {nonce, header, NonceProvider} = createContentSecurityPolicy();
+  const { nonce, header, NonceProvider } = createContentSecurityPolicy({
+    styleSrc: [
+      "'self'",
+      'https://fonts.googleapis.com',
+
+    ],
+    fontSrc: [
+      "'self'",
+      'https://fonts.gstatic.com'
+    ]
+  });
 
   const body = await renderToReadableStream(
     <NonceProvider>
