@@ -1,12 +1,11 @@
 .HeroSection {
     width: 100%;
-    height: 700px;
-    padding: 0px;
-    background: red;
+    height: 85dvh;
 
-    img {
+    & img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: center center;
     }
 }

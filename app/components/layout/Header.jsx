@@ -64,7 +64,7 @@ function CartToggle({ cart }) {
 function CartBadge({ count }) {
     return (
         <a href="#cart-aside" className={styles.cart}>
-            <div className={styles.shoppingBagIcon} />
+            <div className={styles.shoppingBagIcon}></div>
             <span className={styles.cartCounter}>{count}</span>
         </a>
     );

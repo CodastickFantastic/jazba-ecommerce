@@ -4,7 +4,7 @@
     background-position: center center;
     padding: 24px 0;
 
-    .collections {
+    & .collections {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -12,20 +12,20 @@
         row-gap: 36px;
 
 
-        .collectionTile {
+        & .collectionTile {
             width: 50%;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-decoration: none;
 
-            img {
+            & img {
                 width: unset;
                 height: 190px;
                 object-fit: contain;
             }
 
-            .collectionTileTitle {
+            & .collectionTileTitle {
                 margin-top: 4px;
                 font-family: "Prata", sans-serif;
                 font-size: 16px;
@@ -47,12 +47,10 @@
         padding: 0px;
         background-image: none;
 
-        .collections {
-            .collectionTile {
+        & .collections {
+            & .collectionTile {
                 width: 30%;
             }
         }
     }
 }
-
-@media(min-width: 1024px) {}

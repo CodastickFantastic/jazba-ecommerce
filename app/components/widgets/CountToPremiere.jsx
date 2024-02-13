@@ -1,5 +1,5 @@
 import { Image } from "@shopify/hydrogen-react"
-import styles from "~/styles/components/widgets/newPremiere.module.css"
+import styles from "~/styles/components/widgets/countToPremiere.module.css"
 
 import premiereUnknown from "~/../public/jazba-nowa-premiera.webp"
 import { Link } from "@remix-run/react"

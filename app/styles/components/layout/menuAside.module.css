@@ -3,7 +3,7 @@
         transform: translate(320px) !important;
     }
 
-    .closeOutside {
+    & .closeOutside {
         background: transparent;
         border: none;
         color: transparent;
@@ -14,7 +14,7 @@
         width: 100%
     }
 
-    .menu {
+    & .menu {
         width: 100%;
         max-width: 320px;
         min-width: unset;
@@ -29,13 +29,13 @@
             display: none;
         }
 
-        header {
+        & header {
             padding: 0px 20px;
             margin: 24px 0;
             height: unset;
             border-bottom: unset;
 
-            h3 {
+            & h3 {
                 font-family: "Nunito Sans", sans-serif;
                 font-size: 24px;
                 font-weight: 500;
@@ -43,7 +43,7 @@
                 max-width: 180px;
             }
 
-            .close {
+            & .close {
                 margin-top: -18px;
 
                 &:hover {
@@ -52,11 +52,11 @@
             }
         }
 
-        main {
+        & main {
             margin: 0px;
             padding: 0 20px;
 
-            .categories {
+            & .categories {
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
@@ -65,11 +65,11 @@
                 row-gap: 22px;
                 /* overflow: hidden; */
 
-                .categoryTile {
+                & .categoryTile {
                     width: 64px;
                     text-decoration: none;
 
-                    .imageHolder {
+                    & .imageHolder {
                         box-sizing: border-box;
                         width: 64px;
                         height: 64px;
@@ -81,7 +81,7 @@
 
                     }
 
-                    .categoryTitle {
+                    & .categoryTitle {
                         width: 100%;
                         text-align: center;
                         font-family: "Nunito Sans", sans-serif;
@@ -98,19 +98,19 @@
                 }
             }
 
-            .baner {
+            & .baner {
                 margin: 24px 0;
                 width: 100%;
 
-                img {
+                & img {
                     width: 100%;
                 }
             }
 
-            .links {
+            & .links {
                 width: 100%;
 
-                .link {
+                & .link {
                     margin-bottom: 18px;
                     display: flex;
                     flex-direction: row;
@@ -119,11 +119,11 @@
                     text-decoration: none;
                     width: fit-content;
 
-                    .icon {
+                    & .icon {
                         margin-right: 18px;
                     }
 
-                    .linkTitle {
+                    & .linkTitle {
                         font-family: "Nunito Sans", sans-serif;
                         font-size: 16px;
                         font-weight: 400;
@@ -140,13 +140,13 @@
             }
         }
 
-        footer {
+        & footer {
             width: 100%;
             position: relative;
             margin-top: auto;
             margin-bottom: 0px;
 
-            img {
+            & img {
                 position: absolute;
                 bottom: 0;
                 right: 18px;
@@ -154,7 +154,3 @@
         }
     }
 }
-
-@media(min-width: 768px) {}
-
-@media(min-width: 1024px) {}

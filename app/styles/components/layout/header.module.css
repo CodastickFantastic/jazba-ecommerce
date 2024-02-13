@@ -1,20 +1,23 @@
 .header {
     width: 100%;
     height: 80px;
+    top: 0;
+    left: 0;
 
-    .container {
+    & .container {
         height: 100%;
         width: 100%;
         max-width: 1440px;
+        margin: 0 auto;
         display: flex;
         justify-content: center;
         align-items: center;
 
-        .logoDesktop {
+        & .logoDesktop {
             display: none;
         }
 
-        .navIcons {
+        & .navIcons {
             padding: 0 32px;
             width: 100%;
             display: flex;
@@ -22,32 +25,32 @@
             justify-content: space-between;
             align-items: center;
 
-            .hamburegrMenuIcon {
+            & .hamburegrMenuIcon {
                 width: 32px;
                 height: 32px;
-                background-image: url("./../../../../public/decorations/fabric-bg-vertical.webp");
+                background-image: url("./../../../../public/icons//white/menu.png");
                 background-size: contain;
                 background-repeat: no-repeat;
             }
 
-            .cart {
+            & .cart {
                 position: relative;
 
-                .shoppingBagIcon {
+                & .shoppingBagIcon {
                     width: 32px;
                     height: 32px;
-                    background-image: url("http://localhost:3000/icons/black/shopping-bag.png");
+                    background-image: url("./../../../../public/icons//white/shopping-bag.png");
                     background-size: contain;
                     background-repeat: no-repeat;
                 }
 
-                .cartCounter {
+                & .cartCounter {
                     position: absolute;
                     top: -13px;
                     right: -10px;
                     font-size: 14px;
                     font-weight: bold;
-                    color: black;
+                    color: var(--color-light);
                     width: 22px;
                     height: 22px;
                     display: flex;
@@ -56,68 +59,5 @@
                 }
             }
         }
-    }
-
-
-}
-
-@media(min-width: 768px) {
-    .header {
-        /* background: red; */
-    }
-}
-
-@media(min-width: 1024px) {
-    .header {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        justify-content: space-between;
-        align-items: center;
-
-        .container {
-            .logoDesktop {
-                display: block;
-            }
-
-            .navIcons {
-                width: unset;
-                padding: 0px;
-                display: flex;
-
-                .logoMobile {
-                    display: none;
-                }
-
-                .toggleMenu {
-                    order: 2;
-
-                    .hamburegrMenuIcon {
-                        width: 32px;
-                        height: 32px;
-                        background-image: url("http://localhost:3000/icons/white/menu.png");
-                    }
-                }
-
-
-                .cart {
-                    margin-right: 32px;
-                    order: 1;
-
-                    .shoppingBagIcon {
-                        width: 32px;
-                        height: 32px;
-                        background-image: url("http://localhost:3000/icons/white/shopping-bag.png");
-                    }
-
-                    .cartCounter {
-                        color: white;
-                    }
-                }
-            }
-        }
-
-
     }
 }
