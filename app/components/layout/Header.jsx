@@ -8,7 +8,6 @@ import logo from '~/../public/logo/jazba-logo-white.webp'
 export function Header({ cart }) {
     const location = useLocation();
 
-    console.log(location)
     return (
         <header
             className={styles.header}
@@ -17,24 +16,15 @@ export function Header({ cart }) {
                 position: location.pathname === '/' ? 'absolute' : 'relative',
             }}>
             <div className={styles.container}>
-                <NavLink prefetch="intent" to="/" className={styles.logoDesktop} >
+                <MenuToggle />
+                <NavLink prefetch="intent" to="/" className={styles.logoMobile}>
                     <Image
                         src={logo}
                         alt="Jazba logo białe"
                         width={100}
                     />
                 </NavLink>
-                <div className={styles.navIcons}>
-                    <MenuToggle />
-                    <NavLink prefetch="intent" to="/" className={styles.logoMobile}>
-                        <Image
-                            src={logo}
-                            alt="Jazba logo białe"
-                            width={100}
-                        />
-                    </NavLink>
-                    <CartToggle cart={cart} />
-                </div>
+                <CartToggle cart={cart} />
             </div>
         </header>
     );

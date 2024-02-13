@@ -9,55 +9,45 @@
         width: 100%;
         max-width: 1440px;
         margin: 0 auto;
+        padding: 0 32px;
         display: flex;
-        justify-content: center;
+        flex-direction: row;
+        justify-content: space-between;
         align-items: center;
 
-        & .logoDesktop {
-            display: none;
+        & .hamburegrMenuIcon {
+            width: 32px;
+            height: 32px;
+            background-image: url("./../../../../public/icons//white/menu.png");
+            background-size: contain;
+            background-repeat: no-repeat;
         }
 
-        & .navIcons {
-            padding: 0 32px;
-            width: 100%;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
+        & .cart {
+            position: relative;
 
-            & .hamburegrMenuIcon {
+            & .shoppingBagIcon {
                 width: 32px;
                 height: 32px;
-                background-image: url("./../../../../public/icons//white/menu.png");
+                background-image: url("./../../../../public/icons//white/shopping-bag.png");
                 background-size: contain;
                 background-repeat: no-repeat;
             }
 
-            & .cart {
-                position: relative;
-
-                & .shoppingBagIcon {
-                    width: 32px;
-                    height: 32px;
-                    background-image: url("./../../../../public/icons//white/shopping-bag.png");
-                    background-size: contain;
-                    background-repeat: no-repeat;
-                }
-
-                & .cartCounter {
-                    position: absolute;
-                    top: -13px;
-                    right: -10px;
-                    font-size: 14px;
-                    font-weight: bold;
-                    color: var(--color-light);
-                    width: 22px;
-                    height: 22px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
+            & .cartCounter {
+                position: absolute;
+                top: -13px;
+                right: -10px;
+                font-size: 14px;
+                font-weight: bold;
+                color: var(--color-light);
+                width: 22px;
+                height: 22px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
         }
+
     }
 }
