@@ -1,5 +1,26 @@
-/* .test {
-    width: 100%;
-    height: 400px;
-    background: red;
-} */
+.row {
+    padding: 48px 0;
+
+    .premiere {
+        margin-bottom: 48px;
+    }
+}
+
+@media(min-width: 768px) {
+    .row {
+        padding: 48px 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        column-gap: 48px;
+        background-image: url("./../../../public/decorations/fabric-bg-horizontal.webp");
+        background-size: cover;
+        background-position: center center;
+
+        .latest {
+            max-width: 578px;
+        }
+    }
+}
+
+@media(min-width: 1024px) {}

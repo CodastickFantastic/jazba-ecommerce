@@ -7,7 +7,7 @@ import styles from '~/styles/components/layout/header.module.css'
 export function Header({ cart }) {
     return (
         <header className={styles.header}>
-            <NavLink prefetch="intent" to="/" className={styles.logoDesktop}>
+            <NavLink prefetch="intent" to="/" className={styles.logoDesktop} >
                 <Image
                     src="https://cdn.shopify.com/s/files/1/0728/3513/7804/files/jazba-logo-white.webp?v=1707578829"
                     alt="Jazba logo white"

@@ -1,0 +1,71 @@
+.newPremiere {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .timer {
+        margin: 16px 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        .timerSegment {
+            width: 64px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            &:first-of-type {
+                margin-right: 18px;
+            }
+
+            &:last-of-type {
+                margin-left: 18px;
+            }
+
+            &.delimiter {
+                width: 14px;
+
+                .label {
+                    color: transparent;
+                }
+            }
+
+
+            .time {
+                width: 100%;
+                font-family: "Poppins", "Nunito Sans", sans-serif;
+                font-size: 48px;
+                color: var(--color-beige);
+                text-align: center;
+                line-height: 1;
+            }
+
+            .label {
+                width: 100%;
+                font-family: "Poppins", "Nunito Sans", sans-serif;
+                font-size: 12px;
+                font-weight: 600;
+                color: black;
+                text-align: center;
+            }
+        }
+    }
+
+    a {
+        border: 1px solid var(--color-beige);
+        border-radius: 2px;
+        color: var(--color-beige);
+        padding: 8px 16px;
+        font-family: "Poppins", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+}
+
+@media(min-width: 768px) {}
+
+@media(min-width: 1024px) {}
