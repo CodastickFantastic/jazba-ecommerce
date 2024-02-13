@@ -1,29 +1,40 @@
-import { Await, NavLink } from '@remix-run/react';
+import { Await, NavLink, useLocation } from '@remix-run/react';
 import { Suspense } from 'react';
 import { Image } from "@shopify/hydrogen-react"
 
 import styles from '~/styles/components/layout/header.module.css'
+import logo from '~/../public/logo/jazba-logo-white.webp'
 
 export function Header({ cart }) {
+    const location = useLocation();
+
+    console.log(location)
     return (
-        <header className={styles.header}>
-            <NavLink prefetch="intent" to="/" className={styles.logoDesktop} >
-                <Image
-                    src="https://cdn.shopify.com/s/files/1/0728/3513/7804/files/jazba-logo-white.webp?v=1707578829"
-                    alt="Jazba logo white"
-                    width={100}
-                />
-            </NavLink>
-            <div className={styles.navIcons}>
-                <MenuToggle />
-                <NavLink prefetch="intent" to="/" className={styles.logoMobile}>
+        <header
+            className={styles.header}
+            style={{
+                backgroundColor: location.pathname === '/' ? 'transparent' : 'black',
+                position: location.pathname === '/' ? 'absolute' : 'relative',
+            }}>
+            <div className={styles.container}>
+                <NavLink prefetch="intent" to="/" className={styles.logoDesktop} >
                     <Image
-                        src="https://cdn.shopify.com/s/files/1/0728/3513/7804/files/jazba-logo-black.webp?v=1707590751"
-                        alt="Jazba logo black"
+                        src={logo}
+                        alt="Jazba logo białe"
                         width={100}
                     />
                 </NavLink>
-                <CartToggle cart={cart} />
+                <div className={styles.navIcons}>
+                    <MenuToggle />
+                    <NavLink prefetch="intent" to="/" className={styles.logoMobile}>
+                        <Image
+                            src={logo}
+                            alt="Jazba logo białe"
+                            width={100}
+                        />
+                    </NavLink>
+                    <CartToggle cart={cart} />
+                </div>
             </div>
         </header>
     );

@@ -1,57 +1,64 @@
 .header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80px;
     width: 100%;
-    max-width: 1440px;
+    height: 80px;
 
-    .logoDesktop {
-        display: none;
-    }
-
-    .navIcons {
-        padding: 0 32px;
+    .container {
+        height: 100%;
         width: 100%;
+        max-width: 1440px;
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
 
-        .hamburegrMenuIcon {
-            width: 32px;
-            height: 32px;
-            background-image: url("/icons/black/menu.png");
-            background-size: contain;
-            background-repeat: no-repeat;
+        .logoDesktop {
+            display: none;
         }
 
-        .cart {
-            position: relative;
+        .navIcons {
+            padding: 0 32px;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
 
-            .shoppingBagIcon {
+            .hamburegrMenuIcon {
                 width: 32px;
                 height: 32px;
-                background-image: url("http://localhost:3000/icons/black/shopping-bag.png");
+                background-image: url("./../../../../public/decorations/fabric-bg-vertical.webp");
                 background-size: contain;
                 background-repeat: no-repeat;
             }
 
-            .cartCounter {
-                position: absolute;
-                top: -13px;
-                right: -10px;
-                font-size: 14px;
-                font-weight: bold;
-                color: black;
-                width: 22px;
-                height: 22px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+            .cart {
+                position: relative;
+
+                .shoppingBagIcon {
+                    width: 32px;
+                    height: 32px;
+                    background-image: url("http://localhost:3000/icons/black/shopping-bag.png");
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                }
+
+                .cartCounter {
+                    position: absolute;
+                    top: -13px;
+                    right: -10px;
+                    font-size: 14px;
+                    font-weight: bold;
+                    color: black;
+                    width: 22px;
+                    height: 22px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
             }
         }
     }
+
+
 }
 
 @media(min-width: 768px) {
@@ -69,44 +76,48 @@
         justify-content: space-between;
         align-items: center;
 
-        .logoDesktop {
-            display: block;
+        .container {
+            .logoDesktop {
+                display: block;
+            }
+
+            .navIcons {
+                width: unset;
+                padding: 0px;
+                display: flex;
+
+                .logoMobile {
+                    display: none;
+                }
+
+                .toggleMenu {
+                    order: 2;
+
+                    .hamburegrMenuIcon {
+                        width: 32px;
+                        height: 32px;
+                        background-image: url("http://localhost:3000/icons/white/menu.png");
+                    }
+                }
+
+
+                .cart {
+                    margin-right: 32px;
+                    order: 1;
+
+                    .shoppingBagIcon {
+                        width: 32px;
+                        height: 32px;
+                        background-image: url("http://localhost:3000/icons/white/shopping-bag.png");
+                    }
+
+                    .cartCounter {
+                        color: white;
+                    }
+                }
+            }
         }
 
-        .navIcons {
-            width: unset;
-            padding: 0px;
-            display: flex;
 
-            .logoMobile {
-                display: none;
-            }
-
-            .toggleMenu {
-                order: 2;
-
-                .hamburegrMenuIcon {
-                    width: 32px;
-                    height: 32px;
-                    background-image: url("http://localhost:3000/icons/white/menu.png");
-                }
-            }
-
-
-            .cart {
-                margin-right: 32px;
-                order: 1;
-
-                .shoppingBagIcon {
-                    width: 32px;
-                    height: 32px;
-                    background-image: url("http://localhost:3000/icons/white/shopping-bag.png");
-                }
-
-                .cartCounter {
-                    color: white;
-                }
-            }
-        }
     }
 }
