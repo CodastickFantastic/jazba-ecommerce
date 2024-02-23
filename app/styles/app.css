@@ -13,11 +13,20 @@
   --color-dark: #000;
   --color-light: #fff;
   --color-beige: #A6835F;
+  --mobile-horizontal-padding: 0px 12px;
 }
 
 body,
 html {
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
+
+  &:has(.smoothScroll) {
+    scroll-behavior: smooth;
+  }
+
+  &:has(.blockScroll) {
+    overflow: hidden;
+  }
 }
 
 
@@ -27,6 +36,13 @@ h2 {
   font-family: "Prata", "Poppins", "Nunito", sans-serif;
   font-weight: 400;
   margin-bottom: 24px;
+}
+
+.smallContainer {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 12px;
 }
 
 

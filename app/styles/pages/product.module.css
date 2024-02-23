@@ -1,0 +1,222 @@
+.ProductPage {
+    & .imageFull {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100dvh;
+        overflow: hidden;
+
+        & .dim {
+            width: 100%;
+            height: 100%;
+            background: var(--color-light);
+        }
+
+        & .close {
+            position: absolute;
+            top: 24px;
+            right: 12px;
+        }
+
+        & .image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100dvh;
+            object-fit: contain;
+        }
+    }
+
+    & .imageSlider {
+        width: 100%;
+        height: 60dvh;
+        overflow-x: scroll;
+        overflow-y: hidden;
+
+        &::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        &::-webkit-scrollbar-track {
+            border-top: 1px solid var(--color-beige);
+            border-bottom: 1px solid var(--color-beige);
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: var(--color-beige);
+            border-radius: 50px;
+        }
+
+        & .track {
+            display: flex;
+            height: 100%;
+
+            & .imageHolder {
+                height: 100%;
+
+                & img {
+                    width: 100dvw;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center top;
+                }
+            }
+        }
+    }
+
+    & .productInfo {
+        padding: 0 12px;
+
+        & h1 {
+            margin-top: 12px;
+            font-family: "Nunito Sans", sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-dark);
+            margin-bottom: 24px;
+        }
+
+        & .row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 18px;
+            width: 100%;
+
+            & .optionsSection {
+                & .optionHolder {
+                    & .availableOptions {
+                        display: flex;
+
+                        & .option {
+                            width: 36px !important;
+                            height: 36px !important;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            border: 1px solid var(--color-dark);
+                            border-radius: 2px;
+                            margin-right: 16px;
+                            font-size: 24px;
+                            font-family: "Nunito Sans", sans-serif;
+                            text-decoration: none;
+
+                        }
+                    }
+                }
+            }
+
+            & .price {
+                font-family: "Nunito Sans", sans-serif;
+                font-size: 24px;
+                font-weight: 600;
+            }
+
+            & form {
+                width: 100%;
+
+                & .addToCart {
+                    width: 100% !important;
+                    height: 42px;
+                    border: 1px solid var(--color-dark);
+                    border-radius: 4px;
+                    background: var(--color-dark);
+                    color: var(--color-light);
+
+                }
+            }
+        }
+
+        & .showSizeTable {
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+
+            & .icon {
+                width: 24px;
+                height: 24px;
+                background-image: url("./../../../public/icons/beige/metr-krawiecki.png");
+                background-size: contain;
+                background-repeat: no-repeat;
+                margin-right: 4px;
+            }
+
+            & .label {
+                color: var(--color-beige);
+
+            }
+        }
+
+        & h2 {
+            text-align: left;
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+
+        & .bulletPoints {
+            display: flex;
+            flex-wrap: wrap;
+
+            & .bullet {
+                /* min-width: 120px; */
+                margin-right: 18px;
+                display: flex;
+                align-items: center;
+
+                & .icon {
+                    width: 18px;
+                    height: 24px;
+                    margin-right: 6px;
+                    background-image: url("./../../../public/icons/beige/ok.png");
+                    background-size: contain;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                }
+
+
+            }
+        }
+    }
+}
+
+@media(min-width: 768px) {
+    .ProductPage {
+        display: flex;
+
+        & .imageSlider {
+            width: 60%;
+            height: unset;
+            overflow: hidden;
+
+            & .track {
+                height: unset;
+                display: flex;
+                flex-wrap: wrap;
+
+                & .imageHolder {
+                    width: 49%;
+                    height: 100%;
+
+                    & img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: center top;
+                    }
+                }
+            }
+        }
+
+
+        & .productInfo {
+            width: 40%;
+        }
+
+
+    }
+}

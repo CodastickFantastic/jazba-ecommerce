@@ -29,8 +29,8 @@ export function MenuAside() {
                 </header>
                 <main>
                     <nav className={styles.categories}>
-                        <CategoryTile image={poloIcon} title="T-shirt" url="/collections/polos" />
-                        <CategoryTile image={poloIcon} title="Polo" url="/collections/polos" />
+                        <CategoryTile image={poloIcon} title="T-shirt" url="/collections/polos" onChange={() => history.go(-1)} />
+                        <CategoryTile image={poloIcon} title="Polo" url="/kategorie/koszulki-polo" />
                         <CategoryTile image={poloIcon} title="Bluzy" url="/collections/polos" />
                         <CategoryTile image={poloIcon} title="Czapki" url="/collections/polos" />
                         <CategoryTile image={poloIcon} title="Skarpetki" url="/collections/polos" />
@@ -65,8 +65,13 @@ function CloseAside() {
 }
 
 function CategoryTile({ image, title, url }) {
+    function forceCloseAside(event) {
+        event.preventDefault();
+        window.location.href = event.currentTarget.href;
+    }
+
     return (
-        <NavLink className={styles.categoryTile} to={url} prefetch="intent" >
+        <NavLink className={styles.categoryTile} to={url} prefetch="intent" onClick={() => forceCloseAside()}>
             <div className={styles.imageHolder}>
                 <Image src={image} alt={`ikona ${title}`} width={46} height={46} />
             </div>
@@ -76,8 +81,14 @@ function CategoryTile({ image, title, url }) {
 }
 
 function LinkPage({ image, title, url }) {
+
+    function forceCloseAside(event) {
+        event.preventDefault();
+        window.location.href = event.currentTarget.href;
+    }
+
     return (
-        <NavLink className={styles.link} to={url} prefetch="intent" >
+        <NavLink className={styles.link} to={url} prefetch="intent" onClick={() => forceCloseAside()}>
             <Image className={styles.icon} src={image} alt={`ikona ${title}`} width={32} height={32} />
             <p className={styles.linkTitle}>{title}</p>
         </NavLink>

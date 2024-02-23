@@ -1,0 +1,61 @@
+:root {
+    --grid-column-gap: 12px;
+    --grid-columns: 2;
+    --grid-colum-size: calc(50% - ((var(--grid-column-gap) * (var(--grid-columns) - 1)) / var(--grid-columns)));
+}
+
+.ProductGrid {
+    padding: 0px 12px;
+
+    & .products {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(var(--grid-columns), var(--grid-colum-size));
+        column-gap: var(--grid-column-gap);
+    }
+
+    & .buttonHolder {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & .button {
+            border-radius: 4px/2px;
+            font-family: "Poppins", sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-beige);
+            padding: 6px 12px;
+            border: 1px solid var(--color-beige);
+            margin: 24px auto !important;
+        }
+    }
+}
+
+@media(min-width: 600px) {
+    :root {
+        --grid-column-gap: 12px;
+        --grid-columns: 3;
+        --grid-colum-size: calc(33% - ((var(--grid-column-gap) * (var(--grid-columns) - 1)) / var(--grid-columns)));
+    }
+}
+
+@media(min-width: 800px) {
+    :root {
+        --grid-column-gap: 12px;
+        --grid-columns: 4;
+        --grid-colum-size: calc(25% - ((var(--grid-column-gap) * (var(--grid-columns) - 1)) / var(--grid-columns)));
+    }
+}
+
+@media(min-width: 1025px) {
+    :root {
+        --grid-column-gap: 12px;
+        --grid-columns: 5;
+        --grid-colum-size: calc(20% - ((var(--grid-column-gap) * (var(--grid-columns) - 1)) / var(--grid-columns)));
+    }
+
+    .ProductGrid {
+        padding: 0px !important;
+    }
+}

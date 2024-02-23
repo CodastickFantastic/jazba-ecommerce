@@ -24,7 +24,7 @@ export default function Index() {
     return (
         <>
             <HeroSection />
-            <div className={styles.row}>
+            <div className={`${styles.row} smoothScroll`}>
                 <section className={styles.premiere}>
                     <CountToPremiere />
                 </section>
@@ -40,7 +40,7 @@ export default function Index() {
 
 const COLLECTIONS_QUERY = `#graphql
     query LatestCollections {
-        collections(first: 6) {
+        collections(first: 250) {
         nodes {
             id
             title
