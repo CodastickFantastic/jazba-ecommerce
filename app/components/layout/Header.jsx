@@ -22,6 +22,7 @@ export function Header({ cart }) {
                         src={logo}
                         alt="Jazba logo białe"
                         width={100}
+                        className={styles.logo}
                     />
                 </NavLink>
                 <CartToggle cart={cart} />

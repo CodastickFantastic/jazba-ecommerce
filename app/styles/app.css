@@ -45,6 +45,16 @@ h2 {
   padding: 0 12px;
 }
 
+.bigContainer {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+
+  @media(min-width: 1025px) {
+    padding: 0 12px;
+  }
+}
+
 
 
 /*

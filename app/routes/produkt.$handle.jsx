@@ -2,14 +2,14 @@ import { useLoaderData, useLocation, Link, useSearchParams, useNavigation } from
 import { Image, Money, ShopPayButton } from "@shopify/hydrogen-react"
 import { CartForm } from "@shopify/hydrogen"
 import { json } from "@shopify/remix-oxygen"
-import { useState } from "react"
+import { useRef, useState } from "react"
 
 import styles from "~/styles/pages/product.module.css"
 import closeImg from "~/../public/icons/beige/close.png"
 
 export function meta({ data }) {
     return [
-        { title: data.product.title },
+        { title: data.product.seo.title },
         { descritpion: data.product.seo.description },
         { keywords: data.product.tags.join(",") },
     ]
@@ -48,17 +48,16 @@ export async function loader({ params, context, request }) {
 export default function ProduktPage() {
     const { shop, product, selectedVariant } = useLoaderData()
     const [showImg, setShowImg] = useState(false)
+    const [moreDetials, setMoreDetails] = useState("description")
 
-    const productDescription = JSON.parse(product.descriptionHtml)
-    console.log(productDescription)
-
+    const productDescriptionJSON = JSON.parse(product.metafield.value)
     function toggleImg(img) {
         window.scrollTo(0, 0)
         showImg ? setShowImg(false) : setShowImg(img)
     }
 
     return (
-        <div className={`${styles.ProductPage}`}>
+        <div className={`${styles.ProductPage} bigContainer`}>
             {showImg && <ImageFull src={showImg} close={toggleImg} />}
 
             <div className={styles.imageSlider}>
@@ -82,6 +81,13 @@ export default function ProduktPage() {
                     />
                 </div>
                 <div className={styles.row}>
+                    {!selectedVariant?.availableForSale && (
+                        <div className={styles.warning}>
+                            <p>Brak danego rozmiaru na magazynie.</p>
+                            <p>Dostawa może być wydłużona czasowo.</p>
+                            <Link to="/dostawa">Dowiedz się dlaczego<span className={styles.arrow} /></Link>
+                        </div>
+                    )}
                     <CartForm
                         route="/cart"
                         inputs={{
@@ -118,65 +124,92 @@ export default function ProduktPage() {
                     <div className={styles.icon} />
                     <p className={styles.label}>Tabela Wymiarów</p>
                 </a>
-                <h2>Dlaczego <span class="beige">Jazba</span>?</h2>
+                <p className={styles.shortDescription} dangerouslySetInnerHTML={{ __html: productDescriptionJSON.shortDescription }}></p>
+                <h2>Dlaczego <span className="beige">Jazba</span>?</h2>
                 <div className={styles.bulletPoints}>
                     <div className={styles.bullet}>
                         <div className={styles.icon} />
-                        <p class={styles.label}>Polska marka</p>
+                        <p className={styles.label}>Polska marka</p>
                     </div>
                     <div className={styles.bullet}>
                         <div className={styles.icon} />
-                        <p class={styles.label}>Darmowa dostawa od 250 zł</p>
+                        <p className={styles.label}>Darmowa dostawa od 250 zł</p>
                     </div>
                     <div className={styles.bullet}>
                         <div className={styles.icon} />
-                        <p class={styles.label}>Zwrot do 14 dni</p>
+                        <p className={styles.label}>Zwrot do 14 dni</p>
                     </div>
                     <div className={styles.bullet}>
                         <div className={styles.icon} />
-                        <p class={styles.label}>Unikalne Wzory</p>
-                    </div>
-
-                </div>
-
-                {/* 
-                <div class="bulletPointsContainer">
-                    <div class="bulletPoint">
-                        <div class="bulletIcon"></div>
-                        <p class="bulletLabel">Polska marka</p>
-                    </div>
-                    <div class="bulletPoint">
-                        <div class="bulletIcon"></div>
-                        <p class="bulletLabel">Darmowa dostawa od 300 zł</p>
-                    </div>
-                    <div class="bulletPoint">
-                        <div class="bulletIcon"></div>
-                        <p class="bulletLabel">Zwrot do 14 dni</p>
-                    </div>
-                    <div class="bulletPoint">
-                        <div class="bulletIcon"></div>
-                        <p class="bulletLabel">Unikalne Wzory</p>
+                        <p className={styles.label}>Unikalne Wzory</p>
                     </div>
                 </div>
-                <p class="shortDescription">
-
-                </p> */}
-
-
-
-
-
-                {/* <div className={styles.description} dangerouslySetInnerHTML={{ __html: productDescription.shortDescription }} /> */}
+                <div className={styles.showMoreDetails}>
+                    <button
+                        className={styles.longDescriptionBtn}
+                        style={{ color: moreDetials === "description" ? "var(--color-beige)" : "black" }}
+                        onClick={() => setMoreDetails("description")}>Opis</button>
+                    <button
+                        className={styles.aboutProductBtn}
+                        style={{ color: moreDetials === "info" ? "var(--color-beige)" : "black" }}
+                        onClick={() => setMoreDetails("info")}>Informacje</button>
+                    <button
+                        className={styles.sizesBtn}
+                        style={{ color: moreDetials === "size" ? "var(--color-beige)" : "black" }}
+                        onClick={() => setMoreDetails("size")}>Wymiary</button>
+                </div>
+                <div className={styles.fillWithData}>
+                    <p className={styles.longDescription} dangerouslySetInnerHTML={{ __html: productDescriptionJSON.longDescription }} style={{ display: moreDetials === "description" ? "block" : "none" }} />
+                    <div className={styles.aboutProduct} style={{ display: moreDetials === "info" ? "block" : "none" }}>
+                        <p className="info"><span className={styles.label}>Kolor</span> {productDescriptionJSON.information.color}</p>
+                        <p className="info"><span className={styles.label}>Materiał</span> {productDescriptionJSON.information.material}</p>
+                        <p className="info"><span className={styles.label}>Temp. Prania</span> {productDescriptionJSON.information.temp}°C</p>
+                        <p className="info"><span className={styles.label}>Wysokość Modela</span> {productDescriptionJSON.information.modelHeight} cm</p>
+                        <p className="info"><span className={styles.label}>Rozmiar Modela</span> {productDescriptionJSON.information.modelSize}</p>
+                    </div>
+                    <div className={styles.sizeTable} style={{ display: moreDetials === "size" ? "block" : "none" }}>
+                        <Image src={productDescriptionJSON.sizeTable.img} alt={`Tabela Wymiary - ${product.title}`} />
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Tabela Rozmiarów</th>
+                                    <th>S</th>
+                                    <th>M</th>
+                                    <th>L</th>
+                                    <th>XL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Szerokość w klatce</td>
+                                    <td>{productDescriptionJSON.sizeTable.availableSize.S.width}</td>
+                                    <td>{productDescriptionJSON.sizeTable.availableSize.M.width}</td>
+                                    <td>{productDescriptionJSON.sizeTable.availableSize.L.width}</td>
+                                    <td>{productDescriptionJSON.sizeTable.availableSize.XL.width}</td>
+                                </tr>
+                                <tr>
+                                    <td>Długość</td>
+                                    <td>{productDescriptionJSON.sizeTable.availableSize.S.height}</td>
+                                    <td>{productDescriptionJSON.sizeTable.availableSize.M.height}</td>
+                                    <td>{productDescriptionJSON.sizeTable.availableSize.L.height}</td>
+                                    <td>{productDescriptionJSON.sizeTable.availableSize.XL.height}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     )
 }
 
 function ImageFull({ src, close }) {
+    let windowWidth = window.innerWidth
+
     return (
         <div className={`${styles.imageFull} blockScroll`}>
             <div className={styles.dim} />
-            <Image src={src} width={1200} className={styles.image} />
+            <Image src={src} width={windowWidth} className={styles.image} />
             <Image src={closeImg} width={52} height={52} className={styles.close} onClick={close} />
         </div>
     )
@@ -263,6 +296,9 @@ const PRODUCT_QUERY = `#graphql
             title
             handle
             descriptionHtml
+            metafield(key: "jsonProduct", namespace: "custom"){
+                value
+            }
             seo{
                 title
                 description
