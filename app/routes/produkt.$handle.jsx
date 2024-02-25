@@ -50,6 +50,8 @@ export default function ProduktPage() {
     const [showImg, setShowImg] = useState(false)
     const [moreDetials, setMoreDetails] = useState("description")
 
+    console.log(product)
+
     const productDescriptionJSON = JSON.parse(product.metafield.value)
     function toggleImg(img) {
         window.scrollTo(0, 0)
@@ -81,13 +83,14 @@ export default function ProduktPage() {
                     />
                 </div>
                 <div className={styles.row}>
-                    {!selectedVariant?.availableForSale && (
+                    {/* {!selectedVariant?.availableForSale && ( */}
                         <div className={styles.warning}>
-                            <p>Brak danego rozmiaru na magazynie.</p>
+                            <p className={styles.warningHeader}>Uwaga!</p>
+                            <p>Niski poziom danego rozmiaru na magazynie.</p>
                             <p>Dostawa może być wydłużona czasowo.</p>
                             <Link to="/dostawa">Dowiedz się dlaczego<span className={styles.arrow} /></Link>
                         </div>
-                    )}
+                    {/* )} */}
                     <CartForm
                         route="/cart"
                         inputs={{
@@ -112,18 +115,19 @@ export default function ProduktPage() {
                                     }
                                     className={`${styles.addToCart}`}
                                 >
-                                    {selectedVariant?.availableForSale
+                                    {/* {selectedVariant?.availableForSale
                                         ? "Dodaj do koszyka"
-                                        : "Niedostępne"}
+                                        : "Niedostępne"} */}
+                                    Dodaj do koszyka
                                 </button>
                             </>
                         )}
                     </CartForm>
                 </div>
-                <a href="#wymiary" className={styles.showSizeTable}>
+                <Link href="#szczegóły" className={styles.showSizeTable} onClick={() => setMoreDetails("size")}>
                     <div className={styles.icon} />
                     <p className={styles.label}>Tabela Wymiarów</p>
-                </a>
+                </Link>
                 <p className={styles.shortDescription} dangerouslySetInnerHTML={{ __html: productDescriptionJSON.shortDescription }}></p>
                 <h2>Dlaczego <span className="beige">Jazba</span>?</h2>
                 <div className={styles.bulletPoints}>
@@ -144,7 +148,7 @@ export default function ProduktPage() {
                         <p className={styles.label}>Unikalne Wzory</p>
                     </div>
                 </div>
-                <div className={styles.showMoreDetails}>
+                <div id="szczegóły" className={styles.showMoreDetails}>
                     <button
                         className={styles.longDescriptionBtn}
                         style={{ color: moreDetials === "description" ? "var(--color-beige)" : "black" }}

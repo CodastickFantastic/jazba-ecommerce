@@ -1,0 +1,12 @@
+.faq {
+    min-height: calc(100vh - 80px - 637px);
+
+    & h1 {
+        font-family: "Prata", "Poppins", "Nunito", sans-serif;
+        font-size: 24px;
+        font-weight: 400;
+        margin-bottom: 24px;
+        margin-top: 24px;
+        text-align: center;
+    }
+}

@@ -8,7 +8,7 @@ import styles from "~/styles/pages/index.module.css"
 
 export function meta() {
     return [
-        { title: "Jazba" },
+        { title: "Jazba - Wyjątkowe hafty" },
         { descritpion: "Wyróżnij się z tłumu dzięki wyjątkowym haftom." },
         { keywords: "jazba, e-commerce, shopify, hydrogen" },
     ]
@@ -19,7 +19,9 @@ export async function loader({ context }) {
 }
 
 export default function Index() {
-    const { collections } = useLoaderData()
+    const collections = useLoaderData()
+    // Convert object to array of objects
+    const collectionsArray = Object.values(collections)
 
     return (
         <>
@@ -29,28 +31,72 @@ export default function Index() {
                     <CountToPremiere />
                 </section>
                 <div className={styles.latest}>
-                    {collections && <LatestProductsSection products={collections.nodes} />}
+                    {collections && <LatestProductsSection products={collectionsArray} />}
                 </div>
             </div>
-
-
         </>
     )
 }
 
 const COLLECTIONS_QUERY = `#graphql
-    query LatestCollections {
-        collections(first: 250) {
-        nodes {
-            id
-            title
-            handle
-            image{
-                altText
-                width
-                height
-                url
-            }
-        }
+query CollectionsToShowOnHome {
+	al_rancher: collection(handle: "al-rancher") {
+    id
+		title
+    handle
+    image{
+    	altText
+      url
     }
+  }
+  
+	dali_gator: collection(handle: "dali-gator") {
+    id
+		title
+    handle
+    image{
+    	altText
+      url
+    }
+  }
+  
+	dali_gator_2: collection(handle: "ali-gator-2") {
+    id
+		title
+    handle
+    image{
+    	altText
+      url
+    }
+  }
+  
+	dali_gator_3: collection(handle: "ali-gator-3") {
+    id
+		title
+    handle
+    image{
+    	altText
+      url
+    }
+  }
+  
+	dali_gator_4: collection(handle: "dali-gator-4") {
+    id
+		title
+    handle
+    image{
+    	altText
+      url
+    }
+  }
+  
+	dali_gator_5: collection(handle: "dali-gator-5") {
+    id
+		title
+    handle
+    image{
+    	altText
+      url
+    }
+  }
 }`
