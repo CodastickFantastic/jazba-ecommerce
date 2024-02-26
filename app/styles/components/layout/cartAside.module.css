@@ -24,6 +24,17 @@
         overflow-y: auto;
         display: flex;
         flex-direction: column;
+        height: 100dvh;
+
+        &:has(.cartEmpty) {
+            & main {
+                max-height: unset;
+
+                & .cartDetails {
+                    height: unset;
+                }
+            }
+        }
 
         &::-webkit-scrollbar {
             display: none;

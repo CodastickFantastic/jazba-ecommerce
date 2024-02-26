@@ -205,8 +205,6 @@ export function CartSummary({ children = null }) {
 }
 
 function CartDiscounts({ discountCodes }) {
-  console.log(discountCodes)
-
   const codes =
     discountCodes
       ?.filter((discount) => discount.applicable)
@@ -266,16 +264,15 @@ function CartCheckoutActions({ checkoutUrl }) {
   );
 }
 
-export function CartEmpty({ hidden = false, layout = 'aside' }) {
+export function CartEmpty({ hidden = false }) {
   return (
-    <div hidden={hidden}>
-      <br />
+    <div hidden={hidden} className={styles.cartEmpty}>
       <p>
-        Looks like you haven&rsquo;t added anything yet, let&rsquo;s get you
-        started!
+        Nie masz jeszcze produktów w koszyku<br />
+        Dodaj wpierw produkt do koszyka
       </p>
       <br />
-      <Link
+      {/* <Link
         to="/collections"
         onClick={() => {
           if (layout === 'aside') {
@@ -284,7 +281,7 @@ export function CartEmpty({ hidden = false, layout = 'aside' }) {
         }}
       >
         Continue shopping →
-      </Link>
+      </Link> */}
     </div>
   );
 }
