@@ -84,12 +84,12 @@ export default function ProduktPage() {
                 </div>
                 <div className={styles.row}>
                     {/* {!selectedVariant?.availableForSale && ( */}
-                        <div className={styles.warning}>
-                            <p className={styles.warningHeader}>Uwaga!</p>
-                            <p>Niski poziom danego rozmiaru na magazynie.</p>
-                            <p>Dostawa może być wydłużona czasowo.</p>
-                            <Link to="/dostawa">Dowiedz się dlaczego<span className={styles.arrow} /></Link>
-                        </div>
+                    <div className={styles.warning}>
+                        <p className={styles.warningHeader}>Uwaga!</p>
+                        <p>Niski poziom danego rozmiaru na magazynie.</p>
+                        <p>Dostawa może być wydłużona czasowo.</p>
+                        <Link to="/dostawa">Dowiedz się dlaczego<span className={styles.arrow} /></Link>
+                    </div>
                     {/* )} */}
                     <CartForm
                         route="/cart"
@@ -124,7 +124,7 @@ export default function ProduktPage() {
                         )}
                     </CartForm>
                 </div>
-                <Link href="#szczegóły" className={styles.showSizeTable} onClick={() => setMoreDetails("size")}>
+                <Link to="#szczegóły" className={styles.showSizeTable} onClick={() => setMoreDetails("size")}>
                     <div className={styles.icon} />
                     <p className={styles.label}>Tabela Wymiarów</p>
                 </Link>

@@ -13,12 +13,15 @@
   --color-dark: #000;
   --color-light: #fff;
   --color-beige: #A6835F;
+  --color-green: #337357;
+  --color-green-hover: #2e5f4e;
+  --color-gray: #D0D0D0;
+  --color-red: #A00000;
   --mobile-horizontal-padding: 0px 12px;
 }
 
 body,
 html {
-  /* scroll-behavior: smooth; */
 
   &:has(.smoothScroll) {
     scroll-behavior: smooth;
@@ -53,6 +56,10 @@ h2 {
   @media(min-width: 1025px) {
     padding: 0 12px;
   }
+}
+
+.beige {
+  color: var(--color-beige);
 }
 
 
@@ -446,15 +453,4 @@ aside li {
 
 .account-logout {
   display: inline-block;
-}
-
-
-/*
-* --------------------------------------------------
-* MY CSS CODE
-* --------------------------------------------------
-*/
-
-.beige {
-  color: var(--color-beige);
 }
