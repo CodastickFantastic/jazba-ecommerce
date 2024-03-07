@@ -20,8 +20,8 @@
   --mobile-horizontal-padding: 0px 12px;
 }
 
-body,
-html {
+html,
+body {
 
   &:has(.smoothScroll) {
     scroll-behavior: smooth;
@@ -30,7 +30,14 @@ html {
   &:has(.blockScroll) {
     overflow: hidden;
   }
+
+  & main {
+    min-height: calc(100vh - 80px - 637px) !important;
+  }
+
 }
+
+
 
 
 h2 {

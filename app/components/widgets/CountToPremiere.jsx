@@ -15,7 +15,7 @@ export default function CountToPremiere() {
 
     useEffect(() => {
         let startCoundDownToPremiere = setInterval(() => {
-            const countDownDate = new Date("28 Feb 2024 19:00:00").getTime();
+            const countDownDate = new Date("28 Mar 2024 19:00:00").getTime();
             let now = new Date().getTime()
 
             let distance = countDownDate - now;

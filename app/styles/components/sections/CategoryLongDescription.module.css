@@ -1,0 +1,24 @@
+.categoryLongDescription {
+    /* padding: 0px !important; */
+    margin-top: 64px !important;
+
+    @media(min-width: 768px) {
+        padding: 0px !important;
+    }
+
+    & h2 {
+        font-family: "Nunioto Sans", "Poppins", "Nunito", sans-serif;
+        font-size: 22px;
+
+        @media(min-width: 768px) {
+            font-size: 36px;
+        }
+    }
+
+    & p {
+        font-family: "Poppins", sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--color-dark);
+    }
+}

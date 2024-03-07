@@ -54,6 +54,9 @@ const COLLECTION_QUERY = `#graphql
             title
             descriptionHtml
             handle
+            metafield(key: "jsonCollection", namespace: "custom"){
+                value
+            }
             image{
                 altText
                 url

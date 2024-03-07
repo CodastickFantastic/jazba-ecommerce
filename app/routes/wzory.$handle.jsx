@@ -3,6 +3,7 @@ import { getPaginationVariables } from "@shopify/hydrogen";
 import { json } from "@shopify/remix-oxygen"
 import HeaderWithImgSection from "~/components/sections/HeaderWIthImgSection";
 import ProductGridSection from "~/components/sections/ProductGridSection";
+import CategoryLongDescription from "~/components/sections/CategoryLongDescription";
 
 export function meta({ data }) {
     return [
@@ -33,11 +34,13 @@ export async function loader({ params, context, request }) {
 
 export default function Wzory() {
     const { collection } = useLoaderData()
+    const collectionDescriptionJson = JSON.parse(collection.metafield.value)
 
     return (
         <>
-            <HeaderWithImgSection h1={collection.title} description={collection.descriptionHtml} img={collection.image} />
+            <HeaderWithImgSection h1={collection.title} description={collectionDescriptionJson.shortDescription} img={collection.image} />
             <ProductGridSection collection={collection} />
+            <CategoryLongDescription h2={collectionDescriptionJson.h2} description={collectionDescriptionJson.longDescription} />
         </>
     )
 }
@@ -54,6 +57,9 @@ const COLLECTION_QUERY = `#graphql
             title
             descriptionHtml
             handle
+            metafield(key: "jsonCollection", namespace: "custom"){
+                value
+            }
             image{
                 altText
                 url

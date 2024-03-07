@@ -44,11 +44,11 @@ export function MenuAside() {
                         <LinkPage image={helpIcon} title="Pomoc" url="/pomoc" />
                         <LinkPage image={deliveryIcon} title="Dostawa" url="/dostawa" />
                         <LinkPage image={galleryIcon} title="Lookbook" url="/lookbook" />
-                        <LinkPage image={userIcon} title="Moje Konto" url="/moje-konto" />
+                        {/* <LinkPage image={userIcon} title="Moje Konto" url="/moje-konto" /> */}
                     </nav>
                 </main>
                 <footer>
-                    <Image src={aligator} alt="aligator" width={112} />
+                    <Image src={aligator} alt="Wizualizacja Haftu Aligator - Dali Gator" width={112} />
                 </footer>
             </aside>
         </div>

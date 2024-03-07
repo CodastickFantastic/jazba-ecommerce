@@ -24,6 +24,10 @@ export default async function handleRequest(
     fontSrc: [
       "'self'",
       'https://fonts.gstatic.com'
+    ],
+    connectSrc: [
+      "'self'",
+      'https://api.emailjs.com',
     ]
   });
 

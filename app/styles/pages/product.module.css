@@ -78,6 +78,10 @@
             margin-bottom: 24px;
         }
 
+        & .showAllCollection {
+            text-align: right;
+        }
+
         & .row {
             display: flex;
             justify-content: space-between;
@@ -115,7 +119,7 @@
 
             & .price {
                 font-family: "Nunito Sans", sans-serif;
-                font-size: 24px;
+                font-size: 22px;
                 font-weight: 600;
             }
 
@@ -177,34 +181,134 @@
                     border-radius: 4px;
                     background: var(--color-dark);
                     color: var(--color-light);
+                    cursor: pointer;
+                    font-family: "Poppins", sans-serif;
 
+                    &:hover {
+                        transform: scale(0.95);
+                    }
+                }
+            }
+
+            & .chooseSize {
+                width: 100%;
+                padding: 8px;
+                text-align: center;
+                background: var(--color-dark);
+                color: var(--color-light);
+                border-radius: 4px;
+                font-family: "Poppins", sans-serif;
+                font-size: 14px;
+            }
+
+            & .infoAboutAvailable {
+                width: 100%;
+
+                & .informMeAboutAvailability {
+                    width: 100% !important;
+                    height: 42px;
+                    border: 1px solid var(--color-dark);
+                    border-radius: 4px;
+                    background: var(--color-dark);
+                    color: var(--color-light);
+                    cursor: pointer;
+                    font-family: "Poppins", sans-serif;
+
+                    &:hover {
+                        transform: scale(0.95);
+                    }
+
+                    &.empty {
+                        background: transparent;
+                        color: var(--color-dark);
+                        font-weight: 600;
+                    }
+
+                }
+
+                & form {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+
+                    & input {
+                        margin: 0px;
+                        width: 75%;
+                        height: 42px;
+                        border: 1px solid var(--color-dark);
+                        color: var(--color-dark);
+                        background: var(--color-light);
+                        border-radius: 4px 0 0 4px;
+                        text-align: center;
+                        font-family: "Poppins", sans-serif;
+                    }
+
+                    & button {
+                        width: 25%;
+                        height: 42px;
+                        border: 1px solid var(--color-dark);
+                        border-radius: 0 4px 4px 0;
+                        background: var(--color-dark);
+                        color: var(--color-light);
+                    }
+                }
+
+                & .success {
+                    border: 1px solid var(--color-gray);
+                    border-radius: 4px;
+                    background: var(--color-green-hover);
+                    color: var(--color-light);
+                    font-family: "Poppins", sans-serif;
+                    font-size: 14px;
+                    font-weight: 500;
+                    padding: 9px 0;
+                    text-align: center;
                 }
             }
         }
 
-        & .showSizeTable {
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+        & .column {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            row-gap: 6px;
+
+            & .showSizeTable {
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
 
 
-            & .icon {
-                width: 24px;
-                height: 24px;
-                background-image: url("./../../../public/icons/beige/metr-krawiecki.png");
-                background-size: contain;
-                background-repeat: no-repeat;
-                margin-right: 4px;
+                & .icon {
+                    width: 24px;
+                    height: 24px;
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    margin-right: 4px;
+
+                    &.size {
+                        background-image: url("./../../../public/icons/beige/metr-krawiecki.png");
+                    }
+
+                    &.collection {
+                        background-image: url("./../../../public/icons/beige/kolekcja-ikona.png");
+                    }
+                }
+
+                & .label {
+                    color: var(--color-beige);
+                    font-family: "Poppins", sans-serif;
+                    font-size: 14px;
+                    font-weight: 500;
+                }
             }
 
-            & .label {
-                color: var(--color-beige);
-                font-family: "Poppins", sans-serif;
-                font-size: 14px;
-                font-weight: 500;
-            }
         }
+
 
         & .shortDescription {
             color: var(--color-dark);

@@ -1,8 +1,9 @@
 import { useLoaderData, useLocation, Link, useSearchParams, useNavigation } from "@remix-run/react"
-import { Image, Money, ShopPayButton } from "@shopify/hydrogen-react"
+import { Image, Money } from "@shopify/hydrogen-react"
 import { CartForm } from "@shopify/hydrogen"
 import { json } from "@shopify/remix-oxygen"
-import { useRef, useState } from "react"
+import { useState, useRef } from "react"
+import emailjs from '@emailjs/browser';
 
 import styles from "~/styles/pages/product.module.css"
 import closeImg from "~/../public/icons/beige/close.png"
@@ -49,13 +50,33 @@ export default function ProduktPage() {
     const { shop, product, selectedVariant } = useLoaderData()
     const [showImg, setShowImg] = useState(false)
     const [moreDetials, setMoreDetails] = useState("description")
-
-    console.log(product)
-
     const productDescriptionJSON = JSON.parse(product.metafield.value)
+    const [showSnedEmail, setShowSendEmail] = useState(false)
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const formRef = useRef();
+
     function toggleImg(img) {
         window.scrollTo(0, 0)
         showImg ? setShowImg(false) : setShowImg(img)
+    }
+
+    console.log(productDescriptionJSON)
+
+    const sendEmail = (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+
+        emailjs
+            .sendForm('service_a141akw', 'template_r3lragd', formRef.current, { publicKey: 'UBVqqN4ugrmtnDsTT', })
+            .then(
+                () => {
+                    setIsSubmitting("Wysłano");
+                },
+                (error) => {
+                    setIsSubmitting(false);
+                    console.log('FAILED...', error.text);
+                },
+            );
     }
 
     return (
@@ -76,58 +97,99 @@ export default function ProduktPage() {
             <div className={styles.productInfo}>
                 <h1>{product.title}</h1>
                 <div className={styles.row}>
-                    <ProductOptions options={product.options} selectedVariant={selectedVariant} />
+                    <ProductOptions options={product.options} />
                     <Money
-                        data={selectedVariant.price}
+                        data={product.priceRange.maxVariantPrice}
                         className={styles.price}
                     />
                 </div>
                 <div className={styles.row}>
-                    {/* {!selectedVariant?.availableForSale && ( */}
-                    <div className={styles.warning}>
-                        <p className={styles.warningHeader}>Uwaga!</p>
-                        <p>Niski poziom danego rozmiaru na magazynie.</p>
-                        <p>Dostawa może być wydłużona czasowo.</p>
-                        <Link to="/dostawa">Dowiedz się dlaczego<span className={styles.arrow} /></Link>
-                    </div>
-                    {/* )} */}
-                    <CartForm
-                        route="/cart"
-                        inputs={{
-                            lines: [
-                                {
-                                    merchandiseId: selectedVariant.id,
-                                }
-                            ]
-                        }}
-                        action={CartForm.ACTIONS.LinesAdd}
-                    >
-                        {(fetcher) => (
-                            <>
-                                <button
-                                    type="submit"
-                                    onClick={() => {
-                                        window.location.href = window.location.href + "#cart-aside"
-                                    }}
-                                    disabled={
-                                        !selectedVariant.availableForSale ??
-                                        fetcher.state !== "idle"
+                    {selectedVariant?.quantityAvailable < 3 && selectedVariant?.quantityAvailable > 0 && (
+                        <div className={styles.warning}>
+                            <p className={styles.warningHeader}>Uwaga! (Dostepne: {selectedVariant?.quantityAvailable} {selectedVariant?.quantityAvailable === 1 ? "sztuka" : "sztuki"})</p>
+                            <p>Niski poziom danego rozmiaru na magazynie.</p>
+                            <p>Zamówienie ilości większej niż dostepna w sprzedazy może wydłużyć czas potrzebny na dostawę.</p>
+                            <Link to="/dostawa">Dowiedz się dlaczego<span className={styles.arrow} /></Link>
+                        </div>
+                    )}
+                    {selectedVariant?.quantityAvailable <= 0 && (
+                        <div className={styles.warning}>
+                            <p className={styles.warningHeader}>Uwaga!</p>
+                            <p>Brak towaru na magyznie!</p>
+                            <p>Dalej możesz go zamówić ale dostawa może być wydłużona!</p>
+                            <Link to="/dostawa">Dowiedz się dlaczego<span className={styles.arrow} /></Link>
+                        </div>
+                    )}
+                    {selectedVariant ? (
+                        <>
+                            <CartForm
+                                route="/cart"
+                                inputs={{
+                                    lines: [
+                                        {
+                                            merchandiseId: selectedVariant.id,
+                                        }
+                                    ]
+                                }}
+                                action={CartForm.ACTIONS.LinesAdd}
+                            >
+                                {(fetcher) => (
+                                    <>
+                                        <button
+                                            type="submit"
+                                            onClick={() => {
+                                                window.location.href = window.location.href + "#cart-aside"
+                                            }}
+                                            className={`${styles.addToCart}`}
+                                        >
+                                            Dodaj do koszyka
+                                        </button>
+                                    </>
+                                )}
+                            </CartForm>
+                            {selectedVariant.quantityAvailable <= 3 && (
+                                <div className={styles.infoAboutAvailable}>
+                                    {!showSnedEmail &&
+                                        <button
+                                            className={`${styles.informMeAboutAvailability} ${styles.empty}`}
+                                            onClick={() => setShowSendEmail(true)}
+                                        >Poinformuj mnie o dostępności</button>
                                     }
-                                    className={`${styles.addToCart}`}
-                                >
-                                    {/* {selectedVariant?.availableForSale
-                                        ? "Dodaj do koszyka"
-                                        : "Niedostępne"} */}
-                                    Dodaj do koszyka
-                                </button>
-                            </>
-                        )}
-                    </CartForm>
+                                    {showSnedEmail && isSubmitting !== "Wysłano" &&
+                                        <form ref={formRef} onSubmit={sendEmail}>
+                                            <input type="invisible" name="product" defaultValue={"Produkt:" + product.title + " Rozmiar: " + selectedVariant.selectedOptions[0].value} style={{ display: "none" }} />
+                                            <input type="email" placeholder="Twój email" name="email" />
+                                            <button
+                                                type="submit"
+                                                disabled={isSubmitting}
+                                            >{isSubmitting ? "Wysyłanie..." : "Wyślij"}
+                                            </button>
+                                        </form>
+                                    }
+                                    {
+                                        isSubmitting === "Wysłano" &&
+                                        <p className={styles.success}>Otrzymaliśmy twoją prośbę<br />Poinformujęmy Cię jak tylko produkt będzie dostępny</p>
+                                    }
+                                </div>
+                            )}
+                        </>
+
+                    ) :
+                        <p className={`${styles.chooseSize}`}>
+                            Wybierz Rozmiar
+                        </p>
+                    }
                 </div>
-                <Link to="#szczegóły" className={styles.showSizeTable} onClick={() => setMoreDetails("size")}>
-                    <div className={styles.icon} />
-                    <p className={styles.label}>Tabela Wymiarów</p>
-                </Link>
+                <div className={styles.column}>
+                    <Link to="#szczegóły" className={styles.showSizeTable} onClick={() => setMoreDetails("size")}>
+                        <div className={`${styles.icon} ${styles.size}`} />
+                        <p className={styles.label}>Tabela Wymiarów</p>
+                    </Link>
+                    <Link to={productDescriptionJSON.collectionURL} className={styles.showSizeTable} >
+                        <div className={`${styles.icon} ${styles.collection}`} />
+                        <p className={styles.label}>Pokaż całą kolekcję</p>
+                    </Link>
+                </div>
                 <p className={styles.shortDescription} dangerouslySetInnerHTML={{ __html: productDescriptionJSON.shortDescription }}></p>
                 <h2>Dlaczego <span className="beige">Jazba</span>?</h2>
                 <div className={styles.bulletPoints}>
@@ -172,7 +234,7 @@ export default function ProduktPage() {
                         <p className="info"><span className={styles.label}>Rozmiar Modela</span> {productDescriptionJSON.information.modelSize}</p>
                     </div>
                     <div className={styles.sizeTable} style={{ display: moreDetials === "size" ? "block" : "none" }}>
-                        <Image src={productDescriptionJSON.sizeTable.img} alt={`Tabela Wymiary - ${product.title}`} />
+                        <Image src={productDescriptionJSON.sizeTable.img} alt={`Tabela Wymiary - ${product.title}`} width={300} />
                         <table>
                             <thead>
                                 <tr>
@@ -203,7 +265,7 @@ export default function ProduktPage() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
@@ -219,30 +281,14 @@ function ImageFull({ src, close }) {
     )
 }
 
-function ProductOptions({ options, selectedVariant }) {
+function ProductOptions({ options }) {
     const { pathname, search } = useLocation()
     const [currentSearchParams] = useSearchParams()
     const navigation = useNavigation()
 
-    const paramsWithDefaults = (() => {
-        const defaultParams = new URLSearchParams(currentSearchParams)
-
-        if (!selectedVariant) {
-            return defaultParams
-        }
-
-        for (const { name, value } of selectedVariant.selectedOptions) {
-            if (!currentSearchParams.has(name)) {
-                defaultParams.set(name, value)
-            }
-        }
-
-        return defaultParams
-    })();
-
     const searchParams = navigation.location
         ? new URLSearchParams(navigation.location.search)
-        : paramsWithDefaults
+        : currentSearchParams
 
     return (
         <div className={styles.optionsSection}>
@@ -303,6 +349,12 @@ const PRODUCT_QUERY = `#graphql
             metafield(key: "jsonProduct", namespace: "custom"){
                 value
             }
+            priceRange{
+                maxVariantPrice{
+                    amount
+                    currencyCode
+                }
+            }
             seo{
                 title
                 description
@@ -327,7 +379,7 @@ const PRODUCT_QUERY = `#graphql
             }
             selectedVariant: variantBySelectedOptions(selectedOptions: $selectedOptions) {
                 id
-                availableForSale
+                quantityAvailable
                 selectedOptions {
                   name
                   value
@@ -356,25 +408,6 @@ const PRODUCT_QUERY = `#graphql
                 product {
                   title
                   handle
-                }
-              }
-              variants(first: 1) {
-                nodes {
-                  id
-                  title
-                  availableForSale
-                  price {
-                    currencyCode
-                    amount
-                  }
-                  compareAtPrice {
-                    currencyCode
-                    amount
-                  }
-                  selectedOptions {
-                    name
-                    value
-                  }
                 }
             }
         }

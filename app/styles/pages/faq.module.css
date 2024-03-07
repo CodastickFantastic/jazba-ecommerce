@@ -1,5 +1,4 @@
 .faq {
-    min-height: calc(100vh - 80px - 637px);
 
     & h1 {
         font-family: "Prata", "Poppins", "Nunito", sans-serif;

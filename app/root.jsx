@@ -36,6 +36,9 @@ export const shouldRevalidate = ({ formMethod, currentUrl, nextUrl }) => {
   return false;
 };
 
+/**
+ * @type {LinksFunction}
+ */
 export function links() {
   return [
     ...(cssBundleHref ? [{ rel: 'stylesheet', href: cssBundleHref }] : []),

@@ -46,14 +46,14 @@ function CartDetails({ layout, cart }) {
       {cartHasItems && (
         <CartSummary cost={cart.cost} layout={layout}>
           <CartDiscounts discountCodes={cart.discountCodes} />
-          <p className={styles.fullPriceLabel}>
+          <div className={styles.fullPriceLabel}>
             Wartość koszyka {cart?.cost?.subtotalAmount?.amount ? (
               <span className={styles.fullPrice}>
                 <Money data={cart?.cost?.subtotalAmount} />
               </span>
             ) : (
               '-'
-            )}</p>
+            )}</div>
           <CartCheckoutActions checkoutUrl={cart.checkoutUrl} />
         </CartSummary>
       )}
@@ -266,7 +266,7 @@ function CartCheckoutActions({ checkoutUrl }) {
 
 export function CartEmpty({ hidden = false }) {
   return (
-    <div hidden={hidden} className={styles.cartEmpty}>
+    <div hidden={hidden} className={`${!hidden && styles.cartEmpty}`}>
       <p>
         Nie masz jeszcze produktów w koszyku<br />
         Dodaj wpierw produkt do koszyka

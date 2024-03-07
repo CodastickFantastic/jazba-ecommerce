@@ -6,6 +6,7 @@ import CartAside from '~/components/layout/CartAside';
 import { Footer } from "~/components/layout/Footer"
 
 export function Layout({ cart, children = null, footer, header, isLoggedIn }) {
+
   return (
     <>
       <ShopCart cart={cart} />
