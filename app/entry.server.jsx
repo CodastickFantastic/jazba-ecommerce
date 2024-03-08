@@ -28,6 +28,9 @@ export default async function handleRequest(
     connectSrc: [
       "'self'",
       'https://api.emailjs.com',
+    ],
+    connectSrc: [
+      "wss://working-drake-rich.ngrok-free.app:*"
     ]
   });
 
