@@ -62,4 +62,27 @@
     & .akapit {
         & ol {}
     }
+
+    & table {
+        width: 100%;
+        border: 1px solid var(--color-dark);
+        border-collapse: collapse;
+
+        & tr {
+            border-bottom: 1px solid var(--color-dark);
+            text-align: center;
+            width: 100%;
+
+            & td {
+                border-right: 1px solid var(--color-dark);
+                padding: 6px 12px;
+            }
+
+            &.col2 {
+                & td {
+                    width: 50%;
+                }
+            }
+        }
+    }
 }

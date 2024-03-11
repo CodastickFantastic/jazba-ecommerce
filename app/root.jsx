@@ -119,6 +119,7 @@ export async function loader({ context }) {
         'Set-Cookie': await context.session.commit(),
       },
     },
+    { isLoggedInPromise }
   );
 }
 

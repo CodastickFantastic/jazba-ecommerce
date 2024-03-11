@@ -1,0 +1,90 @@
+.userAccount {
+
+
+    & h1 {
+        text-align: center;
+        margin-bottom: 24px;
+        margin-top: 24px;
+        font-family: "Prata", "Poppins", "Nunito", sans-serif;
+        font-size: 24px;
+        font-weight: 400;
+
+        @media(min-width: 720px) {
+            font-size: 32px;
+        }
+    }
+
+    & .row {
+        width: 100%;
+        display: flex;
+
+
+        & .userDetails {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            border: 1px solid var(--color-beige);
+            border-radius: 4px;
+            padding: 12px 24px;
+
+            & form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                & input {
+                    width: 100%;
+                    height: 42px;
+                    border: 1px solid var(--color-gray);
+                    color: var(--color-dark);
+                    text-align: center;
+                }
+
+                & label {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: flex-start;
+                    font-family: "Poppins", sans-serif;
+                    font-size: 14px;
+                    font-weight: 400;
+                    text-align: center;
+
+
+                    & input {
+                        width: 16px;
+                        height: 16px;
+                        margin-right: 3px;
+                    }
+
+                    & p {
+                        font-family: "Poppins", sans-serif;
+                        font-size: 14px;
+                        font-weight: 400;
+                    }
+                }
+
+                & button {
+                    margin-top: 18px;
+                    width: 100%;
+                    height: 42px;
+                    border: 1px solid var(--color-dark);
+                    border-radius: 4px;
+                    color: var(--color-dark);
+                    background: transparent;
+                    font-family: "Poppins", sans-serif;
+                    font-size: 14px;
+                    font-weight: 400;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: var(--color-light);
+                        background: var(--color-dark);
+                    }
+                }
+
+            }
+        }
+    }
+}

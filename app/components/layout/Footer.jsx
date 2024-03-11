@@ -50,8 +50,11 @@ export function Footer() {
         </div>
         <div className={styles.linkSection}>
           <p className={styles.linkSectionTitle}>Ważne Linki</p>
+          <Link to="/dsa-warunki-korzystania-ze-strony-internetowej">Warunki DSA</Link>
           <Link to="/polityka-prywatnosci">Polityka prywatności</Link>
           <Link to="/regulamin">Regulamin</Link>
+          <Link to="/regulamin-konta">Regulamin Konta</Link>
+          <Link to="/regulamin-newsletter">Regulamin Newsletter</Link>
         </div>
         <div className={styles.linkSection}>
           <p className={styles.linkSectionTitle}>Kontakt</p>

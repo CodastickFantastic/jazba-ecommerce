@@ -10,20 +10,20 @@ export function Layout({ cart, children = null, footer, header, isLoggedIn }) {
   return (
     <>
       <ShopCart cart={cart} />
-      <MenuAside />
-      <Header header={header} cart={cart} isLoggedIn={isLoggedIn} />
+      <MenuAside isLoggedIn={isLoggedIn} />
+      <Header header={header} cart={cart} />
       <main>{children}</main>
       <Footer />
     </>
   );
 }
 
-function ShopCart({ cart }) {
+function ShopCart({ cart, isLoggedIn }) {
   return (
     <Suspense>
       <Await resolve={cart}>
         {(cart) => {
-          return <CartAside cart={cart} />;
+          return <CartAside cart={cart} isLoggedIn={isLoggedIn} />;
         }}
       </Await>
     </Suspense>

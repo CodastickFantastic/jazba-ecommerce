@@ -11,8 +11,23 @@ import galleryIcon from "~/../public/icons/beige/galeria-ikona.png";
 import userIcon from "~/../public/icons/beige/konto-ikona.png";
 
 import aligator from "~/../public/decorations/aligator-half.webp";
+import { useEffect, useState } from "react";
 
-export function MenuAside() {
+export function MenuAside({ isLoggedIn }) {
+    const [userStatus, setUserStatus] = useState(false);
+
+    function checkIfUserIsLoggedIn() {
+        isLoggedIn
+            .then((answer) => {
+                setUserStatus(answer)
+            })
+    }
+
+    useEffect(() => {
+        checkIfUserIsLoggedIn()
+    }, [])
+
+
     return (
         <div aria-modal className={`${styles.menuAside} overlay`} id="menu-aside" role="dialog">
             <button
@@ -44,7 +59,12 @@ export function MenuAside() {
                         <LinkPage image={helpIcon} title="Pomoc" url="/pomoc" />
                         <LinkPage image={deliveryIcon} title="Dostawa" url="/dostawa" />
                         <LinkPage image={galleryIcon} title="Lookbook" url="/lookbook" />
-                        {/* <LinkPage image={userIcon} title="Moje Konto" url="/moje-konto" /> */}
+                        {userStatus ?
+                            <LinkPage image={userIcon} title="Moje Konto" url="/account" />
+                            :
+                            <LinkPage image={userIcon} title="Zaloguj się" url="/account" />
+                        }
+
                     </nav>
                 </main>
                 <footer>
