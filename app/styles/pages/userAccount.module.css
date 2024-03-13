@@ -1,6 +1,5 @@
 .userAccount {
 
-
     & h1 {
         text-align: center;
         margin-bottom: 24px;
@@ -14,77 +13,233 @@
         }
     }
 
-    & .row {
-        width: 100%;
+    & .customerSection {
         display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        row-gap: 12px;
+
+        @media(min-width: 610px) {
+            justify-content: space-between;
+        }
 
 
-        & .userDetails {
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
-            border: 1px solid var(--color-beige);
-            border-radius: 4px;
-            padding: 12px 24px;
 
-            & form {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
+        & .options {
+            display: flex;
 
-                & input {
-                    width: 100%;
-                    height: 42px;
-                    border: 1px solid var(--color-gray);
-                    color: var(--color-dark);
-                    text-align: center;
+            & button {
+                padding: 3px 9px;
+                font-family: "Poppins", sans-serif;
+                font-size: 14px;
+                font-weight: 500;
+                border-radius: 4px;
+                cursor: pointer;
+
+                &.newsletter {
+                    margin-right: 12px;
+                    border: 1px solid var(--color-red);
+                    color: var(--color-red);
+                    background: transparent;
+
+                    &:hover {
+                        background: var(--color-red);
+                        color: var(--color-light)
+                    }
+
+                    &.newsletterActive {
+                        background: transparent;
+                        color: var(--color-green);
+                        border: 1px solid var(--color-green);
+
+                        &:hover {
+                            background: var(--color-green);
+                            color: var(--color-light);
+                            border: 1px solid var(--color-green);
+                        }
+                    }
                 }
 
-                & label {
-                    width: 100%;
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: flex-start;
+                &.logout {
+                    border: 1px solid var(--color-red);
+                    color: var(--color-red);
+                    background: transparent;
+
+                    &:hover {
+                        background: var(--color-red);
+                        color: var(--color-light)
+                    }
+
+                }
+            }
+        }
+    }
+
+    & .orders {
+        margin-top: 48px;
+
+        & .orderTile {
+            width: 100%;
+            border: 1px solid var(--color-beige);
+            border-radius: 4px;
+            padding: 9px 16px;
+            margin-bottom: 12px;
+
+            & .header {
+                margin-bottom: 12px;
+                border-bottom: 1px solid var(--color-beige);
+                padding-bottom: 6px;
+                display: flex;
+                justify-content: space-between;
+
+                & .orderNumber {
+                    font-family: "Poppins", sans-serif;
+                    font-size: 16px;
+                    font-weight: 500;
+                    text-align: center;
+                    color: var(--color-dark);
+                }
+
+                & .status {
+                    border: 1px solid var(--color-dark);
+                    border-radius: 4px;
+                    padding: 3px 9px;
                     font-family: "Poppins", sans-serif;
                     font-size: 14px;
-                    font-weight: 400;
+                    font-weight: 500;
+                    text-align: center;
+                    color: var(--color-dark);
+
+                    &.FULFILLED {
+                        border: 1px solid var(--color-green);
+                        color: var(--color-green);
+                    }
+
+                    &.ON_HOLD {
+                        border: 1px solid var(--color-beige);
+                        color: var(--color-beige);
+                    }
+                }
+            }
+
+
+            & .mainInfo {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+                row-gap: 16px;
+
+                @media(min-width: 720px) {
+                    flex-direction: row;
+                }
+
+                & .labelWithText {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+
+            & .showMore {
+                width: 100%;
+                border-top: 1px solid var(--color-beige);
+                padding-top: 12px;
+                margin-top: 12px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+
+                & .products {
+                    display: none;
+                    width: 100%;
+
+                    & .product {
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-evenly;
+                        align-items: center;
+                        margin-bottom: 12px;
+
+                        & .prodImage {
+                            width: 84px;
+                            height: 84px;
+                            object-fit: cover;
+                            object-position: center center;
+                            border-radius: 4px;
+                            margin-right: 24px;
+                        }
+
+                        & .productLabel {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
+                            margin-right: 24px;
+
+                            &.fixedWidth {
+                                width: 100%;
+                                max-width: 360px;
+                                text-align: center;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            }
+
+                            & .label,
+                            & .description {
+                                font-family: "Poppins", sans-serif;
+                                font-size: 14px;
+                                font-weight: 500;
+                                text-align: center;
+                                color: var(--color-dark);
+                            }
+
+                            & .label {
+                                font-weight: 600;
+                            }
+
+                        }
+
+
+                    }
+                }
+
+                & .showMoreLabel {
+                    width: 100%;
                     text-align: center;
 
-
                     & input {
-                        width: 16px;
-                        height: 16px;
-                        margin-right: 3px;
+                        display: none;
                     }
 
                     & p {
                         font-family: "Poppins", sans-serif;
                         font-size: 14px;
-                        font-weight: 400;
+                        font-weight: 500;
+                        cursor: pointer;
+                        color: var(--color-beige);
+                    }
+
+                }
+
+
+                &:has(input:checked) {
+
+                    & .products {
+                        display: block;
                     }
                 }
 
-                & button {
-                    margin-top: 18px;
-                    width: 100%;
-                    height: 42px;
-                    border: 1px solid var(--color-dark);
-                    border-radius: 4px;
-                    color: var(--color-dark);
-                    background: transparent;
-                    font-family: "Poppins", sans-serif;
-                    font-size: 14px;
-                    font-weight: 400;
-                    cursor: pointer;
-
-                    &:hover {
-                        color: var(--color-light);
-                        background: var(--color-dark);
-                    }
-                }
 
             }
+
+
         }
     }
 }

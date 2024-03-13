@@ -1,7 +1,5 @@
-import { useRef, useState } from "react";
 import { Image } from "@shopify/hydrogen-react"
-import { Link, useLoaderData } from "@remix-run/react";
-import emailjs from '@emailjs/browser';
+import { Form, Link, useActionData, useNavigation } from "@remix-run/react";
 
 import styles from "~/styles/components/layout/footer.module.css"
 import logo from "~/../public/logo/jazba-logo-white.webp"
@@ -10,36 +8,8 @@ import fb from "~/../public/icons/white/fb.png"
 import tt from "~/../public/icons/white/tt.png"
 
 export function Footer() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const form = useRef();
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    emailjs
-      .sendForm('service_a141akw', 'template_rv9gokt', form.current, { publicKey: 'UBVqqN4ugrmtnDsTT', })
-      .then(
-        () => {
-          setIsSubmitting(false);
-        },
-        (error) => {
-          console.log('FAILED...', error.text);
-        },
-      );
-
-  }
-
   return (
     <footer className={styles.footer}>
-      <section id="newsletter" className={styles.newsletter}>
-        <h2>Dołącz do <span className="beige">Jazba</span> Gang</h2>
-        <p className={styles.paragraph}>Zapisz się do <span className="beige">Newslettera</span></p>
-        <form ref={form} onSubmit={sendEmail} className={styles.newsletterForm}>
-          <input type="email" placeholder="Wpisz swój email" name="email" />
-          <button type="submit" disabled={isSubmitting}>{isSubmitting ? "Wysyłanie..." : "Zapisz mnie"}</button>
-        </form>
-      </section>
       <section className={styles.links}>
         <div className={styles.linkSection}>
           <p className={styles.linkSectionTitle}>Informacje</p>

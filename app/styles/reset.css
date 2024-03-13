@@ -13,18 +13,24 @@ p {
 }
 
 h1 {
-  font-size: 1.6rem;
+  font-size: 28px !important;
   font-weight: 700;
   line-height: 1.4;
-  /* margin-bottom: 2rem; */
-  /* margin-top: 2rem; */
+
+  @media(min-width: 720px) {
+    font-size: 32px !important;
+  }
 }
 
 h2 {
-  font-size: 1.2rem;
+  font-size: 28px !important;
   font-weight: 700;
   line-height: 1.4;
   margin-bottom: 1rem;
+
+  @media(min-width: 720px) {
+    font-size: 32px !important;
+  }
 }
 
 h4 {

@@ -68,6 +68,7 @@ export default function PolitykaZwrotów() {
                     <li>W celu otrzymania Newslettera konieczne jest zawarcie Umowy.</li>
                     <li>Wiadomości e-mail wysyłane w ramach Umowy kierowane będą na adres e-mail podany przez Usługobiorcę w momencie zawierania Umowy.</li>
                     <li>Usługobiorca, w celu zawarcia Umowy, w pierwszym kroku podaje w przeznaczonym do tego miejscu w Sklepie swój adres e-mail, na który chce otrzymywać wiadomości przesyłane w ramach Umowy. W momencie zapisu na Newsletter zostaje zawarta Umowa na czas nieoznaczony, a Usługodawca rozpocznie jej świadczenie na rzecz Usługobiorcy – z zastrzeżeniem ust. 5.</li>
+                    <li>W celu realizacji usługi Newslettera zostaje założone konto w sklepie internetowym Jazba z minimalną ilośćią informacji, takich jak email usługobiorcy oraz stan subskrybcji usług newslettera</li>
                     <li>W celu właściwej realizacji Umowy Usługobiorca jest obowiązany podać swój prawidłowy adres e-mail.</li>
                     <li>Newsletter jest dostarczany niezwłocznie po utworzeniu przez Usługodawcę wiadomości przeznaczonych dla Usługobiorców.</li>
                     <li>Usługobiorca może wypisać się z Newslettera bez podawania przyczyny i ponoszenia jakichkolwiek kosztów, w każdym momencie, wysyłając wiadomość na adres e-mail Usługodawcy podany w § 2 Regulaminu.</li>

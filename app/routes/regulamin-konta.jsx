@@ -64,7 +64,7 @@ export default function PolitykaZwrotów() {
                 <h2>4. Konto</h2>
                 <ol>
                     <li>Założenie Konta jest całkowicie dobrowolne i zależne od woli Usługobiorcy, ale jednocześnie konieczne do dokonania zakupów w Sklepie.</li>
-                    <li>Konto daje Usługobiorcy dodatkowe możliwości, takie jak: przeglądanie historii zamówień złożonych przez Usługobiorcę w Sklepie, sprawdzenie statusu zamówienia czy samodzielna edycja danych Usługobiorcy.</li>
+                    <li>Konto daje Usługobiorcy dodatkowe możliwości, takie jak: przeglądanie historii zamówień złożonych przez Usługobiorcę w Sklepie, sprawdzenie statusu zamówienia czy zapis do newslettera.</li>
                     <li>W celu założenia Konta należy wypełnić stosowny formularz w Sklepie.</li>
                     <li>W momencie założenia Konta zawierana jest na czas nieoznaczony pomiędzy Usługobiorcą a Usługodawcą umowa o prowadzenie Konta na zasadach wskazanych w Regulaminie.</li>
                     <li>Usługodawca rozpoczyna świadczenie usługi prowadzenia Konta na zasadach określonych w Regulaminie niezwłocznie po zawarciu umowy o prowadzenie Konta.</li>

@@ -1,6 +1,7 @@
 .HeroSection {
     width: 100%;
     height: 85dvh;
+    max-height: 700px;
 
     & img {
         width: 100%;

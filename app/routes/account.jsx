@@ -1,16 +1,17 @@
-import { Form, useActionData, useLoaderData } from '@remix-run/react';
+import { Form, useLoaderData, useNavigation } from '@remix-run/react';
 import { json } from '@shopify/remix-oxygen';
+import { Image } from "@shopify/hydrogen-react";
 
-// import { CUSTOMER_QUERY } from '~/graphql/customer-account/CustomerQuery';
-import { CUSTOMER_UPDATE_MUTATION } from '~/graphql/customer-account/CustomerUpdateMutation';
-import { CUSTOMER_ORDER_QUERY } from '~/graphql/customer-account/CustomerOrderQuery';
+import { CUSTOMER_ORDER_QUERY } from '~/graphql/adminClient/CustomerOrderQuery';
+import { SUBSCRIBE_MAIL_NEWSLETTER_AS_CUSTOMER } from "~/graphql/customerClient/SubscribeMailNewsletterAsCustomer";
+import { UNSUBSCRIBE_MAIL_NEWSLETTER_AS_CUSTOMER } from "~/graphql/customerClient/UnsubscribeMailNewsletterAsCustomer";
 
 import styles from '~/styles/pages/userAccount.module.css';
 
 export async function loader({ context }) {
     let response = {
         customer: {},
-        order: {}
+        orders: {}
     };
 
     async function getUserData() {
@@ -35,43 +36,36 @@ export async function loader({ context }) {
 
         if (errors?.length || !data?.customer) {
             throw new Error('Customer not found');
-            // return json({ customer: errors })
         }
 
         response.customer = data?.customer
     }
 
-    await getUserData();
-
-
     async function getOrdersData() {
-        const { data, errors } = await context.customerAccount.query(
+        const { data, errors } = await context.adminClient.request(
             CUSTOMER_ORDER_QUERY,
+            {
+                variables: {
+                    id: response.customer.id
+                }
+            }
         )
 
         if (errors?.length || !data?.customer) {
-            // throw new Error('Customer not found');
-            console.log("ERROR:", errors[0].message)
-            response.order = errors
+            // throw new Error('Orders Error');
+            console.log("Error1", errors)
+            console.log("Error1-Continue", errors.graphQLErrors[0])
         }
 
-        response.order = data?.customer
+        response.orders = data?.customer
     }
 
+
+    await getUserData();
     await getOrdersData();
 
-
-
-
-
-
-
-    // let { data, errors } = await context.customerAccount.query(
-    //     CUSTOMER_ORDER_QUERY,
-    // )
-
     return json(
-        { customer: response.customer, order: response.order },
+        { customer: response.customer, orders: response.orders },
         {
             headers: {
                 'Cache-Control': 'no-cache, no-store, must-revalidate',
@@ -81,120 +75,150 @@ export async function loader({ context }) {
     );
 }
 
-export async function action({ request, context, params }) {
+export async function action({ context, request }) {
     const formData = await request.formData();
+    const isSubscribe = formData.get("isSubscribe")
 
-    if (!(await context.customerAccount.isLoggedIn())) {
-        throw await doLogout(context);
+    if (isSubscribe === "UNSUBSCRIBED") {
+        const { data, errors } = await context.customerAccount.mutate(SUBSCRIBE_MAIL_NEWSLETTER_AS_CUSTOMER)
+    } else {
+        const { data, errors } = await context.customerAccount.mutate(UNSUBSCRIBE_MAIL_NEWSLETTER_AS_CUSTOMER)
     }
 
-    try {
-        const response = {
-            data: { customer: null, email: null, sms: null },
-            errors: { customer: null, email: null, sms: null },
-        }
-
-        const name = formData.get('firstName');
-        const lastName = formData.get('lastName');
-        const email = formData.get('emailAddress');
-        const phone = formData.get('phoneNumber');
-        const mailing = formData.get('mailing') === "true" ? "SUBSCRIBED" : "NOT_SUBSCRIBED";
-        const smsing = formData.get('smsing') === "true" ? "SUBSCRIBED" : "NOT_SUBSCRIBED";
-
-        if (!name) throw new Error('Imie jest wymagane');
-        if (!lastName) throw new Error('Nazwisko jest wymagane');
-        if (!email) throw new Error('Email jest wymagany');
-        if (!phone) throw new Error('Numer telefonu jest wymagany');
-
-        console.log(mailing, smsing)
-
-
-        const customer = {
-            firstName: name,
-            lastName,
-        };
-
-
-
-        const phoneNumber = {
-            phoneNumber: phone,
-            marketingState: smsing
-        }
-
-
-
-
-        let { data, errors } = await context.customerAccount.mutate(CUSTOMER_UPDATE_MUTATION, { variables: { customer } })
-
-
-        response.data.customer = data
-        response.errors.customer = errors
-
-        return json({ response: response });
-
-    } catch (e) {
-        return json({ formError: e.message });
-    }
-
-    // console.log(formData)
-
-
-
+    return null;
 }
 
 export default function () {
-    const { customer, order } = useLoaderData();
-    const actionData = useActionData();
+    const { customer, orders } = useLoaderData();
+    const navigate = useNavigation();
 
+    const newsletterSwitch = customer.emailAddress.marketingState === "SUBSCRIBED" ? true : false
+
+    function setStatus(status) {
+        let switchStatus;
+
+        switch (status) {
+            case "FULFILLED":
+                switchStatus = "Wysłane";
+                break;
+            case "ON_HOLD":
+                switchStatus = "Produkcja";
+                break;
+            default:
+                switchStatus = "Oczekuje Potwierdzenia";
+                break;
+        }
+
+        return switchStatus
+    }
 
 
     console.log(customer)
-    console.log("ORDER:", order)
-    // console.log(actionData)
+    console.log(orders)
+
+
 
     return customer ? (
         <div className={`${styles.userAccount} smallContainer`}>
             <h1> Moje Konto</h1>
-            <div className={styles.row}>
-                <div className={styles.userDetails}>
-                    <Form method='post'>
-                        <label htmlFor="firstName">Imie</label>
-                        <input type="text" name="firstName" id="firstName" defaultValue={customer.firstName} />
-                        <label htmlFor="lastName">Nazwisko</label>
-                        <input type="text" name="lastName" id='lastName' defaultValue={customer.lastName} />
-                        <label htmlFor="emailAddress">Adres Email</label>
-                        <input type="email" name="emailAddress" id="emailAddress" defaultValue={customer.emailAddress.emailAddress} />
-                        <label htmlFor="phoneNumber">Numer telefonu</label>
-                        <input type="tel" name="phoneNumber" id="phoneNumber" defaultValue={customer.phoneNumber.phoneNumber} />
-                        <label htmlFor='mailing'>
-                            <input
-                                type="checkbox"
-                                name="mailing"
-                                id="mailing"
-                                defaultChecked={customer.emailAddress.marketingState === 'SUBSCRIBED' ? true : false}
-                                defaultValue={customer.emailAddress.marketingState === 'SUBSCRIBED' ? true : false} />
-                            <p>Wyrażam zgodę na marketing mailowy</p>
-                        </label>
-                        <label htmlFor='smsing'>
-                            <input
-                                type="checkbox"
-                                name="smsing"
-                                id="smsing"
-                                defaultChecked={customer.phoneNumber.marketingState === 'SUBSCRIBED' ? true : false}
-                                defaultValue={customer.phoneNumber.marketingState === 'SUBSCRIBED' ? true : false} />
-                            <p>Wyrażam zgodę na marketing SMS</p>
-                        </label>
-                        <button type="submit">Zapisz Dane</button>
-                        {actionData?.formError && <p>{actionData.formError}</p>}
-
-                    </Form>
-                </div>
+            <section className={styles.customerSection}>
+                <p><strong>Zalogowany:</strong> {customer.emailAddress.emailAddress}</p>
                 <div className={styles.options}>
+                    <Form method='post'>
+                        <input type="hidden" name="isSubscribe" value={customer.emailAddress.marketingState} />
+                        <input type="hidden" name="email" value={customer.emailAddress.emailAddress} />
+                        <button
+                            className={`${styles.newsletter} ${!newsletterSwitch && styles.newsletterActive}`}
+                            disabled={navigate.state !== 'idle'}
+                        >
+                            {newsletterSwitch ? "Anuluj Newsletter Email" : "Aktywuj Newsletter Email"}
+                        </button>
+                    </Form>
                     <Form method="post" action="/account/logout">
-                        <button>Logout</button>
+                        <button className={styles.logout}>Wyloguj</button>
                     </Form>
                 </div>
-            </div>
-        </div>
+            </section>
+            <section className={styles.orders}>
+                <h2>Moje Zamówienia</h2>
+                {orders.orders.edges.length > 0 ? (
+                    <>
+                        {orders.orders.edges.map((order, index) =>
+                            <div className={styles.orderTile} key={order.node.id}>
+                                <div className={styles.header}>
+                                    <p className={styles.orderNumber}>Zamówienie nr.{index + 1}</p>
+                                    <p className={`${styles.status} ${styles[order.node.displayFulfillmentStatus]}`}>{setStatus(order.node.displayFulfillmentStatus)}</p>
+                                </div>
+                                <div className={styles.mainInfo}>
+                                    <div className={styles.labelWithText}>
+                                        <p><strong>ID Zamówienia</strong></p>
+                                        <p>{order.node.id.split("/")[order.node.id.split("/").length - 1]}</p>
+                                    </div>
+                                    <div className={styles.labelWithText}>
+                                        <p><strong>Numer Zamówienia</strong></p>
+                                        <p>{order.node.name}</p>
+                                    </div>
+                                    <div className={styles.labelWithText}>
+                                        <p><strong>Data Utworzenia</strong></p>
+                                        <p>{new Date(order.node.createdAt).toLocaleDateString()}</p>
+                                    </div>
+                                    <div className={styles.labelWithText}>
+                                        <p><strong>Dostawa do</strong></p>
+                                        <p>{`${order.node.displayAddress.city}, ${order.node.displayAddress.country}`}</p>
+                                    </div>
+                                    <div className={styles.labelWithText}>
+                                        <p><strong>Kurier</strong></p>
+                                        <p>{order.node.shippingLine.title}</p>
+                                    </div>
+                                    <div className={styles.labelWithText}>
+                                        <p><strong>Suma</strong></p>
+                                        <p>{order.node.currentSubtotalPriceSet.presentmentMoney.amount} {order.node.currentSubtotalPriceSet.presentmentMoney.currencyCode}</p>
+                                    </div>
+                                </div>
+                                <div className={styles.showMore}>
+                                    <div className={styles.products}>
+                                        {order.node.lineItems.edges.map((product, index) => {
+                                            return (
+                                                <div className={styles.product} key={product.node.id}>
+                                                    <Image className={styles.prodImage} src={product.node.image.url} alt="test" width={100} height={100} />
+                                                    <div className={styles.productLabel}>
+                                                        <p className={styles.label}>Produkt No.</p>
+                                                        <p className={styles.description}>{index + 1}</p>
+                                                    </div>
+                                                    <div className={`${styles.productLabel} ${styles.fixedWidth}`}>
+                                                        <p className={styles.label}>Wybrany Produkt</p>
+                                                        <p className={styles.description}>{product.node.name.split("-")[0] + " - " + product.node.name.split("-")[1]}</p>
+                                                    </div>
+                                                    <div className={styles.productLabel}>
+                                                        <p className={styles.label}>Rozmiar</p>
+                                                        <p className={styles.description}>{product.node.name.split("-")[2]}</p>
+                                                    </div>
+                                                    <div className={styles.productLabel}>
+                                                        <p className={styles.label}>Ilość</p>
+                                                        <p className={styles.description}>{product.node.quantity}</p>
+                                                    </div>
+                                                    <div className={styles.productLabel}>
+                                                        <p className={styles.label}>Cena (szt.)</p>
+                                                        <p className={styles.description}>{product.node.discountedUnitPriceSet.presentmentMoney.amount + " " + product.node.discountedUnitPriceSet.presentmentMoney.currencyCode}</p>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })}
+
+                                    </div>
+                                    <label className={styles.showMoreLabel}>
+                                        <input type="checkbox" name="showMore" className={styles.showProducts} />
+                                        <p>Pokaż więcej</p>
+                                    </label>
+                                </div>
+                            </div>
+                        )}
+                    </>
+                ) : (
+                    <p style={{ textAlign: 'center' }}>Nie złożono jeszcze żadnego zamówienia</p>
+                )}
+            </section>
+
+        </div >
     ) : null;
 }

@@ -14,6 +14,7 @@ import {
 } from '@shopify/remix-oxygen';
 import { AppSession } from '~/lib/session';
 import { CART_QUERY_FRAGMENT } from '~/lib/fragments';
+import { createAdminApiClient } from '@shopify/admin-api-client';
 
 /**
  * Export a fetch handler in module format.
@@ -53,6 +54,12 @@ export default {
         storefrontHeaders: getStorefrontHeaders(request),
       });
 
+      const adminClient = createAdminApiClient({
+        storeDomain: env.PUBLIC_STORE_DOMAIN,
+        apiVersion: '2024-01',
+        accessToken: env.PRIVATE_API_ADMIN_TOKEN,
+      })
+
       /**
        * Create a client for Customer Account API.
        */
@@ -86,6 +93,7 @@ export default {
         getLoadContext: () => ({
           session,
           storefront,
+          adminClient,
           customerAccount,
           cart,
           env,
