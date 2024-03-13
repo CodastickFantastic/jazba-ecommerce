@@ -11,6 +11,7 @@ import { SUBSCRIBE_NEWSLETTER } from "../graphql/adminClient/SubscribeNewsletter
 
 import styles from "~/styles/pages/index.module.css"
 import NewsletterSection from "~/components/sections/NewsletterSection"
+import CreateYourJazbaSection from "~/components/sections/CreateYourJazbaSection"
 
 
 export function meta() {
@@ -35,7 +36,7 @@ export default function Index() {
     <>
       <HeroSection />
 
-      <Link to="/blog/co-oznacza-slowo-jazba" className={`${styles.toBlog} smallContainer`}>
+      <Link to="/blog/co-oznacza-slowo-jazba" className={`${styles.toBlog} bigContainer`}>
         <h2>Poznaj <span className="beige">Projekt</span> Jazba</h2>
         <span className={styles.arrow} />
       </Link>
@@ -48,7 +49,12 @@ export default function Index() {
           {collections && <LatestProductsSection products={collectionsArray} />}
         </div>
       </div>
-      <NewsletterSection error={actionData?.error} success={actionData?.success} />
+      <div style={{ marginTop: "36px" }}>
+        <CreateYourJazbaSection />
+      </div>
+      <div style={{ marginTop: "60px" }}>
+        <NewsletterSection error={actionData?.error} success={actionData?.success} />
+      </div>
     </>
   )
 }

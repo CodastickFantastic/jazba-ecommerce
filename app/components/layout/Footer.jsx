@@ -1,5 +1,5 @@
 import { Image } from "@shopify/hydrogen-react"
-import { Form, Link, useActionData, useNavigation } from "@remix-run/react";
+import { Link } from "@remix-run/react";
 
 import styles from "~/styles/components/layout/footer.module.css"
 import logo from "~/../public/logo/jazba-logo-white.webp"
