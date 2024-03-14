@@ -87,6 +87,10 @@
             &:hover {
                 background-color: var(--color-green-hover);
             }
+
+            &.success {
+                background-color: var(--color-green);
+            }
         }
     }
 }
