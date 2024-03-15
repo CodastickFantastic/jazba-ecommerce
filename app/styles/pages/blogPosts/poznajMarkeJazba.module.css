@@ -1,0 +1,144 @@
+.blogPage {
+    margin-top: 24px !important;
+
+    & h1 {
+        font-family: "Prata", "Poppins", "Nunito", sans-serif;
+        font-size: 24px !important;
+        font-weight: 400;
+        border-bottom: 1px solid var(--color-beige);
+        padding-bottom: 6px;
+        text-align: left;
+        margin-bottom: 12px;
+
+        @media(min-width: 720px) {
+            font-size: 28px !important;
+        }
+    }
+
+    & h2 {
+        font-family: "Prata", "Poppins", "Nunito", sans-serif;
+        font-size: 20px !important;
+        font-weight: 600;
+        text-align: left;
+        margin-bottom: 12px;
+
+        @media(min-width: 720px) {
+            font-size: 24px !important;
+        }
+    }
+
+    & br {
+        content: "";
+        margin: 8px;
+        display: block;
+    }
+
+    & img {
+        width: 100%;
+
+        &.logo {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            margin: auto;
+            display: block;
+            margin-top: 24px;
+        }
+
+        &.haftNaUbraniu {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            margin: auto;
+            display: block;
+            border-radius: 4px;
+            margin-top: 12px;
+        }
+    }
+
+    & .video {
+        width: 100%;
+        height: 300px;
+        margin-top: 24px;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+
+    & p {
+        font-family: "Poppins", sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--color-dark);
+    }
+
+    & .contents {
+        margin-top: 24px;
+        margin-bottom: 24px;
+
+        & ol {
+            margin-left: 24px;
+
+            s & li {
+                font-family: "Poppins", sans-serif;
+                font-size: 14px;
+                font-weight: 400;
+                color: var(--color-dark);
+            }
+        }
+    }
+
+    & .twoColsCentered {
+        width: 100%;
+
+        @media(min-width: 720px) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    & section {
+        margin-top: 24px !important;
+    }
+
+    @media(min-width: 720px) {
+        & .col30 {
+            width: 30%;
+        }
+
+        & .col40 {
+            width: 40%;
+        }
+
+        & .col50 {
+            width: 50%;
+        }
+
+        & .col60 {
+            width: 60%;
+        }
+
+        & .col70 {
+            width: 70%;
+        }
+
+        & .coZnaczySlowoJazba {
+            margin-top: -48px !important;
+        }
+
+        & .centered {
+            margin-top: 40px !important;
+            max-width: 85%;
+            text-align: center;
+            margin: auto;
+
+            & h2 {
+                text-align: center;
+            }
+        }
+
+    }
+
+
+
+}

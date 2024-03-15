@@ -99,7 +99,7 @@
                             text-align: right;
                             margin-left: 0px;
                             margin-right: -100px;
-                            z-index: 99;
+                            z-index: 1;
                         }
 
                         & p {
