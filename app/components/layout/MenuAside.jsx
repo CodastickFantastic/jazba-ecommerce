@@ -44,12 +44,12 @@ export function MenuAside({ isLoggedIn }) {
                 </header>
                 <main>
                     <nav className={styles.categories}>
-                        <CategoryTile image={poloIcon} title="T-shirt" url="/collections/polos" onChange={() => history.go(-1)} />
+                        <DummyTile image={poloIcon} title="T-shirt" />
                         <CategoryTile image={poloIcon} title="Polo" url="/kategorie/koszulki-polo" />
-                        <CategoryTile image={poloIcon} title="Bluzy" url="/collections/polos" />
-                        <CategoryTile image={poloIcon} title="Czapki" url="/collections/polos" />
-                        <CategoryTile image={poloIcon} title="Skarpetki" url="/collections/polos" />
-                        <CategoryTile image={poloIcon} title="Bony" url="/collections/polos" />
+                        <CategoryTile image={poloIcon} title="Bluzy" url="/kategorie/bluzy" />
+                        <DummyTile image={poloIcon} title="Czapki" />
+                        <DummyTile image={poloIcon} title="Skarpetki" />
+                        <DummyTile image={poloIcon} title="Bony" />
                     </nav>
                     <div className={styles.baner}>
                         <Image src="https://cdn.shopify.com/s/files/1/0728/3513/7804/files/index-hero.webp?v=1707575300" alt="Jazba logo white" width={320} />
@@ -97,6 +97,18 @@ function CategoryTile({ image, title, url }) {
             </div>
             <p className={styles.categoryTitle}>{title}</p>
         </NavLink>
+    )
+}
+
+function DummyTile({ image, title }) {
+    return (
+        <div className={`${styles.categoryTile} ${styles.dummy}`}>
+            <div className={styles.imageHolder}>
+                <Image src={image} alt={`ikona ${title}`} width={46} height={46} />
+            </div>
+            <p className={styles.categoryTitle}>{title}</p>
+            <p className={styles.badge}>Wkrótce</p>
+        </div>
     )
 }
 

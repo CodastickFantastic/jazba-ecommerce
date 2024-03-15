@@ -95,6 +95,23 @@
                         cursor: pointer;
                         transform: scale(0.9);
                     }
+
+                    &.dummy {
+                        position: relative;
+
+                        & .badge {
+                            position: absolute;
+                            top: -12px;
+                            right: -14px;
+                            font-size: 10px;
+                            font-family: "Poppins", sans-serif;
+                            background-color: var(--color-beige);
+                            color: var(--color-light);
+                            padding: 3px 6px;
+                            border-radius: 2px;
+                            text-transform: uppercase
+                        }
+                    }
                 }
             }
 
