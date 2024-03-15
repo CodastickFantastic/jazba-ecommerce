@@ -35,12 +35,10 @@ export default function Index() {
   return (
     <>
       <HeroSection />
-
-      <Link to="/blog/co-oznacza-slowo-jazba" className={`${styles.toBlog} bigContainer`}>
+      <Link to="/blog/poznaj-marke-jazba" className={`${styles.toBlog} bigContainer`}>
         <h2>Poznaj <span className="beige">Projekt</span> Jazba</h2>
         <span className={styles.arrow} />
       </Link>
-
       <div className={`${styles.row} smoothScroll`}>
         <section className={styles.premiere}>
           <CountToPremiere />
