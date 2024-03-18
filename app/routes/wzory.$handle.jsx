@@ -6,10 +6,12 @@ import ProductGridSection from "~/components/sections/ProductGridSection";
 import CategoryLongDescription from "~/components/sections/CategoryLongDescription";
 
 export function meta({ data }) {
+    const keywords = JSON.parse(data.collection.metafield.value).keywords
+
     return [
         { title: data.collection.seo.title },
         { descritpion: data.collection.seo.description },
-        { keywords: "koszulka polo, koszulka, t-shirt, czapka, czapka bucket, czapka z daszkiem, bluza" },
+        { keywords: keywords },
     ]
 }
 

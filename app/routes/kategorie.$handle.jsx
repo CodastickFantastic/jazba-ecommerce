@@ -3,12 +3,15 @@ import { getPaginationVariables } from "@shopify/hydrogen";
 import { json } from "@shopify/remix-oxygen"
 import HeaderWithImgSection from "~/components/sections/HeaderWIthImgSection";
 import ProductGridSection from "~/components/sections/ProductGridSection";
+import CategoryLongDescription from "~/components/sections/CategoryLongDescription";
 
 export function meta({ data }) {
+    const keywords = JSON.parse(data.collection.metafield.value).keywords
+
     return [
         { title: data.collection.seo.title },
         { descritpion: data.collection.seo.description },
-        { keywords: "koszulka polo, koszulka, t-shirt, czapka, czapka bucket, czapka z daszkiem, bluza" },
+        { keywords: keywords },
     ]
 }
 
@@ -33,11 +36,13 @@ export async function loader({ params, context, request }) {
 
 export default function Wzory() {
     const { collection } = useLoaderData()
+    const collectionDescriptionJson = JSON.parse(collection.metafield.value)
 
     return (
         <>
-            <HeaderWithImgSection h1={collection.title} description={collection.descriptionHtml} img={collection.image} />
+            <HeaderWithImgSection h1={collection.title} description={collectionDescriptionJson.shortDescription} img={collection.image} />
             <ProductGridSection collection={collection} />
+            <CategoryLongDescription h2={collectionDescriptionJson.h2} description={collectionDescriptionJson.longDescription} />
         </>
     )
 }
