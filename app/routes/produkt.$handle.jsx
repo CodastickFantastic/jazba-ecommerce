@@ -8,7 +8,7 @@ import emailjs from '@emailjs/browser';
 import styles from "~/styles/pages/product.module.css"
 import closeImg from "~/../public/icons/beige/close.png"
 
-import { ProductQuery } from "~/graphql/storefrontClient/ProductQuery"
+import { PRODUCT_QUERY } from "~/graphql/storefrontClient/ProductQuery"
 import seoProduct from "~/seo/seoProduct"
 
 // export function meta({ data }) {
@@ -66,7 +66,7 @@ export default function ProduktPage() {
         showImg ? setShowImg(false) : setShowImg(img)
     }
 
-    console.log(productDescriptionJSON)
+    // console.log(productDescriptionJSON)
 
     const sendEmail = (e) => {
         e.preventDefault();
