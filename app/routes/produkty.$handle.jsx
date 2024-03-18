@@ -11,14 +11,6 @@ import closeImg from "~/../public/icons/beige/close.png"
 import { PRODUCT_QUERY } from "~/graphql/storefrontClient/ProductQuery"
 import seoProduct from "~/seo/seoProduct"
 
-// export function meta({ data }) {
-//     return [
-//         { title: data.product.seo.title },
-//         { descritpion: data.product.seo.description },
-//         { keywords: data.product.tags.join(",") },
-//     ]
-// }
-
 export async function loader({ params, context, request }) {
     const { handle } = params
     const searchParams = new URL(request.url).searchParams;
@@ -66,7 +58,7 @@ export default function ProduktPage() {
         showImg ? setShowImg(false) : setShowImg(img)
     }
 
-    // console.log(productDescriptionJSON)
+    // console.log(product)
 
     const sendEmail = (e) => {
         e.preventDefault();
