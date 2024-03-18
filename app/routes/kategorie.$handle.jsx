@@ -5,15 +5,7 @@ import HeaderWithImgSection from "~/components/sections/HeaderWIthImgSection";
 import ProductGridSection from "~/components/sections/ProductGridSection";
 import CategoryLongDescription from "~/components/sections/CategoryLongDescription";
 
-export function meta({ data }) {
-    const keywords = JSON.parse(data.collection.metafield.value).keywords
-
-    return [
-        { title: data.collection.seo.title },
-        { descritpion: data.collection.seo.description },
-        { keywords: keywords },
-    ]
-}
+import seoCategory from "~/seo/seoCategory";
 
 export async function loader({ params, context, request }) {
     const paginationVariables = getPaginationVariables(request, {
@@ -27,11 +19,16 @@ export async function loader({ params, context, request }) {
         },
     });
 
+    const seo = seoCategory({
+        title: collection.title,
+        description: collection.seo.description,
+    })
+
     //Handle 404s
     if (!collection) {
         throw new Response(null, { status: 404 })
     }
-    return json({ collection })
+    return json({ collection, seo })
 }
 
 export default function Wzory() {

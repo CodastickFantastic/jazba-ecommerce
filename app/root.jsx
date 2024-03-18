@@ -1,4 +1,3 @@
-import { useNonce, Script } from '@shopify/hydrogen';
 import { defer } from '@shopify/remix-oxygen';
 import {
   Links,
@@ -12,11 +11,15 @@ import {
   ScrollRestoration,
   isRouteErrorResponse,
 } from '@remix-run/react';
+import { useNonce, Script, Seo } from '@shopify/hydrogen';
+
+import seoRoot from './seo/seoRoot';
+import { Layout } from '~/components/layout/Layout';
+import { cssBundleHref } from '@remix-run/css-bundle';
+
 import favicon from '../public/favicon.png';
 import resetStyles from './styles/reset.css';
 import appStyles from './styles/app.css';
-import { Layout } from '~/components/layout/Layout';
-import { cssBundleHref } from '@remix-run/css-bundle';
 
 /**
  * This is important to avoid re-fetching root queries on sub-navigations
@@ -83,36 +86,17 @@ export const useRootLoaderData = () => {
       */
 export async function loader({ context }) {
   const { storefront, customerAccount, cart } = context;
-  const publicStoreDomain = context.env.PUBLIC_STORE_DOMAIN;
 
   const isLoggedInPromise = customerAccount.isLoggedIn();
+  const cartPromise = cart.get(); // defer the cart query by not awaiting it
 
-  // defer the cart query by not awaiting it
-  const cartPromise = cart.get();
-
-  // defer the footer query (below the fold)
-  const footerPromise = storefront.query(FOOTER_QUERY, {
-    cache: storefront.CacheLong(),
-    variables: {
-      footerMenuHandle: 'footer', // Adjust to your footer menu handle
-    },
-  });
-
-  // await the header query (above the fold)
-  const headerPromise = storefront.query(HEADER_QUERY, {
-    cache: storefront.CacheLong(),
-    variables: {
-      headerMenuHandle: 'main-menu', // Adjust to your header menu handle
-    },
-  });
+  const seo = seoRoot;
 
   return defer(
     {
       cart: cartPromise,
-      footer: footerPromise,
-      header: await headerPromise,
       isLoggedIn: isLoggedInPromise,
-      publicStoreDomain,
+      seo
     },
     {
       headers: {
@@ -133,6 +117,7 @@ export default function App() {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <Seo />
         <Meta />
         <Links />
       </head>
@@ -191,75 +176,8 @@ export function ErrorBoundary() {
   );
 }
 
-const MENU_FRAGMENT = `#graphql
-      fragment MenuItem on MenuItem {
-        id
-    resourceId
-      tags
-      title
-      type
-      url
-  }
-      fragment ChildMenuItem on MenuItem {
-        ...MenuItem
-      }
-      fragment ParentMenuItem on MenuItem {
-        ...MenuItem
-    items {
-        ...ChildMenuItem
-      }
-  }
-      fragment Menu on Menu {
-        id
-    items {
-        ...ParentMenuItem
-      }
-  }
-      `;
 
-const HEADER_QUERY = `#graphql
-      fragment Shop on Shop {
-        id
-    name
-      description
-      primaryDomain {
-        url
-      }
-      brand {
-        logo {
-        image {
-        url
-      }
-      }
-    }
-  }
-      query Header(
-      $country: CountryCode
-      $headerMenuHandle: String!
-      $language: LanguageCode
-      ) @inContext(language: $language, country: $country) {
-        shop {
-        ...Shop
-      }
-      menu(handle: $headerMenuHandle) {
-        ...Menu
-      }
-  }
-      ${MENU_FRAGMENT}
-      `;
 
-const FOOTER_QUERY = `#graphql
-      query Footer(
-      $country: CountryCode
-      $footerMenuHandle: String!
-      $language: LanguageCode
-      ) @inContext(language: $language, country: $country) {
-        menu(handle: $footerMenuHandle) {
-        ...Menu
-      }
-  }
-      ${MENU_FRAGMENT}
-      `;
 
 /** @typedef {import('@shopify/remix-oxygen').LoaderFunctionArgs} LoaderFunctionArgs */
 /** @typedef {import('@remix-run/react').ShouldRevalidateFunction} ShouldRevalidateFunction */

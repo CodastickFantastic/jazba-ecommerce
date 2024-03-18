@@ -5,13 +5,13 @@ import { MenuAside } from '~/components/layout/MenuAside';
 import CartAside from '~/components/layout/CartAside';
 import { Footer } from "~/components/layout/Footer"
 
-export function Layout({ cart, children = null, footer, header, isLoggedIn }) {
+export function Layout({ cart, children = null, isLoggedIn }) {
 
   return (
     <>
       <ShopCart cart={cart} />
       <MenuAside isLoggedIn={isLoggedIn} />
-      <Header header={header} cart={cart} />
+      <Header cart={cart} />
       <main>{children}</main>
       <Footer />
     </>

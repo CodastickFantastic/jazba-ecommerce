@@ -13,21 +13,17 @@ import styles from "~/styles/pages/index.module.css"
 import NewsletterSection from "~/components/sections/NewsletterSection"
 import CreateYourJazbaSection from "~/components/sections/CreateYourJazbaSection"
 
-
-export function meta() {
-  return [
-    { title: "Jazba - Wyjątkowe hafty" },
-    { descritpion: "Wyróżnij się z tłumu dzięki wyjątkowym haftom." },
-    { keywords: "jazba, e-commerce, shopify, hydrogen" },
-  ]
-}
+import seoHome from "~/seo/seoHome"
 
 export async function loader({ context }) {
-  return await context.storefront.query(HOME_ANIMALS_COLLECTION)
+  const collections = await context.storefront.query(HOME_ANIMALS_COLLECTION)
+  const seo = seoHome
+
+  return json({ collections, seo })
 }
 
 export default function Index() {
-  const collections = useLoaderData()
+  const { collections } = useLoaderData()
   // Convert object to array of objects
   const collectionsArray = Object.values(collections)
   const actionData = useActionData()

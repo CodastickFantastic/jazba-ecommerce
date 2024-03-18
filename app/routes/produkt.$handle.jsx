@@ -8,13 +8,15 @@ import emailjs from '@emailjs/browser';
 import styles from "~/styles/pages/product.module.css"
 import closeImg from "~/../public/icons/beige/close.png"
 
-export function meta({ data }) {
-    return [
-        { title: data.product.seo.title },
-        { descritpion: data.product.seo.description },
-        { keywords: data.product.tags.join(",") },
-    ]
-}
+import seoProduct from "~/seo/seoProduct"
+
+// export function meta({ data }) {
+//     return [
+//         { title: data.product.seo.title },
+//         { descritpion: data.product.seo.description },
+//         { keywords: data.product.tags.join(",") },
+//     ]
+// }
 
 export async function loader({ params, context, request }) {
     const { handle } = params
@@ -39,10 +41,13 @@ export async function loader({ params, context, request }) {
 
     const selectedVariant = product.selectedVariant ?? product?.variants?.nodes[0]
 
+    const seo = seoProduct({ product, url: request.url, selectedVariant })
+
     return json({
         product,
         selectedVariant,
-        shop
+        shop,
+        seo
     })
 }
 
