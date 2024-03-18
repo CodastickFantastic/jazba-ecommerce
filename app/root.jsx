@@ -1,4 +1,4 @@
-import { useNonce } from '@shopify/hydrogen';
+import { useNonce, Script } from '@shopify/hydrogen';
 import { defer } from '@shopify/remix-oxygen';
 import {
   Links,
@@ -140,6 +140,7 @@ export default function App() {
         <Layout {...data}>
           <Outlet />
         </Layout>
+        <Script src="https://cdn.cookie-script.com/s/971cc06d105ba16e9f87ac1eefd234a5.js" />
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
         <LiveReload nonce={nonce} />
