@@ -5,6 +5,7 @@ import HeaderWithImgSection from "~/components/sections/HeaderWIthImgSection";
 import ProductGridSection from "~/components/sections/ProductGridSection";
 import CategoryLongDescription from "~/components/sections/CategoryLongDescription";
 
+import { CATEGORY_QUERY } from "../graphql/storefrontClient/CategoryQuery";
 import seoCategory from "~/seo/seoCategory";
 
 export async function loader({ params, context, request }) {
@@ -12,17 +13,14 @@ export async function loader({ params, context, request }) {
         pageBy: 15,
     })
     const { handle } = params
-    const { collection } = await context.storefront.query(COLLECTION_QUERY, {
+    const { collection } = await context.storefront.query(CATEGORY_QUERY, {
         variables: {
             ...paginationVariables,
             handle,
         },
     });
 
-    const seo = seoCategory({
-        title: collection.title,
-        description: collection.seo.description,
-    })
+    const seo = seoCategory({ collection, url: request.url })
 
     //Handle 404s
     if (!collection) {
@@ -43,65 +41,3 @@ export default function Wzory() {
         </>
     )
 }
-
-const COLLECTION_QUERY = `#graphql
-    query CollectionDetails(
-        $handle: String!
-        $first: Int
-        $last: Int
-        $startCursor: String
-        $endCursor: String
-        ){
-        collection(handle: $handle){
-            title
-            descriptionHtml
-            handle
-            metafield(key: "jsonCollection", namespace: "custom"){
-                value
-            }
-            image{
-                altText
-                url
-            }
-            seo{
-                title
-                description
-            }
-            products(
-                first: $first
-                last: $last
-                before: $startCursor
-                after: $endCursor
-            ){
-                nodes{
-                    id
-                    title
-                    handle
-                    variants(first: 1){
-                        nodes{
-                            id
-                            image{
-                                url
-                                altText
-                            }
-                            price{
-                                amount
-                                currencyCode
-                            }
-                            compareAtPrice{
-                                amount
-                                currencyCode
-                            }
-                        }
-                    }
-                }
-                pageInfo{
-                    hasPreviousPage
-                    hasNextPage
-                    startCursor
-                    endCursor
-                }
-            }
-        }
-    }
-`

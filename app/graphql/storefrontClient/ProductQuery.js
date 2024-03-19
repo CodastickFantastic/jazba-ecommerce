@@ -1,10 +1,14 @@
 export const PRODUCT_QUERY = `#graphql
-    query Product($handle: String!, $selectedOptions: [SelectedOptionInput!]!) {
+    query Product(
+        $handle: String!, 
+        $selectedOptions: [SelectedOptionInput!]!
+        ) {
         shop{
             primaryDomain{
                 url
             }
         }
+        
         product(handle: $handle){
             id
             tags
@@ -76,5 +80,5 @@ export const PRODUCT_QUERY = `#graphql
                 }
             }
         }
-    }    
+    }
 `

@@ -1,9 +1,18 @@
 import { Link } from "@remix-run/react"
 import { Image } from "@shopify/hydrogen"
+import { json } from "@shopify/remix-oxygen"
 import styles from "~/styles/pages/blog.module.css"
 
 import testImg from "~/../public/blog/test.jpg"
 
+import seoBlog from "~/seo/seoBlog"
+
+export async function loader({ request }) {
+
+    const seo = seoBlog({ url: request.url })
+
+    return json({ seo })
+}
 
 export default function Blog() {
     return (

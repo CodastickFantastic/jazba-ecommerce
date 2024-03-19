@@ -6,6 +6,26 @@ import logo from "~/../public/logo/jazba-logo-black.png"
 import testImg from "~/../public/blog/test.jpg"
 import { Link } from "@remix-run/react"
 
+import { json } from "@shopify/remix-oxygen"
+import seoArticle from "~/seo/seoArticle"
+
+export async function loader({ request }) {
+
+    const seo = seoArticle({
+        title: "Poznaj marke Jazba",
+        description: "Poznaj marke Jazba. Sprawdzaj produkty w naszym sklepie. Czytaj dalej. ",
+        url: request.url,
+        img: "link",
+        imgAlt: "Kuba trzymający kufe ca cycki",
+        imgHeight: 600,
+        imgWidth: 500,
+        articleBody: "Jazba. Czytaj dalej. ",
+        publishedDate: "2022-01-01",
+    })
+
+    return json({ seo })
+}
+
 export default function BlogPage() {
     return (
         <div className={`${styles.blogPage} smallContainer`}>

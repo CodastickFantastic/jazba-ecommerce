@@ -1,6 +1,18 @@
 import { Link } from "@remix-run/react"
 import styles from "~/styles/pages/legal.module.css"
 
+import { json } from "@shopify/remix-oxygen"
+import { seoPolicy } from "~/seo/seoPolicy"
+
+export async function loader({ request }) {
+    const seo = seoPolicy({
+        title: 'Polityka Prywatności',
+        description: 'Poznaj naszą Politykę Prywatności - Jazba',
+        url: request.url
+    })
+    return json({ seo })
+}
+
 export default function PolitykaZwrotów() {
     return (
         <div className={`${styles.legal} smallContainer`}>

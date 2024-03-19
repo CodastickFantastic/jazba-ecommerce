@@ -58,7 +58,7 @@ export default function ProduktPage() {
         showImg ? setShowImg(false) : setShowImg(img)
     }
 
-    // console.log(product)
+    console.log(product)
 
     const sendEmail = (e) => {
         e.preventDefault();

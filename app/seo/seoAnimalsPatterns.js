@@ -1,7 +1,7 @@
-export default function seoCategory({ collection, url }) {
+export default function seoAnimalsPatterns({ collection, url }) {
     return {
         title: collection.title,
-        titleTemplate: '%s | Kategorie',
+        titleTemplate: '%s | Wzory',
         description: collection.seo.description,
         media: {
             type: 'image',
@@ -32,8 +32,8 @@ function collectionJsonLd({ url, collection }) {
                 {
                     '@type': 'ListItem',
                     position: 1,
-                    name: 'Menu Kategori',
-                    item: `${siteUrl.host}/#menu-aside`,
+                    name: 'Strona Główna',
+                    item: `${siteUrl.host}/`,
                 },
                 {
                     '@type': 'ListItem',
@@ -48,7 +48,7 @@ function collectionJsonLd({ url, collection }) {
             name: collection?.seo?.title ?? collection?.title ?? '',
             description: collection?.seo?.description,
             image: collection?.image?.url,
-            url: `/kategorie/${collection.handle}`,
+            url: `/wzory/${collection.handle}`,
             mainEntity: {
                 '@type': 'ItemList',
                 itemListElement,

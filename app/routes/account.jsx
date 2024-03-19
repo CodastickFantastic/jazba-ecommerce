@@ -112,12 +112,6 @@ export default function () {
         return switchStatus
     }
 
-
-    console.log(customer)
-    console.log(orders)
-
-
-
     return customer ? (
         <div className={`${styles.userAccount} smallContainer`}>
             <h1> Moje Konto</h1>

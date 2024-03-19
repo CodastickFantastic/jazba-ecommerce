@@ -4,34 +4,28 @@ import { json } from "@shopify/remix-oxygen"
 import HeaderWithImgSection from "~/components/sections/HeaderWIthImgSection";
 import ProductGridSection from "~/components/sections/ProductGridSection";
 import CategoryLongDescription from "~/components/sections/CategoryLongDescription";
+import { CATEGORY_QUERY } from "~/graphql/storefrontClient/CategoryQuery";
 
-export function meta({ data }) {
-    const keywords = JSON.parse(data.collection.metafield.value).keywords
-
-    return [
-        { title: data.collection.seo.title },
-        { descritpion: data.collection.seo.description },
-        { keywords: keywords },
-    ]
-}
-
+import seoAnimalsPatterns from "~/seo/seoAnimalsPatterns";
 export async function loader({ params, context, request }) {
     const paginationVariables = getPaginationVariables(request, {
         pageBy: 15,
     })
     const { handle } = params
-    const { collection } = await context.storefront.query(COLLECTION_QUERY, {
+    const { collection } = await context.storefront.query(CATEGORY_QUERY, {
         variables: {
             ...paginationVariables,
             handle,
         },
     });
 
+    const seo = seoAnimalsPatterns({ collection, url: request.url });
+
     //Handle 404s
     if (!collection) {
         throw new Response(null, { status: 404 })
     }
-    return json({ collection })
+    return json({ collection, seo })
 }
 
 export default function Wzory() {
@@ -46,65 +40,3 @@ export default function Wzory() {
         </>
     )
 }
-
-const COLLECTION_QUERY = `#graphql
-    query CollectionDetails(
-        $handle: String!
-        $first: Int
-        $last: Int
-        $startCursor: String
-        $endCursor: String
-        ){
-        collection(handle: $handle){
-            title
-            descriptionHtml
-            handle
-            metafield(key: "jsonCollection", namespace: "custom"){
-                value
-            }
-            image{
-                altText
-                url
-            }
-            seo{
-                title
-                description
-            }
-            products(
-                first: $first
-                last: $last
-                before: $startCursor
-                after: $endCursor
-            ){
-                nodes{
-                    id
-                    title
-                    handle
-                    variants(first: 1){
-                        nodes{
-                            id
-                            image{
-                                url
-                                altText
-                            }
-                            price{
-                                amount
-                                currencyCode
-                            }
-                            compareAtPrice{
-                                amount
-                                currencyCode
-                            }
-                        }
-                    }
-                }
-                pageInfo{
-                    hasPreviousPage
-                    hasNextPage
-                    startCursor
-                    endCursor
-                }
-            }
-        }
-    }
-`

@@ -8,7 +8,7 @@ export default function SingleFaq({ question, answer, id }) {
                 <span className={styles.icon} />
             </label>
             <div className={styles.content}>
-                <h3>{question}</h3>
+                <h2>{question}</h2>
                 <p dangerouslySetInnerHTML={{ __html: answer }} />
             </div>
         </div>

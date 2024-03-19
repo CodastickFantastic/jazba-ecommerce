@@ -1,6 +1,19 @@
 import SingleFaq from '~/components/microComponents/SingleFaq'
 import styles from '~/styles/pages/faq.module.css'
 
+import { json } from '@shopify/remix-oxygen'
+import seoQaPage from '~/seo/seoQaPage'
+
+export async function loader({ request }) {
+
+    const seo = seoQaPage({
+        title: 'Dostawa',
+        description: 'Strona poświęcona informacjom o dostawie',
+        url: request.url
+    })
+    return json({ seo })
+}
+
 export default function Dostawa() {
 
     return (
