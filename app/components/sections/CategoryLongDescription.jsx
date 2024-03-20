@@ -1,4 +1,4 @@
-import styles from '~/styles/components/sections/categoryLongDescription.module.css'
+import styles from '~/styles/components/sections/categoryLongDescriptionn.module.css'
 
 export default function CategoryLongDescription({ description }) {
     return (
