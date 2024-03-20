@@ -24,7 +24,7 @@ export default function Blog() {
                     description="Miło nam że do nas wpadłeś. Jeśli jeszcze nas nie znasz to niniejszy artykuł przedstawi Ci po krótce naszą markę. Dowiesz się w nim co oznacza słowo Jazba oraz poznasz bliżej naszą markę."
                     img={testImg}
                     imgAlt="Kuba trzymający kufe ca cycki"
-                    url="/blog/poznaj-marke-jazba-kilka-slow-o-nas"
+                    url="/blog/poznaj-marke-jazba"
                     side="left"
                 />
                 <Article
@@ -32,23 +32,7 @@ export default function Blog() {
                     description="Miło nam że do nas wpadłeś. Jeśli jeszcze nas nie znasz to niniejszy artykuł przedstawi Ci po krótce naszą markę. Dowiesz się w nim co oznacza słowo Jazba oraz poznasz bliżej naszą markę."
                     img={testImg}
                     imgAlt="Kuba trzymający kufe ca cycki"
-                    url="/blog/poznaj-marke-jazba-kilka-slow-o-nas"
-                    side="right"
-                />
-                <Article
-                    title="Poznaj marke Jazba - Kilka slow o nas"
-                    description="Miło nam że do nas wpadłeś. Jeśli jeszcze nas nie znasz to niniejszy artykuł przedstawi Ci po krótce naszą markę. Dowiesz się w nim co oznacza słowo Jazba oraz poznasz bliżej naszą markę."
-                    img={testImg}
-                    imgAlt="Kuba trzymający kufe ca cycki"
-                    url="/blog/poznaj-marke-jazba-kilka-slow-o-nas"
-                    side="left"
-                />
-                <Article
-                    title="Poznaj marke Jazba - Kilka slow o nas"
-                    description="Miło nam że do nas wpadłeś. Jeśli jeszcze nas nie znasz to niniejszy artykuł przedstawi Ci po krótce naszą markę. Dowiesz się w nim co oznacza słowo Jazba oraz poznasz bliżej naszą markę."
-                    img={testImg}
-                    imgAlt="Kuba trzymający kufe ca cycki"
-                    url="/blog/poznaj-marke-jazba-kilka-slow-o-nas"
+                    url="/blog/poznaj-marke-jazba"
                     side="right"
                 />
             </section>
