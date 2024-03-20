@@ -62,7 +62,7 @@
                 flex-wrap: wrap;
                 justify-content: space-between;
                 column-gap: 44px;
-                row-gap: 22px;
+                row-gap: 16px;
                 /* overflow: hidden; */
 
                 & .categoryTile {
@@ -115,8 +115,45 @@
                 }
             }
 
+            & .allProdSection {
+                width: 100%;
+                margin-top: 16px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                & .allProdsButton {
+                    margin-top: -6px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: flex-start;
+                    text-decoration: none;
+                    font-family: "Nunito Sans", sans-serif;
+                    font-size: 14px;
+                    font-weight: 400;
+                    color: black;
+                    padding: 6px 12px;
+                    border: 1px solid black;
+                    border-radius: 4px;
+                    width: 48%;
+
+                    & img {
+                        width: 28px;
+                        max-width: 28px;
+                        height: 28px;
+                        margin-bottom: 6px;
+                    }
+
+                    &:hover {
+                        cursor: pointer;
+                        transform: scale(0.9);
+                    }
+                }
+            }
+
             & .baner {
-                margin: 24px 0;
+                margin: 18px 0;
                 width: 100%;
 
                 & img {
@@ -158,15 +195,22 @@
         }
 
         & footer {
-            width: 100%;
-            position: relative;
-            margin-top: auto;
-            margin-bottom: 0px;
+            display: none;
+        }
 
-            & img {
-                position: absolute;
-                bottom: 0;
-                right: 18px;
+        @media(min-height: 800px) {
+            & footer {
+                display: block;
+                width: 100%;
+                position: relative;
+                margin-top: auto;
+                margin-bottom: 0px;
+
+                & img {
+                    position: absolute;
+                    bottom: 0;
+                    right: 18px;
+                }
             }
         }
     }

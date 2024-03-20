@@ -37,7 +37,7 @@ export default function Wzory() {
         <>
             <HeaderWithImgSection h1={collection.title} description={collectionDescriptionJson.shortDescription} img={collection.image} />
             <ProductGridSection collection={collection} />
-            <CategoryLongDescription h2={collectionDescriptionJson.h2} description={collectionDescriptionJson.longDescription} />
+            <CategoryLongDescription description={collectionDescriptionJson.longDescription} />
         </>
     )
 }

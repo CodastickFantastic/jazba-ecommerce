@@ -1,10 +1,7 @@
-import styles from '~/styles/components/sections/CategoryLongDescription.module.css'
+import styles from '~/styles/components/sections/categoryLongDescription.module.css'
 
-export default function CategoryLongDescription({ h2, description }) {
+export default function CategoryLongDescription({ description }) {
     return (
-        <div className={`${styles.categoryLongDescription} smallContainer`}>
-            <h2>{h2}</h2>
-            <p dangerouslySetInnerHTML={{ __html: description }} />
-        </div>
+        <div className={`${styles.categoryLongDescription} smallContainer`} dangerouslySetInnerHTML={{ __html: description }} />
     )
 }

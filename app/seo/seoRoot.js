@@ -1,7 +1,7 @@
 const seoRoot = {
     title: "Jazba",
     titleTemplate: '%s | Jazba',
-    description: "Wyjątkowe Hafty by Jazba",
+    description: "Poznaj Jazbe, nową Polską markę na rynku odzieżowym. Sprawdź nasze wyjątkowe produkty i znajdz coś dla siebie. Zakochaj się w Haftach!",
     handle: '@jazba',
     url: "https://jazba.pl",
     robots: {

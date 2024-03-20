@@ -2,10 +2,10 @@ import styles from '~/styles/components/sections/productGridSection.module.css'
 import ProductCard from '~/components/microComponents/ProductCard'
 import { Pagination } from '@shopify/hydrogen'
 
-export default function ProductGridSection({ collection }) {
+export default function ProductGridSection({ collection, onlyProducts = false }) {
     return (
         <section className={`${styles.ProductGrid} smallContainer`}>
-            <Pagination connection={collection.products}>
+            <Pagination connection={onlyProducts ? collection : collection.products}>
                 {({ nodes, NextLink, PreviousLink, isLoading }) => (
                     <>
                         <div className={styles.buttonHolder}>
