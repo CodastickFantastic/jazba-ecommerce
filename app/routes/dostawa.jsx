@@ -4,22 +4,27 @@ import styles from '~/styles/pages/faq.module.css'
 import { json } from '@shopify/remix-oxygen'
 import seoQaPage from '~/seo/seoQaPage'
 
-export async function loader({ request }) {
+import { useLoaderData } from '@remix-run/react'
 
+export async function loader({ request }) {
     const seo = seoQaPage({
         title: 'Dostawa',
         description: 'Strona poświęcona informacjom o dostawie',
         url: request.url
     })
-    return json({ seo })
+
+    const requestParamsOpen = request.url.split('?')[1]?.split("=")[1]
+
+    return json({ seo, requestParamsOpen })
 }
 
 export default function Dostawa() {
+    const { requestParamsOpen } = useLoaderData()
 
     return (
         <div className={`${styles.faq} smallContainer`}>
             <h1>Dostawa</h1>
-            <SingleFaq question="Dlaczego dostawa może być wydłużona?" answer={dlaczegoDostawaWydluzona} />
+            <SingleFaq question="Dlaczego dostawa może być wydłużona?" answer={dlaczegoDostawaWydluzona} open={requestParamsOpen === "wydluzona_dostawa" ? true : false} />
             <SingleFaq question="Ile trwa dostawa?" answer={ileTrwaDostawa} />
             <SingleFaq question="Ile kosztuje dostawa?" answer={ileKosztujeDostawa} />
             <SingleFaq question="Gdzie jest moja paczka?" answer={gdzieJestMojaPaczka} />
