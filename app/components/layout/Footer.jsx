@@ -13,10 +13,10 @@ export function Footer() {
       <section className={styles.links}>
         <div className={styles.linkSection}>
           <p className={styles.linkSectionTitle}>Informacje</p>
-          <Link to="/platnosci">Płatności</Link>
-          <Link to="/dostawa">Dostawa</Link>
-          <Link to="/reklamacje">Reklamacje</Link>
-          <Link to="/zwroty">Zwroty</Link>
+          <Link to="/pomoc?open=platnosci">Płatności</Link>
+          <Link to="/pomoc">Dostawa</Link>
+          <Link to="/pomoc?open=reklamacje">Reklamacje</Link>
+          <Link to="/pomoc?open=zwroty">Zwroty</Link>
         </div>
         <div className={styles.linkSection}>
           <p className={styles.linkSectionTitle}>Ważne Linki</p>

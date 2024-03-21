@@ -105,7 +105,7 @@ export default function ProduktPage() {
                             <p className={styles.warningHeader}>Uwaga! (Dostepne: {selectedVariant?.quantityAvailable} {selectedVariant?.quantityAvailable === 1 ? "sztuka" : "sztuki"})</p>
                             <p>Niski poziom danego rozmiaru na magazynie.</p>
                             <p>Zamówienie ilości większej niż dostepna w sprzedazy może wydłużyć czas potrzebny na dostawę.</p>
-                            <Link to="/dostawa?open=wydluzona_dostawa">Dowiedz się dlaczego<span className={styles.arrow} /></Link>
+                            <Link to="/pomoc?open=wydluzona_dostawa">Dowiedz się dlaczego<span className={styles.arrow} /></Link>
                         </div>
                     )}
                     {selectedVariant?.quantityAvailable <= 0 && (
@@ -113,7 +113,7 @@ export default function ProduktPage() {
                             <p className={styles.warningHeader}>Uwaga!</p>
                             <p>Brak towaru na magyznie!</p>
                             <p>Dalej możesz go zamówić ale dostawa może być wydłużona!</p>
-                            <Link to="/dostawa">Dowiedz się dlaczego<span className={styles.arrow} /></Link>
+                            <Link to="/pomoc?open=wydluzona_dostawa">Dowiedz się dlaczego<span className={styles.arrow} /></Link>
                         </div>
                     )}
                     {selectedVariant ? (

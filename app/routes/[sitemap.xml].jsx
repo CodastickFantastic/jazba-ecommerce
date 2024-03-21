@@ -87,11 +87,6 @@ function shopSitemap({ data, baseUrl }) {
             changeFreq: 'monthly',
         },
         {
-            url: `${baseUrl}/dostawa`,
-            lastMod: new Date().toISOString(),
-            changeFreq: 'monthly',
-        },
-        {
             url: `${baseUrl}/dsa-warunki-korzystania-ze-strony-internetowej`,
             lastMod: new Date().toISOString(),
             changeFreq: 'monthly',

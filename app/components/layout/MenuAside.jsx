@@ -68,7 +68,7 @@ export function MenuAside({ isLoggedIn }) {
                     <nav className={styles.links}>
                         <LinkPage image={blogIcon} title="Blog" url="/blog" />
                         <LinkPage image={helpIcon} title="Pomoc" url="/pomoc" />
-                        <LinkPage image={deliveryIcon} title="Dostawa" url="/dostawa" />
+                        {/* <LinkPage image={deliveryIcon} title="Dostawa" url="/dostawa" /> */}
                         {/* <LinkPage image={galleryIcon} title="Lookbook" url="/lookbook" /> */}
                         {userStatus ?
                             <LinkPage image={userIcon} title="Moje Konto" url="/account" />
