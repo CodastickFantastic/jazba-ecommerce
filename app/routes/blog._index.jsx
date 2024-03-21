@@ -28,7 +28,7 @@ export default function Blog() {
                     side="left"
                 />
                 <Article
-                    title="Poznaj marke Jazba - Kilka slow o nas"
+                    title="Poznaj marke Jazba - Kilka slow o na"
                     description="Miło nam że do nas wpadłeś. Jeśli jeszcze nas nie znasz to niniejszy artykuł przedstawi Ci po krótce naszą markę. Dowiesz się w nim co oznacza słowo Jazba oraz poznasz bliżej naszą markę."
                     img={testImg}
                     imgAlt="Dummy data"
