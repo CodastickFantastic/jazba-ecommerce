@@ -21,6 +21,8 @@ import favicon from '../public/favicon.png';
 import resetStyles from './styles/reset.css';
 import appStyles from './styles/app.css';
 
+import ReactGA from 'react-ga4';
+
 /**
  * This is important to avoid re-fetching root queries on sub-navigations
  * @type {ShouldRevalidateFunction}
@@ -112,6 +114,8 @@ export default function App() {
   /** @type {LoaderReturnData} */
   const data = useLoaderData();
 
+  ReactGA.initialize("G-HX08MMML97");
+
   return (
     <html lang="pl-PL">
       <head>
@@ -130,7 +134,7 @@ export default function App() {
         <Scripts nonce={nonce} />
         <LiveReload nonce={nonce} />
       </body>
-    </html>
+    </html >
   );
 }
 

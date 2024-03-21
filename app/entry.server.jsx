@@ -28,8 +28,14 @@ export default async function handleRequest(
     connectSrc: [
       "'self'",
       'https://api.emailjs.com',
-      "wss://working-drake-rich.ngrok-free.app:*"
+      "wss://working-drake-rich.ngrok-free.app:*",
+      "https://*.google-analytics.com",
     ],
+    scriptSrc: [
+      "'self'",
+      "https://www.googletagmanager.com/gtag/js",
+      "http://localhost:*" // Remove in production
+    ]
   });
 
   const body = await renderToReadableStream(
