@@ -114,7 +114,7 @@ export default function App() {
   /** @type {LoaderReturnData} */
   const data = useLoaderData();
 
-  ReactGA.initialize("G-HX08MMML97");
+  ReactGA.initialize("G-9DDDZQ83F9");
 
   return (
     <html lang="pl-PL">
