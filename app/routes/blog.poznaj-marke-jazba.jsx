@@ -16,7 +16,7 @@ export async function loader({ request }) {
         description: "Poznaj marke Jazba. Sprawdzaj produkty w naszym sklepie. Czytaj dalej. ",
         url: request.url,
         img: "link",
-        imgAlt: "Kuba trzymający kufe ca cycki",
+        imgAlt: "Dummy Data",
         imgHeight: 600,
         imgWidth: 500,
         articleBody: "Jazba. Czytaj dalej. ",

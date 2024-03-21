@@ -23,7 +23,7 @@ export default function Blog() {
                     title="Poznaj marke Jazba - Kilka slow o nas"
                     description="Miło nam że do nas wpadłeś. Jeśli jeszcze nas nie znasz to niniejszy artykuł przedstawi Ci po krótce naszą markę. Dowiesz się w nim co oznacza słowo Jazba oraz poznasz bliżej naszą markę."
                     img={testImg}
-                    imgAlt="Kuba trzymający kufe ca cycki"
+                    imgAlt="Dummy Data"
                     url="/blog/poznaj-marke-jazba"
                     side="left"
                 />
@@ -31,7 +31,7 @@ export default function Blog() {
                     title="Poznaj marke Jazba - Kilka slow o nas"
                     description="Miło nam że do nas wpadłeś. Jeśli jeszcze nas nie znasz to niniejszy artykuł przedstawi Ci po krótce naszą markę. Dowiesz się w nim co oznacza słowo Jazba oraz poznasz bliżej naszą markę."
                     img={testImg}
-                    imgAlt="Kuba trzymający kufe ca cycki"
+                    imgAlt="Dummy data"
                     url="/blog/poznaj-marke-jazba"
                     side="right"
                 />
