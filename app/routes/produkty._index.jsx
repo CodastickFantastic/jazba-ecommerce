@@ -1,7 +1,7 @@
 import { useLoaderData } from "@remix-run/react"
 import { getPaginationVariables } from "@shopify/hydrogen";
 import { json } from "@shopify/remix-oxygen"
-import HeaderWithImgSection from "~/components/sections/HeaderWIthImgSection";
+import HeaderWithTextSection from "~/components/sections/HeaderWithTextSection";
 import ProductGridSection from "~/components/sections/ProductGridSection";
 import CategoryLongDescription from "~/components/sections/CategoryLongDescription";
 
@@ -39,13 +39,8 @@ export default function AllProducts() {
 
     return (
         <>
-            <HeaderWithImgSection h1="Wszystkie Produkty" description="Poznaj całą gamę produktów oferowanych przez nasz sklep. Znajdz wzór który najbardziej będzie do Ciebie pasował." img="test" collection={false} />
+            <HeaderWithTextSection h1="Wszystkie Produkty" description="Poznaj całą gamę produktów oferowanych przez nasz sklep. Znajdz wzór, który najbardziej będzie do Ciebie pasował." />
             <ProductGridSection collection={products} onlyProducts={true} />
-            <div>
-
-            </div>
-
-            {/* <CategoryLongDescription h2={collectionDescriptionJson.h2} description={collectionDescriptionJson.longDescription} /> */}
         </>
     )
 }

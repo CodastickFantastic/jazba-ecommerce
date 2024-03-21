@@ -1,0 +1,36 @@
+.HeaderWithText {
+    padding: var(--mobile-horizontal-padding);
+    margin-top: 18px !important;
+    margin-bottom: 24px !important;
+
+    & h1 {
+        font-family: "Prata", "Poppins", "Nunito", sans-serif;
+        font-size: 24px;
+        font-weight: 400;
+        margin-bottom: 9px;
+    }
+
+    & .description {
+        font-family: "Poppins", sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        text-align: center;
+    }
+}
+
+
+@media(min-width: 768px) {
+    .HeaderWithText {
+        padding: 0px 24px 12px;
+        border-bottom: 1px solid var(--color-beige);
+        padding-bottom: 12px !important;
+
+        & h1 {
+            font-size: 32px;
+        }
+
+        & .description {
+            font-size: 16px;
+        }
+    }
+}
