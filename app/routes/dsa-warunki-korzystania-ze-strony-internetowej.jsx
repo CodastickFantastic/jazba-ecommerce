@@ -42,7 +42,7 @@ export default function PolitykaZwrotów() {
                 <p>W celu kontaktowania się z nami możesz skorzystać z następujących form komunikacji elektronicznej:</p><br />
                 <ul style={{ listStyleType: "disc" }}>
                     <li>poczta elektroniczna: biuro@jazba.pl</li>
-                    <li>formularz kontaktowy dostępny pod adresem: <Link to="/">https://jazba.com.pl</Link></li>
+                    <li>formularz kontaktowy dostępny pod adresem: <Link to="/">https://jazba.pl</Link></li>
                 </ul>
             </div>
 
