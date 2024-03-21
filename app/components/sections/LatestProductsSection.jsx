@@ -42,7 +42,7 @@ export default function LatestProductsSection({ products }) {
                     <p>G. Fafa</p>
                 </div>
                 <div className={`${styles.collectionTile} ${styles.new}`}>
-                    <Image src={newIcon} alt="Ikona z napisem 'nowość'" width={180} />
+                    <Image src={newIcon} alt="Ikona z napisem 'nowość'" width={180} style={{width: "85%"}}/>
                     <p>Wkrótce więcej wzorów</p>
                 </div>
             </div>
