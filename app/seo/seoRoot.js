@@ -18,7 +18,7 @@ const seoRoot = {
             'https://facebook.com/JazbaHaft',
             'https://instagram.com/jazba_fashion',
             'https://www.youtube.com/@JazbaFashion',
-            'https://tiktok.com/@azba_fashion',
+            'https://tiktok.com/@jazba_fashion',
         ],
         url: "https://jazba.pl",
     }
