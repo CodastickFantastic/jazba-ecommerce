@@ -9,7 +9,7 @@ import { useLoaderData } from '@remix-run/react'
 export async function loader({ request }) {
     const seo = seoQaPage({
         title: 'Pomoc',
-        description: 'Strona poświęcona pomocy i zawierająca najczęsciej zadawane pytania',
+        description: 'Strona poświęcona pomocy i zawierająca najczęsciej zadawane pytania. Informacje na temat zwrotów, reklamacji, płatności i dostaw.',
         url: request.url
     })
 
