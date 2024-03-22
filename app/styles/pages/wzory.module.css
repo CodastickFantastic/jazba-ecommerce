@@ -1,0 +1,43 @@
+.wzory {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    row-gap: 18px;
+    column-gap: 12px;
+
+    & .wzor {
+        width: 140px;
+        position: relative;
+
+        & .badge {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            font-size: 10px;
+            font-family: "Poppins", sans-serif;
+            background-color: var(--color-beige);
+            color: var(--color-light);
+            padding: 3px 6px;
+            border-radius: 4px;
+            margin-top: 0px;
+            text-transform: uppercase;
+        }
+
+        & img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+        }
+
+        & p {
+            margin-top: 6px;
+            text-align: center;
+            font-family: "Poppins", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--color-dark);
+        }
+    }
+
+}
