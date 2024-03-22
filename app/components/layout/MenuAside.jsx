@@ -17,6 +17,8 @@ import kuponIcon from "~/../public/icons/black/kupon-ikona.png";
 import zwierzetaIcon from "~/../public/icons/black/zwierzeta-ikona.png";
 import ubraniaIcon from "~/../public/icons/black/ubrania-ikona.png";
 
+import test from "~/../public/dummy_data/hero.png"
+
 import aligator from "~/../public/decorations/aligator-half.webp";
 import { useEffect, useState } from "react";
 
@@ -63,7 +65,7 @@ export function MenuAside({ isLoggedIn }) {
                         <BigCategoryTile image={zwierzetaIcon} title="Wzory" url="/wzory" alt="Ikona wzorów zwierzat" />
                     </nav>
                     <div className={styles.baner}>
-                        <Image src="https://cdn.shopify.com/s/files/1/0728/3513/7804/files/index-hero.webp?v=1707575300" alt="Jazba logo white" width={320} />
+                        <Image src={test} alt="Jazba logo white" width={320} />
                     </div>
                     <nav className={styles.links}>
                         <LinkPage image={blogIcon} title="Blog" url="/blog" />
@@ -110,7 +112,7 @@ function CategoryTile({ image, title, url, alt }) {
 function BigCategoryTile({ url, title, image, alt }) {
     return (
         <NavLink className={styles.allProdsButton} to={url} prefetch="intent" onClick={() => forceCloseAside()}>
-            <Image src={image} alt={alt} width={46} height={46}/> {title}
+            <Image src={image} alt={alt} width={46} height={46} /> {title}
         </NavLink>
     )
 }
