@@ -13,14 +13,14 @@ export async function loader({ request }) {
 
     const seo = seoArticle({
         title: "Poznaj marke Jazba",
-        description: "Poznaj marke Jazba. Sprawdzaj produkty w naszym sklepie. Czytaj dalej. ",
+        description: "Marka Jazba wnosi do świata mody coś więcej niż tylko ubrania, haftując niepowtarzalne wzory tworzy dzieła sztuki na ubraniach.",
         url: request.url,
-        img: "link",
-        imgAlt: "Dummy Data",
-        imgHeight: 600,
-        imgWidth: 500,
+        img: "https://jazba.pl/logo/jazba-logo-black.png",
+        imgAlt: "Logo marki Jazba",
+        imgHeight: 806,
+        imgWidth: 1477,
         articleBody: "Jazba. Czytaj dalej. ",
-        publishedDate: "2022-01-01",
+        publishedDate: "2024-03-01",
     })
 
     return json({ seo })
@@ -30,7 +30,7 @@ export default function BlogPage() {
     return (
         <div className={`${styles.blogPage} smallContainer`}>
             <h1>Poznaj marke <span className="beige">Jazba</span></h1>
-            <p><strong style={{ fontSize: "18px" }}>Witajcie <span className="beige">Kochni</span>,</strong><br /><br />Na wstepie chcemy podziękować wam za odwiedzenie naszego sklepu internetowego. Cieszymy się z faktu, że do nas trafiliście. Mamy nadzieję, że nasze produkty przyciągną waszą uwagę i zasłużą na wasz zakup. <br /><br />Jesteśmy małą firmą założoną na początku 2024 roku. Kierujemy się pasją do tworzenia niebagatelnych wzorów i strasznie nie lubimy nudy. Lubimy wyóżnić się z tłumu i w taki oto sposób zrodził się pomysł na stworzenie marki <span className="beige">Jazba</span>, marki która za pomocą niebanalnych haftów pragnie ożywić Twoją kreację, w taki sposób abyś mógł wyrazić siebie bez używania słów.<br /><br />Na dzisiejszy dzień premiery nasz asortyment jest niestety skromny, jednakże planujemy w każdym tygodniu wypsuzczać nowe wzory. Idziemy z duchem czasu, co oznacza że wypuszczane przez nas wzory są w 100% unisex.</p>
+            <p><strong style={{ fontSize: "18px" }}>Witajcie <span className="beige">Kochni</span>,</strong><br /><br />Na wstepie chcemy podziękować wam za odwiedzenie naszego sklepu internetowego. Cieszymy się z faktu, że do nas trafiliście. Mamy nadzieję, że nasze produkty przyciągną waszą uwagę i zasłużą na wasz zakup. <br /><br />Jesteśmy małą firmą założoną na początku 2024 roku. Kierujemy się pasją do tworzenia niebagatelnych wzorów i bardzo nie lubimy nudy. Lubimy wyóżnić się z tłumu i w taki oto sposób zrodził się pomysł na stworzenie marki <span className="beige">Jazba</span>, marki która za pomocą niebanalnych haftów pragnie ożywić Twoją kreację, w taki sposób abyś mógł wyrazić siebie bez używania słów.<br /><br />W dzień premiery nasz asortyment jest niestety skromny, jednakże planujemy w każdym tygodniu wypsuzczać nowe wzory. Idziemy z duchem czasu, co oznacza że wypuszczane przez nas wzory są w 100% unisex.</p>
             <section className={styles.contents}>
                 <h2>Spis Treści</h2>
                 <ol>
@@ -66,7 +66,7 @@ export default function BlogPage() {
             </section>
             <section id="proces-tworzenia-ubran" className={styles.centered}>
                 <h2>Proces Tworzenia Ubrań</h2>
-                <p>Projekty haftów Naszej firmy są tworzone w Polsce inspirowane zwierzętami, ale także inspirujemy się klasykami filmów, bajek, zawodami jak i różnymi kulturami.</p>
+                <p>Projekty haftów Naszej firmy są tworzone w Polsce inspirowane zwierzętami, ale także inspirujemy się klasykami filmów, bajek, zawodami jak i różnymi kulturami. Dokładamy wszelkich starań by nasze ubrania były jak najwyższej jakości. Staramy się stosować w naszych koszulkach oraz bluzach wysokiej jakości gatunkowo bawełnę, by ubrania mogły Cie cieszyć przez długi czas. Przykładamy uwagę, do grubości stosowanych materiałów aby nie były zbyt cienkie i nie prześwitywały. Dzięki temu nasze połówki można również zakładać na bardziej eleganckie spotkania.<br />By stworzyć dla Was projekt najpierw musimy zaprojektować grafikę haftu. Następnie tworzymy prototyp, by zobaczyć czy projekt odpowiednio odwozrowywuje naszą wizję. Następnie wiedząc co poszło nie tak nadajemy poprawki. Po skończeniu ostatecznie projektu graficznego, możemy wyhaftować ostatecznie zaprojektowany wzór.</p>
             </section>
             <section id="wyraz-swoja-indywidualnosc" className={styles.twoColsCentered}>
                 <div className={styles.col60}>
