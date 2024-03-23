@@ -380,6 +380,12 @@
                 font-family: "Poppins", sans-serif;
                 font-size: 14px;
                 color: var(--color-dark);
+
+                & ol{
+                    list-style: none;
+                }
+
+                
             }
 
             & .aboutProduct {

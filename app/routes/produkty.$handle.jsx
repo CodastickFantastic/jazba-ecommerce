@@ -221,10 +221,11 @@ export default function ProduktPage() {
                         onClick={() => setMoreDetails("size")}>Wymiary</button>
                 </div>
                 <div className={styles.fillWithData}>
-                    <p className={styles.longDescription} dangerouslySetInnerHTML={{ __html: productDescriptionJSON.longDescription }} style={{ display: moreDetials === "description" ? "block" : "none" }} />
+                    <div className={styles.longDescription} dangerouslySetInnerHTML={{ __html: productDescriptionJSON.longDescription }} style={{ display: moreDetials === "description" ? "block" : "none" }} />
                     <div className={styles.aboutProduct} style={{ display: moreDetials === "info" ? "block" : "none" }}>
                         <p className="info"><span className={styles.label}>Kolor</span> {productDescriptionJSON.information.color}</p>
                         <p className="info"><span className={styles.label}>Materiał</span> {productDescriptionJSON.information.material}</p>
+                        <p className="info"><span className={styles.label}>Gramatura Materiału</span> {productDescriptionJSON.information.materialGrama}</p>
                         <p className="info"><span className={styles.label}>Temp. Prania</span> {productDescriptionJSON.information.temp}°C</p>
                         <p className="info"><span className={styles.label}>Wysokość Modela</span> {productDescriptionJSON.information.modelHeight} cm</p>
                         <p className="info"><span className={styles.label}>Rozmiar Modela</span> {productDescriptionJSON.information.modelSize}</p>
