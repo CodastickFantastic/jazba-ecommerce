@@ -36,7 +36,18 @@ export default async function handleRequest(
       "https://cdn.shopify.com",
       "https://www.googletagmanager.com/gtag/js",
       "http://localhost:*" // Remove in production
-    ]
+    ],
+    imgSrc: [
+      "'self'",
+      "data:",
+      "https://cdn.shopify.com",
+      "http://localhost:*", // Remove in production,
+      "https://jazba.pl",
+      "https://www.googletagmanager.com/"
+    ],
+    frameSrc: ["'self'"],
+    mediaSrc: ["'self'"],
+    objectSrc: ["'none'"],
   });
 
   const body = await renderToReadableStream(
