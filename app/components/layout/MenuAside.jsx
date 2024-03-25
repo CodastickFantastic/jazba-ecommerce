@@ -1,4 +1,4 @@
-import { NavLink } from "@remix-run/react";
+import { Link } from "@remix-run/react";
 import { Image } from "@shopify/hydrogen-react"
 import styles from "~/styles/components/layout/menuAside.module.css";
 
@@ -72,7 +72,7 @@ export function MenuAside({ isLoggedIn }) {
                         <LinkPage image={helpIcon} title="Pomoc" url="/pomoc" />
                         {/* <LinkPage image={deliveryIcon} title="Dostawa" url="/dostawa" /> */}
                         {/* <LinkPage image={galleryIcon} title="Lookbook" url="/lookbook" /> */}
-                        <LinkPage image={userIcon} title="Moje Konto" url="https://konto.jazba.pl" />
+                        {/* <LinkPage image={userIcon} title="Moje Konto" url="https://konto.jazba.pl" /> */}
                     </nav>
                 </main>
                 <footer>
@@ -95,20 +95,20 @@ function CloseAside() {
 
 function CategoryTile({ image, title, url, alt }) {
     return (
-        <NavLink className={styles.categoryTile} to={url} prefetch="intent" onClick={() => forceCloseAside()}>
+        <Link className={styles.categoryTile} to={url} prefetch="intent" onClick={() => forceCloseAside()}>
             <div className={styles.imageHolder}>
                 <Image src={image} alt={alt} width={46} height={46} />
             </div>
             <p className={styles.categoryTitle}>{title}</p>
-        </NavLink>
+        </Link>
     )
 }
 
 function BigCategoryTile({ url, title, image, alt }) {
     return (
-        <NavLink className={styles.allProdsButton} to={url} prefetch="intent" onClick={() => forceCloseAside()}>
+        <Link className={styles.allProdsButton} to={url} prefetch="intent" onClick={() => forceCloseAside()}>
             <Image src={image} alt={alt} width={46} height={46} /> {title}
-        </NavLink>
+        </Link>
     )
 }
 
@@ -127,15 +127,16 @@ function DummyTile({ image, title, alt }) {
 
 function LinkPage({ image, title, url }) {
     return (
-        <NavLink className={styles.link} to={url} prefetch="intent" onClick={() => forceCloseAside()}>
+        <Link className={styles.link} to={url} prefetch="intent" onClick={() => forceCloseAside()}>
             <Image className={styles.icon} src={image} alt={`ikona ${title}`} width={32} height={32} />
             <p className={styles.linkTitle}>{title}</p>
-        </NavLink>
+        </Link>
     )
 }
 
 // Helpers Functions
 function forceCloseAside(event) {
     // event.preventDefault();
-    window.location.href = event.currentTarget.href;
+    // window.location.href = event.currentTarget.href;
+
 }
