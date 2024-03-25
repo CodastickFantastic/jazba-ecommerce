@@ -20,23 +20,8 @@ import ubraniaIcon from "~/../public/icons/black/ubrania-ikona.png";
 import test from "~/../public/dummy_data/hero.png"
 
 import aligator from "~/../public/decorations/aligator-half.webp";
-import { useEffect, useState } from "react";
 
-export function MenuAside({ isLoggedIn }) {
-    const [userStatus, setUserStatus] = useState(false);
-
-    function checkIfUserIsLoggedIn() {
-        console.log(userStatus)
-        isLoggedIn
-            .then((answer) => {
-                setUserStatus(answer)
-            })
-    }
-
-    useEffect(() => {
-        checkIfUserIsLoggedIn()
-    }, [])
-
+export function MenuAside() {
 
     return (
         <div aria-modal className={`${styles.menuAside} overlay`} id="menu-aside" role="dialog">
@@ -96,7 +81,7 @@ function CloseAside() {
 
 function CategoryTile({ image, title, url, alt }) {
     return (
-        <Link className={styles.categoryTile} to={url} prefetch="intent" onClick={() => forceCloseAside()}>
+        <Link className={styles.categoryTile} to={url} prefetch="intent" onClick={forceCloseAside}>
             <div className={styles.imageHolder}>
                 <Image src={image} alt={alt} width={46} height={46} />
             </div>
@@ -107,7 +92,7 @@ function CategoryTile({ image, title, url, alt }) {
 
 function BigCategoryTile({ url, title, image, alt }) {
     return (
-        <Link className={styles.allProdsButton} to={url} prefetch="intent" onClick={() => forceCloseAside()}>
+        <Link className={styles.allProdsButton} to={url} prefetch="intent" onClick={forceCloseAside}>
             <Image src={image} alt={alt} width={46} height={46} /> {title}
         </Link>
     )
@@ -138,9 +123,15 @@ function LinkPage({ image, title, url }) {
 // Helpers Functions
 function forceCloseAside(event) {
     event.preventDefault();
-    console.log("test");
+
+    // const hideMenu = setTimeout(() => {
+    //     console.log("test");
+    //     window.location.href = event.currentTarget.href;
+    // }, 300);
+    
+    // console.log("test");
     // console.log(window.location.href);
     // console.log(event.currentTarget.href);
-    // window.location.href = event.currentTarget.href;
+    window.location.href = event.currentTarget.href;
 
 }
