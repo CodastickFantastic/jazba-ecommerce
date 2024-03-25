@@ -113,7 +113,7 @@ function DummyTile({ image, title, alt }) {
 
 function LinkPage({ image, title, url }) {
     return (
-        <Link className={styles.link} to={url} prefetch="intent">
+        <Link className={styles.link} to={url} prefetch="intent" onClick={forceCloseAside}>
             <Image className={styles.icon} src={image} alt={`ikona ${title}`} width={32} height={32} />
             <p className={styles.linkTitle}>{title}</p>
         </Link>
@@ -123,15 +123,5 @@ function LinkPage({ image, title, url }) {
 // Helpers Functions
 function forceCloseAside(event) {
     event.preventDefault();
-
-    // const hideMenu = setTimeout(() => {
-    //     console.log("test");
-    //     window.location.href = event.currentTarget.href;
-    // }, 300);
-    
-    // console.log("test");
-    // console.log(window.location.href);
-    // console.log(event.currentTarget.href);
     window.location.href = event.currentTarget.href;
-
 }
