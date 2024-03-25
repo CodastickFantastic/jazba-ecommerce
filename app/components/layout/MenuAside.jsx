@@ -136,7 +136,7 @@ function LinkPage({ image, title, url }) {
 
 // Helpers Functions
 function forceCloseAside(event) {
-    // event.preventDefault();
-    // window.location.href = event.currentTarget.href;
+    event.preventDefault();
+    window.location.href = event.currentTarget.href;
 
 }
