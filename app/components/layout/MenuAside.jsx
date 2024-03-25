@@ -26,6 +26,7 @@ export function MenuAside({ isLoggedIn }) {
     const [userStatus, setUserStatus] = useState(false);
 
     function checkIfUserIsLoggedIn() {
+        console.log(userStatus)
         isLoggedIn
             .then((answer) => {
                 setUserStatus(answer)
@@ -72,7 +73,7 @@ export function MenuAside({ isLoggedIn }) {
                         <LinkPage image={helpIcon} title="Pomoc" url="/pomoc" />
                         {/* <LinkPage image={deliveryIcon} title="Dostawa" url="/dostawa" /> */}
                         {/* <LinkPage image={galleryIcon} title="Lookbook" url="/lookbook" /> */}
-                        {/* <LinkPage image={userIcon} title="Moje Konto" url="https://konto.jazba.pl" /> */}
+                        <LinkPage image={userIcon} title="Moje Konto" url="https://konto.jazba.pl" />
                     </nav>
                 </main>
                 <footer>
@@ -127,7 +128,7 @@ function DummyTile({ image, title, alt }) {
 
 function LinkPage({ image, title, url }) {
     return (
-        <Link className={styles.link} to={url} prefetch="intent" onClick={() => forceCloseAside()}>
+        <Link className={styles.link} to={url} prefetch="intent">
             <Image className={styles.icon} src={image} alt={`ikona ${title}`} width={32} height={32} />
             <p className={styles.linkTitle}>{title}</p>
         </Link>
@@ -137,6 +138,9 @@ function LinkPage({ image, title, url }) {
 // Helpers Functions
 function forceCloseAside(event) {
     event.preventDefault();
-    window.location.href = event.currentTarget.href;
+    console.log("test");
+    // console.log(window.location.href);
+    // console.log(event.currentTarget.href);
+    // window.location.href = event.currentTarget.href;
 
 }
