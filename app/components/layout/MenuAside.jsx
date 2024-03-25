@@ -72,12 +72,7 @@ export function MenuAside({ isLoggedIn }) {
                         <LinkPage image={helpIcon} title="Pomoc" url="/pomoc" />
                         {/* <LinkPage image={deliveryIcon} title="Dostawa" url="/dostawa" /> */}
                         {/* <LinkPage image={galleryIcon} title="Lookbook" url="/lookbook" /> */}
-                        {userStatus ?
-                            <LinkPage image={userIcon} title="Moje Konto" url="/account" />
-                            :
-                            <LinkPage image={userIcon} title="Zaloguj się" url="/account" />
-                        }
-
+                        <LinkPage image={userIcon} title="Moje Konto" url="https://konto.jazba.pl" />
                     </nav>
                 </main>
                 <footer>
@@ -141,6 +136,6 @@ function LinkPage({ image, title, url }) {
 
 // Helpers Functions
 function forceCloseAside(event) {
-    event.preventDefault();
+    // event.preventDefault();
     window.location.href = event.currentTarget.href;
 }
