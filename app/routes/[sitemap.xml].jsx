@@ -34,7 +34,7 @@ function shopSitemap({ data, baseUrl }) {
 
     const productsData = flattenConnection(data.products)
         .map((product) => {
-            const url = `${baseUrl}/products/${xmlEncode(product.handle)}`;
+            const url = `${baseUrl}/produkty/${xmlEncode(product.handle)}`;
 
             const finalObject = {
                 url,
@@ -59,16 +59,16 @@ function shopSitemap({ data, baseUrl }) {
             return finalObject;
         });
 
-    const collectionsData = flattenConnection(data.collections)
-        .map((collection) => {
-            const url = `${baseUrl}/collections/${collection.handle}`;
+    // const collectionsData = flattenConnection(data.collections)
+    //     .map((collection) => {
+    //         const url = `${baseUrl}/collections/${collection.handle}`;
 
-            return {
-                url,
-                lastMod: collection.updatedAt,
-                changeFreq: 'daily',
-            };
-        });
+    //         return {
+    //             url,
+    //             lastMod: collection.updatedAt,
+    //             changeFreq: 'daily',
+    //         };
+    //     });
 
     const staticPagesData = [
         {
@@ -116,9 +116,29 @@ function shopSitemap({ data, baseUrl }) {
             lastMod: new Date().toISOString(),
             changeFreq: 'daily',
         },
+        {
+            url: `${baseUrl}/wzory/al-rancher`,
+            lastMod: new Date().toISOString(),
+            changeFreq: 'daily',
+        },
+        {
+            url: `${baseUrl}/wzory/dali-gator`,
+            lastMod: new Date().toISOString(),
+            changeFreq: 'daily',
+        },
+        {
+            url: `${baseUrl}/kategorie/koszulki-polo`,
+            lastMod: new Date().toISOString(),
+            changeFreq: 'daily',
+        },
+        {
+            url: `${baseUrl}/kategorie/bluzy`,
+            lastMod: new Date().toISOString(),
+            changeFreq: 'daily',
+        },
     ]
 
-    const urlsDatas = [...productsData, ...collectionsData, ...staticPagesData];
+    const urlsDatas = [...productsData, ...staticPagesData];
 
     return `
     <urlset
