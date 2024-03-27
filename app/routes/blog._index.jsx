@@ -3,7 +3,7 @@ import { Image } from "@shopify/hydrogen"
 import { json } from "@shopify/remix-oxygen"
 import styles from "~/styles/pages/blog.module.css"
 
-import testImg from "~/../public/blog/test.jpg"
+import p1 from "~/../public/blog/poznaj-marke-jazba/modelka-w-czarne-bluzie-typu-hoodie.webp"
 
 import seoBlog from "~/seo/seoBlog"
 
@@ -22,19 +22,19 @@ export default function Blog() {
                 <Article
                     title="Poznaj marke Jazba - Kilka slow o nas"
                     description="Miło nam że do nas wpadłeś. Jeśli jeszcze nas nie znasz to niniejszy artykuł przedstawi Ci po krótce naszą markę. Dowiesz się w nim co oznacza słowo Jazba oraz poznasz bliżej naszą markę."
-                    img={testImg}
-                    imgAlt="Dummy Data"
+                    img={p1}
+                    imgAlt="Modelka w czarnej bluzie typu hoodie pozująca w lesie"
                     url="/blog/poznaj-marke-jazba"
                     side="left"
                 />
-                <Article
+                {/* <Article
                     title="Poznaj marke Jazba - Kilka slow o na"
                     description="Miło nam że do nas wpadłeś. Jeśli jeszcze nas nie znasz to niniejszy artykuł przedstawi Ci po krótce naszą markę. Dowiesz się w nim co oznacza słowo Jazba oraz poznasz bliżej naszą markę."
                     img={testImg}
                     imgAlt="Dummy data"
                     url="/blog/poznaj-marke-jazba"
                     side="right"
-                />
+                /> */}
             </section>
         </div>
     )

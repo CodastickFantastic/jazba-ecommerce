@@ -1,13 +1,15 @@
-import { Image } from "@shopify/hydrogen"
+import seoArticle from "~/seo/seoArticle"
+import { json } from "@shopify/remix-oxygen"
 
-import styles from "~/styles/pages/blogPosts/poznajMarkeJazba.module.css"
+import BlogHeader from "~/components/blog/BlogHeader"
+import BlogColWithImgRight from "~/components/blog/BlogColWithImgRight"
+import BlogTextSection from "~/components/blog/BlogTextSection"
+import BlogFooterWithImg from "~/components/blog/BlogFooterWithImg"
 
 import logo from "~/../public/logo/jazba-logo-black.png"
-import testImg from "~/../public/blog/test.jpg"
-import { Link } from "@remix-run/react"
-
-import { json } from "@shopify/remix-oxygen"
-import seoArticle from "~/seo/seoArticle"
+import footerImg from "~/../public/blog/poznaj-marke-jazba/modelka-w-bluzie-na-drzewie.webp"
+import aligator from "~/../public/blog/poznaj-marke-jazba/haft-aligatora.webp"
+import modelPolo from "~/../public/blog/poznaj-marke-jazba/model-w-bialej-koszulce-polo.webp"
 
 export async function loader({ request }) {
 
@@ -19,7 +21,7 @@ export async function loader({ request }) {
         imgAlt: "Logo marki Jazba",
         imgHeight: 806,
         imgWidth: 1477,
-        articleBody: "Jazba. Czytaj dalej. ",
+        articleBody: "Poznaj marke Jazba. Witajcie Kochani, Na wstępie chcemy podziękować wam za odwiedzenie naszego sklepu internetowego. Cieszymy się z faktu, że do nas trafiliście. Mamy nadzieję, że nasze produkty przyciągną waszą uwagę i zasłużą na wasz zakup.Jesteśmy małą firmą założoną na początku 2024 roku. Kierujemy się pasją do tworzenia niebagatelnych wzorów i bardzo nie lubimy nudy. Lubimy wyróżnić się z tłumu i w taki oto sposób zrodził się pomysł na stworzenie marki Jazba, marki która za pomocą niebanalnych haftów pragnie ożywić Twoją kreację, w taki sposób abyś mógł wyrazić siebie bez używania słów. W dzień premiery nasz asortyment jest niestety skromny, jednakże planujemy w każdym tygodniu wypuszczać nowe wzory. Idziemy z duchem czasu, co oznacza że wypuszczane przez nas wzory są w 100% unisex. Co znaczy słowo Jazba? Jazba to więcej niż zwykły termin. To wyraz oznaczający pożądanie, pasję oraz uczucia w języku Ugundu. Jazba w świecie mody. Marka Jazba wnosi do świata mody coś więcej niż tylko ubrania. Haftując niepowtarzalne wzory tworzy dzieła sztuki na ubraniach. Każdy haft jest wyjątkowym projektem, stworzonym z pasją i zaangażowaniem, co sprawia, że noszenie ubrań staje się wyrazem indywidualnego stylu. Chcieliśmy wnieść coś co jest oryginalne, niebanalne, a zarazem ciekawe. Tak powstał pomysł stworzenia Jazby. Gdzie ubrania wzbogacamy o wyjątkowy haft, zaprojektowany wyłącznie przez nas i naszych artystów. Projektowanie wzorów sprawia nam wiele radości, chociaż nie zawsze jest to dla nas łatwe. Sztuka Haftu - Połączenie Elegancji i Luzu.Hafty Jazby to nie tylko zwykłe zdobienie tkanin. To chęć połączenia dwóch stylów: elegancji i luzu. Dzięki temu Nasze ubrania można nosić na różne okazje, od formalnych spotkań po swobodne spotkania z przyjaciółmi.Nasze hafty przedstawiają zwierzęta w różnych strojach co dodaje niepowtarzalnego uroku każdej stylizacji. Proces Tworzenia Ubrań.Projekty haftów Naszej firmy są tworzone w Polsce inspirowane zwierzętami, ale także inspirujemy się klasykami filmów, bajek, zawodami jak i różnymi kulturami. Dokładamy wszelkich starań by nasze ubrania były jak najwyższej jakości. Staramy się stosować w naszych koszulkach oraz bluzach wysokiej jakości gatunkowo bawełnę, by ubrania mogły Cię cieszyć przez długi czas. Przykładamy uwagę, do grubości stosowanych materiałów aby nie były zbyt cienkie i nie prześwitywały. Dzięki temu nasze połówki można również zakładać na bardziej eleganckie spotkania.By stworzyć dla Was projekt najpierw musimy zaprojektować grafikę haftu. Następnie tworzymy prototyp, by zobaczyć czy projekt odpowiednio odwzorowywuje naszą wizję. Następnie wiedząc co poszło nie tak nadajemy poprawki. Po skończeniu ostatecznie projektu graficznego, możemy wyhaftować ostatecznie zaprojektowany wzór.Wyraź Swoją Indywidualność. Nosząc ubrania Jazba, wyrażasz nie tylko swój styl, ale także swoją osobowość. To nie tylko zwykła moda - to sposób na wyrażanie siebie. Każdy nasz projekt przedstawia inne zwierze oraz każde z nich jest inaczej ubrane. Dzięki temu możesz różnie interpretować nasze Hafty. Kochasz koale? A może po prostu lubisz surfować lub uwielbiasz podróżować? We wszystkich przypadkach nasza kolekcja Cool Lala na pewno będzie do Ciebie pasować. Baw się moda dzięki naszym różnym projektom i wybierz wzory pasujące do Ciebie.Podsumowanie.Jazba to nie tylko marka odzieżowa. To wyrażanie swojego indywidualnego stylu. Marka Jazba dba o każdy detal swoich ubrań, a dzięki haftom dba o niepowtarzalny charakter Twoich stylizacji. Skupia się na jak najwyższej jakości ubrań, dzięki czemu ubrania posłużą Ci na bardzo długi czas. Odkryj swoją pasję w ubraniach, baw się modą i pozwól swojemu stylowi zabłysnąć!",
         publishedDate: "2024-03-01",
     })
 
@@ -28,60 +30,65 @@ export async function loader({ request }) {
 
 export default function BlogPage() {
     return (
-        <div className={`${styles.blogPage} smallContainer`}>
-            <h1>Poznaj marke <span className="beige">Jazba</span></h1>
-            <p><strong style={{ fontSize: "18px" }}>Witajcie <span className="beige">Kochni</span>,</strong><br /><br />Na wstepie chcemy podziękować wam za odwiedzenie naszego sklepu internetowego. Cieszymy się z faktu, że do nas trafiliście. Mamy nadzieję, że nasze produkty przyciągną waszą uwagę i zasłużą na wasz zakup. <br /><br />Jesteśmy małą firmą założoną na początku 2024 roku. Kierujemy się pasją do tworzenia niebagatelnych wzorów i bardzo nie lubimy nudy. Lubimy wyóżnić się z tłumu i w taki oto sposób zrodził się pomysł na stworzenie marki <span className="beige">Jazba</span>, marki która za pomocą niebanalnych haftów pragnie ożywić Twoją kreację, w taki sposób abyś mógł wyrazić siebie bez używania słów.<br /><br />W dzień premiery nasz asortyment jest niestety skromny, jednakże planujemy w każdym tygodniu wypsuzczać nowe wzory. Idziemy z duchem czasu, co oznacza że wypuszczane przez nas wzory są w 100% unisex.</p>
-            <section className={styles.contents}>
-                <h2>Spis Treści</h2>
-                <ol>
-                    <li><Link to="#co-znaczy-slowo-jazba">Co znaczy słowo Jazba?</Link></li>
-                    <li><Link to="#jazba-w-swiecie-mody">Jazba w świecie mody</Link></li>
-                    <li><Link to="#sztuka-haftu-polaczenie-elegancji-i-luzu">Sztuka Haftu - Połączenie Elegancji i Luzu</Link></li>
-                    <li><Link to="#proces-tworzenia-ubran">Proces tworzenia ubrań</Link></li>
-                    <li><Link to="#wyraz-swoja-indywidualnosc">Wyraź swoją indywidualność</Link></li>
-                    <li><Link to="#podsumowanie">Podsumwoanie</Link></li>
-                </ol>
-            </section>
-            <section id="co-znaczy-slowo-jazba" className={`${styles.twoColsCentered} ${styles.coZnaczySlowoJazba}`}>
-                <div className={styles.col60}>
-                    <h2>Co znaczy słowo Jazba?</h2>
-                    <p>Jazba to więcej niż zwykły termin. To wyraz oznaczający porzadanie, pasję oraz uczucia w języku Ugundu.</p>
-                </div>
-                <div className={styles.col40}>
-                    <Image src={logo} alt="Logo Jazba Czarne" width={500} className={styles.logo} />
-                </div>
-            </section>
-            <section id="jazba-w-swiecie-mody" className={styles.centered}>
-                <h2>Jazba w Świecie Mody</h2>
-                <p>Marka Jazba wnosi do świata mody coś więcej niż tylko ubrania. Haftując niepowtarzane wzory tworzy dzieła sztuki na ubraniach. Każdy haft jest wyjątkowym projektem, stworzonym z pasją i zaangażowaniem, co sprawia, że noszenie ubrań staje się wyrazem indywidualnego stylu. </p>
-            </section>
-            <section id="sztuka-haftu-polaczenie-elegancji-i-luzu" className={`${styles.twoColsCentered} ${styles.sztukaHaftu}`}>
-                <div className={styles.col30} style={{ marginRight: 24 }}>
-                    <Image src={testImg} alt="Haft na ubranmiu" width={500} className={styles.haftNaUbraniu} />
-                </div>
-                <div className={styles.col70}>
-                    <h2>Sztuka Haftu - Połączenie Elegancji i Luzu</h2>
-                    <p>Hafty Jazby to nie tylko zwykle zdobienie tkanin. To chęć połączenia dwóch stylów: eleganzcji i luzu. Dzięki temu Nasze ubrania można nosić na różne okazje, od formalnych spotkań po swobodne spotkania z przyjaciółmi.<br /><br />Nasze hafty przedstawiają zwierzęta w różnych strojach co dodaje niepowtarzalnego uroku każdej stylizacji.</p>
-                </div>
-            </section>
-            <section id="proces-tworzenia-ubran" className={styles.centered}>
-                <h2>Proces Tworzenia Ubrań</h2>
-                <p>Projekty haftów Naszej firmy są tworzone w Polsce inspirowane zwierzętami, ale także inspirujemy się klasykami filmów, bajek, zawodami jak i różnymi kulturami. Dokładamy wszelkich starań by nasze ubrania były jak najwyższej jakości. Staramy się stosować w naszych koszulkach oraz bluzach wysokiej jakości gatunkowo bawełnę, by ubrania mogły Cie cieszyć przez długi czas. Przykładamy uwagę, do grubości stosowanych materiałów aby nie były zbyt cienkie i nie prześwitywały. Dzięki temu nasze połówki można również zakładać na bardziej eleganckie spotkania.<br />By stworzyć dla Was projekt najpierw musimy zaprojektować grafikę haftu. Następnie tworzymy prototyp, by zobaczyć czy projekt odpowiednio odwozrowywuje naszą wizję. Następnie wiedząc co poszło nie tak nadajemy poprawki. Po skończeniu ostatecznie projektu graficznego, możemy wyhaftować ostatecznie zaprojektowany wzór.</p>
-            </section>
-            <section id="wyraz-swoja-indywidualnosc" className={styles.twoColsCentered}>
-                <div className={styles.col60}>
-                    <h2>Wyraź Swoją Indywidualność</h2>
-                    <p>Nosząc ubrania Jazba, wyrażasz nie tylko swój styl, ale także swoją osobowość. To nie tylko zwykła moda - to sposób na wyrażanie siebie.</p>
-                </div>
-                <div className={styles.col40}>
-                    <Image src={testImg} alt="Zdjecie Modela w Polo" width={500} className={styles.haftNaUbraniu} />
-                </div>
-            </section>
-            <section id="podsumowanie" className={styles.centered}>
-                <h2>Podsumowanie</h2>
-                <p>Jazba to nie tylko marka odzieżowa. To wyrażanie swojego indywidualnego stylu. Odkryj swoją pasję w ubraniach Jazba i pozwól swojemu stylowi zabłysnąć!</p>
-                <p>WIDEOWIDEOWIDEOWIDEOWIDEOWIDEOWIDEOWIDEOWIDEOWIDEOWIDEOWIDEO</p>
-            </section>
-        </div>
+        <article className="smallContainer">
+            <BlogHeader
+                title='Poznaj marke <span class="beige">Jazba</span>'
+                description='<strong>Witajcie <span class="beige">Kochani</span>,</strong><br /><br />Na wstępie chcemy podziękować wam za odwiedzenie naszego sklepu internetowego. Cieszymy się z faktu, że do nas trafiliście. Mamy nadzieję, że nasze produkty przyciągną waszą uwagę i zasłużą na wasz zakup. <br /><br />Jesteśmy małą firmą założoną na początku 2024 roku. Kierujemy się pasją do tworzenia niebagatelnych wzorów i bardzo nie lubimy nudy. Lubimy wyróżnić się z tłumu i w taki oto sposób zrodził się pomysł na stworzenie marki <span className="beige">Jazba</span>, marki która za pomocą niebanalnych haftów pragnie ożywić Twoją kreację, w taki sposób abyś mógł wyrazić siebie bez używania słów.<br /><br />W dzień premiery nasz asortyment jest niestety skromny, jednakże planujemy w każdym tygodniu wypuszczać nowe wzory. Idziemy z duchem czasu, co oznacza że wypuszczane przez nas wzory są w 100% unisex.'
+                blogContents={[
+                    { title: "Co znaczy słowo Jazba?", link: "#co-znaczy-slowo-jazba", },
+                    { title: "Jazba w świecie mody", link: "#jazba-w-swiecie-mody", },
+                    { title: "Sztuka Haftu - Połączenie Elegancji i Luzu", link: "#sztuka-haftu-polaczenie-elegancji-i-luzu", },
+                    { title: "Proces tworzenia ubran", link: "#proces-tworzenia-ubran", },
+                    { title: "Wyraź swoją indywidualność", link: "#wyraz-swoja-indywidualnosc", },
+                    { title: "Podsumowanie", link: "#podsumowanie", }
+                ]}
+            />
+            <main>
+                <BlogColWithImgRight
+                    id="co-znaczy-slowo-jazba"
+                    title="Co znaczy słowo Jazba?"
+                    description="Jazba to więcej niż zwykły termin. To wyraz oznaczający pożądanie, pasję oraz uczucia w języku Ugundu."
+                    img={logo}
+                    imgAlt="Logo marki Jazba w czarnym kolorze"
+                    leftColWidth="60"
+                    righColWidth="40"
+                />
+                <BlogTextSection
+                    id="jazba-w-swiecie-mody"
+                    title="Jazba w świecie mody"
+                    description="Marka Jazba wnosi do świata mody coś więcej niż tylko ubrania. Haftując niepowtarzalne wzory tworzy dzieła sztuki na ubraniach. Każdy haft jest wyjątkowym projektem, stworzonym z pasją i zaangażowaniem, co sprawia, że noszenie ubrań staje się wyrazem indywidualnego stylu.<br /> Chcieliśmy wnieść coś co jest oryginalne,  niebanalne, a zarazem ciekawe. Tak powstał pomysł stworzenia Jazby. Gdzie ubrania wzbogacamy o wyjątkowy haft, zaprojektowany wyłącznie przez nas i naszych artystów. Projektowanie wzorów sprawia nam wiele radości, chociaż nie zawsze jest to dla nas łatwe."
+                />
+                <BlogColWithImgRight
+                    id="sztuka-haftu-polaczenie-elegancji-i-luzu"
+                    title="Sztuka Haftu - Połączenie Elegancji i Luzu"
+                    description="Hafty Jazby to nie tylko zwykłe zdobienie tkanin. To chęć połączenia dwóch stylów: elegancji i luzu. Dzięki temu Nasze ubrania można nosić na różne okazje, od formalnych spotkań po swobodne spotkania z przyjaciółmi.<br />Nasze hafty przedstawiają zwierzęta w różnych strojach co dodaje niepowtarzalnego uroku każdej stylizacji."
+                    img={aligator}
+                    imgAlt="Zdjęcie haftu aligatora - Dali Gator"
+                    leftColWidth="70"
+                    righColWidth="30"
+                />
+                <BlogTextSection
+                    id="proces-tworzenia-ubran"
+                    title="Proces Tworzenia Ubrań"
+                    description="Projekty haftów Naszej firmy są tworzone w Polsce inspirowane zwierzętami, ale także inspirujemy się klasykami filmów, bajek, zawodami jak i różnymi kulturami. Dokładamy wszelkich starań by nasze ubrania były jak najwyższej jakości. Staramy się stosować w naszych koszulkach oraz bluzach wysokiej jakości gatunkowo bawełnę, by ubrania mogły Cię cieszyć przez długi czas. Przykładamy uwagę, do grubości stosowanych materiałów aby nie były zbyt cienkie i nie prześwitywały. Dzięki temu nasze połówki można również zakładać na bardziej eleganckie spotkania.<br />By stworzyć dla Was projekt najpierw musimy zaprojektować grafikę haftu. Następnie tworzymy prototyp, by zobaczyć czy projekt odpowiednio odwzorowywuje naszą wizję. Następnie wiedząc co poszło nie tak nadajemy poprawki. Po skończeniu ostatecznie projektu graficznego, możemy wyhaftować ostatecznie zaprojektowany wzór."
+                />
+                <BlogColWithImgRight
+                    id="wyraz-swoja-indywidualnosc"
+                    title="Wyraź Swoją Indywidualność"
+                    description="Nosząc ubrania Jazba, wyrażasz nie tylko swój styl, ale także swoją osobowość. To nie tylko zwykła moda - to sposób na wyrażanie siebie. Każdy nasz projekt przedstawia inne zwierze oraz każde z nich jest inaczej ubrane. Dzięki temu możesz różnie interpretować nasze Hafty. Kochasz koale? A może po prostu lubisz surfować lub uwielbiasz podróżować? We wszystkich przypadkach nasza kolekcja Cool Lala na pewno będzie do Ciebie pasować. Baw się moda dzięki naszym różnym projektom i wybierz wzory pasujące do Ciebie."
+                    img={modelPolo}
+                    imgAlt="Model w białej koszulce polo, zdjęcie w lesie"
+                    leftColWidth="70"
+                    righColWidth="30"
+                />
+            </main>
+            <BlogFooterWithImg
+                id="podsumowanie"
+                title="Podsumowanie"
+                description="Jazba to nie tylko marka odzieżowa. To wyrażanie swojego indywidualnego stylu. Marka Jazba dba o każdy detal swoich ubrań, a dzięki haftom dba o niepowtarzalny charakter Twoich stylizacji. Skupia się na jak najwyższej jakości ubrań, dzięki czemu ubrania posłużą Ci na bardzo długi czas. Odkryj swoją pasję w ubraniach, baw się modą i pozwól swojemu stylowi zabłysnąć!"
+                img={footerImg}
+                imgAlt="Modelka w bluzie Jazba siedząca w drzewie"
+            />
+        </article>
     )
 }
