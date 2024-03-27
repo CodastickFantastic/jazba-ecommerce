@@ -374,16 +374,81 @@ export default function PolitykaZwrotów() {
             <table>
                 <thead>
                     <tr style={{ background: "#D9D9D9" }}>
-                        <td>nazwa pliku cookie</td>
-                        <td>okres ważności pliku cookie</td>
-                        <td>funkcja pliku cookie</td>
+                        <td>Nazwa Pliku Cookie</td>
+                        <td>Okres Ważności</td>
+                        <td>Opis</td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>example</td>
+                        <td>CookieScriptConsent</td>
+                        <td>1 miesiąc</td>
+                        <td>Ten plik cookie jest generalnie dostarczany przez Shopify i jest używany w połączeniu z częścią zakupową.</td>
+                    </tr>
+                    <tr>
+                        <td>_orig_referrer</td>
+                        <td>14 dni</td>
+                        <td>Ten plik cookie jest używany przez usługę Cookie-Script.com do zapamiętywania preferencji dotyczących zgody użytkownika na pliki cookie. Jest to konieczne, aby baner cookie Cookie-Script.com działał poprawnie.</td>
+                    </tr>
+                    <tr>
+                        <td>__cf_bm</td>
+                        <td>30 minut</td>
+                        <td>Ten plik cookie służy do rozróżniania ludzi i botów. Jest to korzystne dla strony internetowej, ponieważ umożliwia tworzenie ważnych raportów na temat korzystania z jej witryny internetowej.</td>
+                    </tr>
+                    <tr>
+                        <td>cart_currency</td>
+                        <td>14 dni</td>
+                        <td>Ten plik cookie służy do rozpoznawania kraju pochodzenia użytkownika i podawania prawidłowej waluty transakcji.</td>
+                    </tr>
+                    <tr>
+                        <td>secure_customer_sig</td>
                         <td>1 rok</td>
-                        <td>zapisywanie ciasteczek</td>
+                        <td>Ten plik cookie jest generalnie dostarczany przez Shopify i jest używany w połączeniu z logowaniem klienta.</td>
+                    </tr>
+                    <tr>
+                        <td>session</td>
+                        <td>sesja</td>
+                        <td>Pliki cookie sesji wygasają po wylogowaniu się lub zamknięciu przeglądarki. Są przechowywane tylko tymczasowo i po opuszczeniu strony ulegają zniszczeniu. Są również znane jako tymczasowe pliki cookie, nietrwałe pliki cookie lub tymczasowe pliki cookie.</td>
+                    </tr>
+                    <tr>
+                        <td>_ga</td>
+                        <td>1 rok i 1 miesiąc</td>
+                        <td>Ta nazwa pliku cookie jest powiązana z Google Universal Analytics - co stanowi istotną aktualizację powszechnie używanej usługi analitycznej Google. Ten plik cookie służy do rozróżniania unikalnych użytkowników poprzez przypisanie losowo wygenerowanej liczby jako identyfikatora klienta. Jest on uwzględniony w każdym żądaniu strony w witrynie i służy do obliczania danych dotyczących odwiedzających, sesji i kampanii na potrzeby raportów analitycznych witryn.</td>
+                    </tr>
+                    <tr>
+                        <td>_ga_9DDDZQ83F9</td>
+                        <td>1rok i 1 miesiąc</td>
+                        <td>Ten plik cookie jest używany przez Google Analytics do utrzymywania stanu sesji.</td>
+                    </tr>
+                    <tr>
+                        <td>_landing_page</td>
+                        <td>14 dni</td>
+                        <td>Ten plik cookie służy do śledzenia, raportowania i analizowania na stronach docelowych.</td>
+                    </tr>
+                    <tr>
+                        <td>_shopify_s</td>
+                        <td>30 minut</td>
+                        <td>Ten plik cookie jest powiązany z pakietem analitycznym Shopify.</td>
+                    </tr>
+                    <tr>
+                        <td>_shopify_y</td>
+                        <td>1 rok</td>
+                        <td>Ten plik cookie jest powiązany z pakietem analitycznym Shopify.</td>
+                    </tr>
+                    <tr>
+                        <td>_tracking_consent</td>
+                        <td>1 rok</td>
+                        <td>Preferencje dotyczące śledzenia.</td>
+                    </tr>
+                    <tr>
+                        <td>_cmp_a</td>
+                        <td>1 dzień</td>
+                        <td>Służy do zarządzania ustawieniami prywatności klientów.</td>
+                    </tr>
+                    <tr>
+                        <td>localization</td>
+                        <td>1 rok</td>
+                        <td>Te pliki cookie są ustawiane na stronach z widżetem Flickr.</td>
                     </tr>
                 </tbody>
             </table>
