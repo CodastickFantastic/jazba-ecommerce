@@ -1,5 +1,5 @@
 import { Await, NavLink, useLocation } from '@remix-run/react';
-import { Suspense } from 'react';
+import { Suspense, useRef } from 'react';
 import { Image } from "@shopify/hydrogen-react"
 
 import styles from '~/styles/components/layout/header.module.css'
@@ -32,10 +32,16 @@ export function Header({ cart }) {
 }
 
 function MenuToggle() {
+    const ref = useRef()
+
+    function cssToggleMenu(){
+        ref.current.classList.add("cssToggleMenu")
+    }
+
     return (
-        <a className={styles.toggleMenu} href="#menu-aside">
+        <div id="menuToggleBtn" className={styles.toggleMenu} href="#menu-aside" ref={ref} onClick={cssToggleMenu}>
             <div className={styles.hamburegrMenuIcon} />
-        </a>
+        </div>
     )
 }
 

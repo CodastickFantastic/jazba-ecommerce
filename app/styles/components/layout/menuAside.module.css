@@ -1,7 +1,7 @@
 .menuAside {
-    &:target aside {
+    /* &:target aside {
         transform: translate(320px) !important;
-    }
+    } */
 
     & .closeOutside {
         background: transparent;

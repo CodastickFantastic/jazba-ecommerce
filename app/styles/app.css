@@ -35,6 +35,15 @@ body {
     min-height: calc(100vh - 539px) !important;
   }
 
+  &:has(.cssToggleMenu) {
+    & #menu-aside {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translate(320px) !important;
+      transition: 0.2s linear !important;
+    }
+  }
+
 }
 
 h1,
@@ -67,6 +76,8 @@ h2 {
 .beige {
   color: var(--color-beige) !important;
 }
+
+
 
 
 
@@ -138,7 +149,6 @@ aside li {
   bottom: 0;
   left: 0;
   opacity: 0;
-  pointer-events: none;
   position: fixed;
   right: 0;
   top: 0;

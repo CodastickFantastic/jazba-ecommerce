@@ -25,13 +25,7 @@ export function MenuAside() {
 
     return (
         <div aria-modal className={`${styles.menuAside} overlay`} id="menu-aside" role="dialog">
-            <button
-                className={styles.closeOutside}
-                onClick={() => {
-                    history.go(-1);
-                    window.location.hash = '';
-                }}
-            />
+            <button className={styles.closeOutside} onClick={forceCloseAside} />
             <aside className={styles.menu}>
                 <header>
                     <h3>Co <span className="beige">Cię</span> do nas dziś <span className="beige">sprowadza</span>?</h3>
@@ -72,10 +66,9 @@ export function MenuAside() {
 // Components
 function CloseAside() {
     return (
-        /* eslint-disable-next-line jsx-a11y/anchor-is-valid */
-        <a className={styles.close} href="#" onChange={() => history.go(-1)}>
+        <div className={styles.close} onClick={forceCloseAside}>
             <Image src={closeIcon} alt="Zamknij menu" width={40} height={40} />
-        </a>
+        </div>
     );
 }
 
@@ -121,8 +114,7 @@ function LinkPage({ image, title, url }) {
 }
 
 // Helpers Functions
-function forceCloseAside(event) {
-    // event.preventDefault();
-    // window.location.href = event.currentTarget.href;
-    console.log("forceCloseAside")
+function forceCloseAside() {
+    const toggleMenu = document.getElementById("menuToggleBtn");
+    toggleMenu.classList.remove("cssToggleMenu")
 }
