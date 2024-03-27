@@ -117,6 +117,11 @@ function shopSitemap({ data, baseUrl }) {
             changeFreq: 'daily',
         },
         {
+            url: `${baseUrl}/blog/poznaj-marke-jazba`,
+            lastMod: new Date().toISOString(),
+            changeFreq: 'daily',
+        },
+        {
             url: `${baseUrl}/wzory/al-rancher`,
             lastMod: new Date().toISOString(),
             changeFreq: 'daily',
