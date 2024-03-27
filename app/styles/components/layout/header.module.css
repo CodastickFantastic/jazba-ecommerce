@@ -21,6 +21,7 @@
             background-image: url("./../../../../public/icons//white/menu.png");
             background-size: contain;
             background-repeat: no-repeat;
+            cursor: pointer;
         }
 
         & .logo {
