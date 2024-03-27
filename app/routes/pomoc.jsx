@@ -33,7 +33,7 @@ export default function Pomoc() {
             <SingleFaq question="Ile trwa dostawa?" answer={ileTrwaDostawa} />
             <SingleFaq question="Ile kosztuje dostawa?" answer={ileKosztujeDostawa} />
             <SingleFaq question="Gdzie jest moja paczka?" answer={gdzieJestMojaPaczka} />
-            <SingleFaq question="Masz zastrzelenie co do paczki?" answer={maszZastrzelenieCoDoPaczki} />
+            <SingleFaq question="Masz zastrzeżenie co do paczki?" answer={maszZastrzelenieCoDoPaczki} />
             <SingleFaq question="Jak zamówić paczkę za granicę?" answer={jakZamowicPaczkeZaGranice} />
         </div>
     )

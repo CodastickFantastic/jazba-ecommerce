@@ -15,12 +15,40 @@ export default function seoQaPage({ title, description, url }) {
                 name: 'Helpdesk Jazba',
                 itemListElement: [
                     {
-                        '@type': 'ItemListElement',
-                        name: 'Jak dokonać zwrotu?',
+                        '@type': 'ListItem',
+                        name: 'Zwroty',
                     },
                     {
-                        '@type': 'ItemListElement',
-                        name: 'Jak dokonać reklamacji?',
+                        '@type': 'ListItem',
+                        name: 'Reklamacje',
+                    },
+                    {
+                        '@type': 'ListItem',
+                        name: 'Płatności',
+                    },
+                    {
+                        '@type': 'ListItem',
+                        name: 'Dlaczego dostawa może być wydłużona?',
+                    },
+                    {
+                        '@type': 'ListItem',
+                        name: 'Ile trwa dostawa?',
+                    },
+                    {
+                        '@type': 'ListItem',
+                        name: 'Ile kosztuje dostawa?',
+                    },
+                    {
+                        '@type': 'ListItem',
+                        name: 'Gdzie jest moja paczka?',
+                    },
+                    {
+                        '@type': 'ListItem',
+                        name: 'Masz zastrzeżenie co do paczki?',
+                    },
+                    {
+                        '@type': 'ListItem',
+                        name: 'Jak zamówić paczkę za granicę?',
                     },
                 ]
             },
