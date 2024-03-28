@@ -6,7 +6,7 @@ export default function seoQaPage({ title, description, url }) {
         url,
         jsonLd: {
             '@context': 'https://schema.org',
-            '@type': 'QAPage',
+            '@type': 'FQAPage',
             name: title,
             description: description,
             url: url,
